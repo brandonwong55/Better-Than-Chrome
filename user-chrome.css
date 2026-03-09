@@ -1,0 +1,1529 @@
+﻿/* =========================================================
+   SECTION 1 — ROOT VARIABLES & THEME SYSTEM
+   Core Material/Chrome variables, color system, icon paths,
+   animation curves, and theme overrides.
+   ========================================================= */
+
+:root,
+html,
+body {
+  /* --- Animation curves --- */
+  --md-fast-invoke: cubic-bezier(0, 0, 0, 1);
+  --md-strong-invoke: cubic-bezier(0.13, 1.62, 0, 0.92);
+  --md-fast-dismiss: cubic-bezier(0, 0, 0, 1);
+  --md-soft-dismiss: cubic-bezier(1, 0, 1, 1);
+  --md-point-to-point: cubic-bezier(0.55, 0.55, 0, 1);
+  --md-fade-in-out: linear;
+
+  /* --- Icon paths (Material/Chrome style) --- */
+  --md-no-src-icon: url("icons/no-src.svg");
+  --md-audio-icon: url("icons/audio.svg");
+  --md-audio-muted-icon: url("icons/audio-muted.svg");
+  --md-audio-blocked-icon: url("icons/audio-blocked.svg");
+  --md-close-tab-icon: url("icons/close-tab.svg");
+  --md-plus-icon: url("icons/plus.svg");
+  --md-keyboard-arrow-down-icon: url("icons/keyboard-arrow-down.svg");
+  --md-keyboard-arrow-up-icon: url("icons/keyboard-arrow-up.svg");
+  --md-arrow-back-icon: url("icons/arrow-back.svg");
+  --md-arrow-forward-icon: url("icons/arrow-forward.svg");
+  --md-refresh-icon: url("icons/refresh.svg");
+  --md-close-icon: url("icons/close.svg");
+  --md-home-icon: url("icons/home.svg");
+  --md-dev-icon: url("icons/dev.svg");
+  --md-menu-icon: url("icons/menu.svg");
+  --md-menu-update-icon: url("icons/menu-update.svg");
+  --md-extension-icon: url("icons/extension.svg");
+  --md-extension-blocked-icon: url("icons/extension-blocked.svg");
+  --md-download-icon: url("icons/download.svg");
+  --md-account-icon: url("icons/account.svg");
+  --md-side-panel-icon: url("icons/side-panel.svg");
+  --md-open-in-full-icon: url("icons/menu/open-in-full.svg");
+  --md-mail-icon: url("icons/mail.svg");
+  --md-glyphs-icon: url("icons/glyphs.svg");
+  --md-file-open-icon: url("icons/file-open.svg");
+  --md-info-icon: url("icons/info.svg");
+  --md-lock-icon: url("icons/lock.svg");
+  --md-page-info: url("icons/page-info.svg");
+  --md-warning-icon: url("icons/warning.svg");
+  --md-properties-icon: url("icons/properties.svg");
+  --md-tracking-protection-icon: url("icons/tracking-protection.svg");
+  --md-star-icon: url("icons/star.svg");
+  --md-chevron-icon: url("icons/chevron.svg");
+  --md-folder-icon: url("icons/folder.svg");
+  --md-check-icon: url("icons/check.svg");
+  --md-edit-icon: url("icons/edit.svg");
+  --md-arrow-right-icon: url("icons/arrow-right.svg");
+  --md-arrow-down-icon: url("icons/arrow-down.svg");
+  --md-organization-icon: url("icons/organization.svg");
+  --md-new-tab-icon: url("icons/new-tab.svg");
+  --md-new-window-icon: url("icons/new-window.svg");
+  --md-incognito-icon: url("icons/incognito.svg");
+  --md-history-icon: url("icons/history.svg");
+  --md-key-icon: url("icons/key.svg");
+  --md-print-icon: url("icons/print.svg");
+  --md-file-save-icon: url("icons/file-save.svg");
+  --md-find-icon: url("icons/find.svg");
+  --md-translate-icon: url("icons/translate.svg");
+  --md-settings-icon: url("icons/settings.svg");
+  --md-tools-icon: url("icons/tools.svg");
+  --md-help-icon: url("icons/help.svg");
+  --md-zoom-in-icon: url("icons/zoom-in.svg");
+  --md-exit-icon: url("icons/exit.svg");
+  --md-search-icon: url("icons/search.svg");
+  --md-multiaccountcontainer-icon: url("icons/multiaccountcontainer.svg");
+  --md-toolbar-icon: url("icons/toolbar.svg");
+  --md-bookmark-manager-icon: url("icons/bookmark-manager.svg");
+  --md-trash-icon: url("icons/trash.svg");
+  --md-task-manager-icon: url("icons/task-manager.svg");
+  --md-eyedropper-icon: url("icons/eyedropper.svg");
+  --md-devices-icon: url("icons/devices.svg");
+  --md-remote-icon: url("icons/remote.svg");
+  --md-code-icon: url("icons/code.svg");
+  --md-report-icon: url("icons/report.svg");
+  --md-feedback-icon: url("icons/feedback.svg");
+  --md-open-in-icon: url("icons/open-in.svg");
+
+  /* --- Old icon set (fallback) --- */
+  --md-extension-old-icon: url("icons/old/extension.svg");
+
+  /* --- Menu icons --- */
+  --md-copy-icon: url("icons/menu/copy.svg");
+  --md-select-all-icon: url("icons/menu/select-all.svg");
+  --md-screenshot-icon: url("icons/menu/screenshot.svg");
+  --md-cut-icon: url("icons/menu/cut.svg");
+  --md-paste-icon: url("icons/menu/paste.svg");
+  --md-undo-icon: url("icons/menu/undo.svg");
+  --md-redo-icon: url("icons/menu/redo.svg");
+  --md-pin-icon: url("icons/menu/pin.svg");
+  --md-unpin-icon: url("icons/menu/unpin.svg");
+  --md-tab-duplicate-icon: url("icons/menu/tab-duplicate.svg");
+  --md-tab-close-icon: url("icons/menu/tab-close.svg");
+  --md-link-icon: url("icons/menu/link.svg");
+  --md-link-off-icon: url("icons/menu/link-off.svg");
+  --md-share-icon: url("icons/menu/share.svg");
+  --md-reply-icon: url("icons/menu/reply.svg");
+  --md-swap-icon: url("icons/menu/swap.svg");
+
+  /* --- Base color palette --- */
+  --md-white: #fff;
+  --md-black: #000;
+
+  --md-grey-900-white-4-percent: #292a2d;
+  --md-grey-900-white-5-percent: #35363a;
+  --md-grey-900: #202124;
+  --md-grey-800: #3c4043;
+  --md-grey-700: #5f6368;
+  --md-grey-600: #80868b;
+  --md-grey-500: #9aa0a6;
+  --md-grey-400: #bdc1c6;
+  --md-grey-300: #dadce0;
+  --md-grey-200: #e8eaed;
+  --md-grey-100: #f1f3f4;
+  --md-grey-50: #f8f9fa;
+
+  --md-blue-900: #174ea6;
+  --md-blue-800: #185abc;
+  --md-blue-700: #1967d2;
+  --md-blue-600: #1a73e8;
+  --md-blue-500: #4285f4;
+  --md-blue-400: #669df6;
+  --md-blue-300: #8ab4f8;
+  --md-blue-200: #aecbfa;
+  --md-blue-100: #d2e3fc;
+  --md-blue-50: #e8f0fe;
+
+  /* --- Core theme variables --- */
+  --md-accent-color: var(--md-blue-300);
+  --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+  --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+  --md-accent-color-transparent-active: color-mix(in srgb, var(--md-accent-color) 20%, transparent);
+
+  --md-background-color-0: var(--md-grey-900);
+  --md-background-color-50: var(--md-grey-900-white-4-percent);
+  --md-background-color-100: var(--md-grey-900-white-5-percent);
+
+  --md-text-primary: var(--md-grey-200);
+  --md-text-secondary: var(--md-grey-500);
+  --md-text-disabled: var(--md-text-secondary);
+
+  --md-text-on-accent: var(--md-grey-900);
+
+  --md-secondary-button-text: var(--md-accent-color);
+
+  --md-control-background-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+  --md-control-border-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+
+  --md-input-background-color: var(--md-background-color-0);
+
+  --md-menu-background-color: var(--md-background-color-50);
+  --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
+  --md-menu-border-color: var(--md-grey-800);
+
+  --md-tab-background-color-hover: #004a77;
+  --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
+  --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
+
+  --md-tab-opacity: 1;
+  --md-tab-opacity-hover: 0.5;
+
+  --md-tab-icon-color: #c3c3c3;
+  --md-tab-label-color: #e3e3e3;
+  --md-tab-label-color-inactive: #c3c3c3;
+
+  --md-icon-color-primary: var(--md-grey-100);
+  --md-icon-color-secondary: var(--md-grey-500);
+
+  --md-content-separator-color: #606164;
+
+  --md-selection-text-color: var(--md-white);
+  --md-selection-background-color: var(--md-blue-900);
+
+  --md-search-input-shadow: 0 2px 6px 0 rgba(32, 33, 36, 0.3176470588);
+
+  --md-tile-background-color: #444746;
+}
+/* =========================================================
+   SECTION 2 — GLOBAL UI ELEMENTS
+   Buttons, inputs, selects, checkboxes, radios, focus rings,
+   and general form controls styled to match Material/Chrome.
+   ========================================================= */
+
+/* --- Text selection --- */
+::selection {
+  background-color: var(--md-selection-background-color) !important;
+  color: var(--md-selection-text-color) !important;
+}
+
+/* --- Inherit font for form controls --- */
+input,
+textarea,
+select {
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  word-spacing: inherit !important;
+}
+
+/* =========================================================
+   BUTTONS — PRIMARY, SECONDARY, AND GENERIC
+   ========================================================= */
+
+:not(dialog, .dialogBox) :not(button-group) > button:is(
+    [accesskey],
+    .accessory-button,
+    [dlgtype=cancel],
+    [autofocus],
+    [default],
+    .primary,
+    .primary-button,
+    .popup-notification-primary-button,
+    .disco-cta-button,
+    [data-l10n-id=translations-manage-language-download-button]
+  ):not(button[type=menu]),
+:not(dialog, .dialogBox) :not(button-group) > button[type=submit] {
+  min-width: 5.14em !important;
+  border-radius: 4px !important;
+  padding: 8px 16px !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 500 !important;
+  transition-property: background-color !important;
+  transition-duration: var(--md-medium-short-duration) !important;
+  transition-timing-function: var(--md-fast-invoke) !important;
+}
+
+/* --- Secondary buttons --- */
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [accesskey],
+    .accessory-button,
+    [dlgtype=cancel],
+    .disco-cta-button,
+    [data-l10n-id=translations-manage-language-download-button]
+  ):not(button[type=menu]) {
+  color: var(--md-secondary-button-text) !important;
+  background-color: transparent !important;
+  border: 1px solid var(--in-content-box-border-color) !important;
+}
+
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [accesskey],
+    .accessory-button,
+    [dlgtype=cancel],
+    .disco-cta-button,
+    [data-l10n-id=translations-manage-language-download-button]
+  ):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover {
+  background-color: var(--md-accent-color-transparent) !important;
+}
+
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [accesskey],
+    .accessory-button,
+    [dlgtype=cancel],
+    .disco-cta-button,
+    [data-l10n-id=translations-manage-language-download-button]
+  ):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active {
+  background-color: var(--md-accent-color-transparent-active) !important;
+}
+
+/* --- Primary buttons --- */
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [autofocus],
+    [default],
+    .primary,
+    .primary-button,
+    .popup-notification-primary-button
+  ):not(button[type=menu]),
+:not(dialog, .dialogBox) :not(button-group) > button[type=submit] {
+  border: none !important;
+  color: var(--md-text-on-accent) !important;
+  background-color: var(--md-accent-color) !important;
+}
+
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [autofocus],
+    [default],
+    .primary,
+    .primary-button,
+    .popup-notification-primary-button
+  ):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover,
+:not(dialog, .dialogBox) :not(button-group)
+  > button[type=submit]:not(.disabled, :disabled, [disabled]):hover {
+  background-color: var(--md-accent-color-hover) !important;
+}
+
+:not(dialog, .dialogBox) :not(button-group)
+  > button:is(
+    [autofocus],
+    [default],
+    .primary,
+    .primary-button,
+    .popup-notification-primary-button
+  ):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active,
+:not(dialog, .dialogBox) :not(button-group)
+  > button[type=submit]:not(.disabled, :disabled, [disabled]):hover:active {
+  background-color: color-mix(in srgb, var(--md-accent-color-hover) 80%, transparent) !important;
+}
+
+/* --- Cursor for enabled buttons --- */
+:not(dialog, .dialogBox) :not(button-group)
+  > button:not(.disabled, :disabled, [disabled]) {
+  cursor: pointer;
+}
+
+/* =========================================================
+   INPUTS, TEXTAREAS, SEARCH FIELDS
+   ========================================================= */
+
+input:is([type=email], [type=tel], [type=text], [type=password], [type=url], [type=number]),
+textarea,
+search-textbox {
+  border: 1px solid var(--md-menu-border-color) !important;
+  background-color: var(--md-input-background-color) !important;
+  border-radius: 4px !important;
+}
+
+input:is([type=email], [type=tel], [type=text], [type=password], [type=url], [type=number]):focus,
+textarea:focus,
+search-textbox:focus {
+  border-color: transparent !important;
+  outline: 2px solid var(--md-accent-color) !important;
+  outline-offset: -1px !important;
+}
+
+/* =========================================================
+   SELECT, MENULIST, MENU BUTTONS
+   ========================================================= */
+
+select,
+menulist,
+.expander-down,
+.expander-up,
+button[type=menu] {
+  border: 1px solid var(--md-menu-border-color) !important;
+  background-color: var(--md-input-background-color) !important;
+  border-radius: 4px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+select menupopup,
+select menuitem,
+menulist menupopup,
+menulist menuitem,
+.expander-down menupopup,
+.expander-down menuitem,
+.expander-up menupopup,
+.expander-up menuitem,
+button[type=menu] menupopup,
+button[type=menu] menuitem {
+  line-height: 18px !important;
+}
+
+select:focus,
+menulist:focus,
+.expander-down:focus,
+.expander-up:focus,
+button[type=menu]:focus {
+  border-color: transparent !important;
+  outline: 2px solid var(--md-accent-color) !important;
+  outline-offset: -1px !important;
+}
+
+menulist > menupopup {
+  --panel-shadow: var(--md-elevation-2) !important;
+  --panel-border-color: var(--md-menu-border-color) !important;
+  --panel-border-radius: 4px !important;
+  --panel-background: var(--md-input-background-color) !important;
+  --panel-color: var(--md-text-primary) !important;
+}
+
+/* --- Dropdown arrow icon --- */
+dropmarker {
+  content: var(--md-arrow-down-icon) !important;
+  fill: var(--md-icon-color-secondary) !important;
+}
+
+button[type=menu] .button-box {
+  display: flex;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+/* =========================================================
+   CHECKBOXES
+   ========================================================= */
+
+input[type=checkbox],
+.checkbox-check,
+.sponsored-checkbox {
+  border-width: 2px !important;
+  border-style: solid !important;
+  border-color: var(--md-menu-border-color) !important;
+  background-color: var(--md-background-color-0) !important;
+  border-radius: 2px !important;
+  width: 18px !important;
+  height: 18px !important;
+}
+
+input[type=checkbox]:is([checked], :checked),
+.checkbox-check:is([checked], :checked),
+.sponsored-checkbox:is([checked], :checked) {
+  background-image: var(--md-check-icon) !important;
+  background-color: var(--md-accent-color) !important;
+  border-color: var(--md-accent-color) !important;
+}
+
+/* --- Hover ring for checkboxes --- */
+:not(.findbar-container) > checkbox {
+  position: relative !important;
+}
+
+:not(.findbar-container) > checkbox::after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
+}
+
+:not(.findbar-container) > checkbox:not([disabled=true]):hover::after {
+  background-color: var(--md-accent-color-transparent);
+}
+
+:not(.findbar-container) > checkbox:not([disabled=true]):hover:active::after {
+  background-color: var(--md-accent-color-transparent-active);
+}
+
+checkbox:not([disabled=true]) {
+  cursor: pointer !important;
+}
+
+checkbox:not([disabled=true]) label {
+  cursor: pointer !important;
+}
+
+.checkbox-check[checked] {
+  fill: var(--md-text-on-accent) !important;
+}
+
+/* =========================================================
+   RADIOS
+   ========================================================= */
+
+input[type=radio]:not(.wallpaper-input),
+.radio-check {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  background-color: var(--md-background-color-0) !important;
+  width: 16px !important;
+  height: 16px !important;
+  color: var(--md-accent-color) !important;
+  background-size: 16px !important;
+  background-position: center !important;
+  transition: background-size var(--md-medium-short-duration) var(--md-fast-invoke) !important;
+}
+
+input[type=radio]:enabled:hover:not([selected], :checked),
+radio:not([disabled=true]):hover > .radio-check:not([selected], :checked) {
+  background-color: var(--md-background-color-50) !important;
+}
+
+input[type=radio]:checked,
+.radio-check[selected] {
+  background-size: 16px !important;
+  border: none !important;
+}
+
+radio {
+  position: relative !important;
+}
+
+radio::after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
+}
+
+radio:not([disabled=true]):hover::after {
+  background-color: var(--md-accent-color-transparent);
+}
+
+radio:not([disabled=true]):hover:active::after {
+  background-color: var(--md-accent-color-transparent-active);
+}
+
+radio:not([disabled=true]) {
+  cursor: pointer !important;
+}
+
+radio:not([disabled=true]) label {
+  cursor: pointer !important;
+}
+
+/* =========================================================
+   FOCUS RINGS
+   ========================================================= */
+
+:root {
+  --default-focusring-width: 0px !important;
+  --default-focusring: var(--default-focusring-width) solid !important;
+}
+
+/* =========================================================
+   RICHLIST / DOWNLOADS / LIST ITEMS
+   ========================================================= */
+
+#downloadsListBox:focus > richlistitem[selected] {
+  border: none !important;
+  outline: none !important;
+}
+
+richlistbox {
+  background-color: var(--md-input-background-color) !important;
+}
+
+richlistitem[selected] {
+  background-color: var(--md-accent-color) !important;
+  color: var(--md-text-on-accent) !important;
+}
+/* =========================================================
+   SECTION 3 — FIREFOX UI VARIABLES & OVERRIDES
+   These rules override Firefox’s built‑in theme variables to
+   align the browser chrome with your Material/Chrome palette.
+   ========================================================= */
+
+/* =========================================================
+   GLOBAL OVERRIDES FOR NON-DEFAULT THEMES
+   ========================================================= */
+
+@media not (-moz-pref("userChrome.theme-default")) {
+
+  :root,
+  html,
+  body,
+  panel,
+  toolbar {
+    --lwt-brighttext-url-color: var(--md-accent-color) !important;
+    --toolbarbutton-icon-fill-attention: var(--md-accent-color) !important;
+    --panel-item-hover-bgcolor: var(--md-menu-background-color-hover) !important;
+  }
+
+  :root,
+  :is(panel, toolbar, #urlbar, #searchbar) {
+    --toolbar-field-icon-fill-attention: var(--md-accent-color) !important;
+  }
+
+  :root,
+  html,
+  body {
+    --color-accent-primary: var(--md-accent-color) !important;
+    accent-color: var(--md-accent-color) !important;
+  }
+
+  :root,
+  html,
+  body {
+    --panel-banner-item-info-icon-bgcolor: var(--md-accent-color) !important;
+    --focus-outline-color: var(--md-accent-color) !important;
+    --button-primary-active-bgcolor: var(--md-accent-color) !important;
+    --button-primary-bgcolor: var(--md-accent-color) !important;
+    --button-primary-hover-bgcolor: var(--md-accent-color-hover) !important;
+    --toolbar-field-focus-border-color: var(--md-accent-color) !important;
+
+    --link-color: var(--md-accent-color) !important;
+    --link-color-hover: var(--md-accent-color) !important;
+    --link-color-active: var(--md-accent-color) !important;
+    --link-color-visited: var(--md-accent-color) !important;
+
+    --text-color-deemphasized: var(--md-text-secondary) !important;
+  }
+
+  :root,
+  html,
+  body,
+  menupopup,
+  panel {
+    --panel-border-color: var(--md-menu-border-color) !important;
+    --panel-shadow: var(--md-elevation-2) !important;
+    --windows-panel-box-shadow: var(--md-elevation-2) !important;
+  }
+
+  html,
+  body {
+    --lwt-accent-color: var(--md-background-color-0) !important;
+    --toolbar-field-background-color: var(--md-background-color-0) !important;
+    --toolbar-field-focus-background-color: var(--md-background-color-0) !important;
+
+    --lwt-background-tab-separator-color: var(--md-background-color-0) !important;
+
+    --arrowpanel-background: var(--md-menu-background-color) !important;
+    --arrowpanel-border-color: var(--md-menu-border-color) !important;
+
+    --panel-separator-color: var(--md-menu-border-color) !important;
+
+    --lwt-selected-tab-background-color: var(--md-background-color-50) !important;
+    --autocomplete-popup-highlight-background: var(--md-background-color-50) !important;
+    --tabpanel-background-color: var(--md-background-color-50) !important;
+
+    --toolbarseparator-color: var(--md-background-color-50) !important;
+
+    --tab-icon-overlay-stroke: var(--md-background-color-50) !important;
+
+    --toolbar-bgcolor: var(--md-background-color-100) !important;
+
+    --arrowpanel-color: var(--md-text-primary) !important;
+    --input-color: var(--md-text-primary) !important;
+
+    --lwt-tab-text: var(--md-text-primary) !important;
+    --lwt-text-color: var(--md-text-primary) !important;
+    --toolbar-color: var(--md-text-primary) !important;
+    --toolbar-field-color: var(--md-text-primary) !important;
+    --toolbar-field-focus-color: var(--md-text-primary) !important;
+
+    --button-primary-color: var(--md-text-on-accent) !important;
+
+    --autocomplete-popup-separator-color: var(--md-menu-border-color) !important;
+
+    --button-active-bgcolor: var(--md-control-background-color) !important;
+    --button-bgcolor: var(--md-control-background-color) !important;
+    --button-hover-bgcolor: var(--md-control-background-color) !important;
+
+    --chrome-content-separator-color: var(--md-tab-outline-color) !important;
+
+    --panel-separator-zap-gradient: transparent !important;
+
+    --tab-icon-overlay-fill: var(--md-icon-color-secondary) !important;
+
+    --toolbar-field-border-color: transparent !important;
+
+    --toolbarbutton-icon-fill: var(--md-icon-color-primary) !important;
+
+    --urlbar-icon-fill-opacity: 1 !important;
+  }
+
+  :root,
+  html,
+  body,
+  dialog {
+    --in-content-primary-button-text-color: var(--md-text-on-accent) !important;
+    --in-content-primary-button-background: var(--md-accent-color) !important;
+    --in-content-primary-button-background-hover: var(--md-accent-color-hover) !important;
+    --in-content-primary-button-background-active: var(--md-accent-color) !important;
+  }
+
+  :root,
+  html,
+  body,
+  .tab-background {
+    --tab-selected-outline-color: transparent !important;
+  }
+}
+
+/* =========================================================
+   OLD ICON SET OVERRIDE (WHEN ENABLED)
+   ========================================================= */
+
+@media (not (-moz-pref("userChrome.ui-chrome-refresh"))) and
+       (-moz-pref("userChrome.ui-force-old-icons")) {
+
+  :root,
+  html,
+  body {
+    --md-audio-icon: url("icons/old/audio.svg");
+    --md-audio-muted-icon: url("icons/old/audio-muted.svg");
+    --md-audio-blocked-icon: url("icons/old/audio-blocked.svg");
+    --md-home-icon: url("icons/old/home.svg");
+    --md-extension-icon: url("icons/old/extension.svg");
+    --md-page-info: url("icons/lock.svg");
+    --md-tracking-protection-icon: url("icons/old/tracking-protection.svg");
+  }
+}
+
+/* =========================================================
+   CHROME-REFRESH THEME OVERRIDE
+   ========================================================= */
+
+@media (-moz-pref("userChrome.theme-chrome-refresh")) {
+
+  :root,
+  html,
+  body {
+    --md-accent-color: #a8c7fa;
+
+    --md-background-color-0: #1f2020;
+    --md-background-color-50: #282828;
+    --md-background-color-100: #3c3c3c;
+
+    --md-text-secondary: #c7c7c7;
+
+    --md-menu-background-color: #1f1f1f;
+    --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
+    --md-menu-border-color: #444746;
+
+    --md-content-separator-color: #444746;
+
+    --md-selection-text-color: var(--md-black);
+    --md-selection-background-color: #a8c7fa;
+
+    --md-alltabs-background-color-open: #29668c;
+
+    --md-urlbar-background-color-hover: #4a4a4a;
+    --md-urlbar-background-color-open: var(--md-background-color-100);
+
+    --md-input-background-color: #1f1f1f;
+  }
+}
+
+/* =========================================================
+   LIGHT THEME OVERRIDE
+   ========================================================= */
+
+@media (prefers-color-scheme: light) {
+
+  :root,
+  html,
+  body {
+    --md-accent-color: var(--md-blue-500);
+    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+
+    --md-background-color-0: #f1f3f4;
+    --md-background-color-50: var(--md-grey-100);
+    --md-background-color-100: var(--md-white);
+
+    --md-text-primary: var(--md-grey-900);
+    --md-text-secondary: var(--md-grey-700);
+    --md-text-disabled: var(--md-text-secondary);
+
+    --md-text-on-accent: var(--md-white);
+
+    --md-secondary-button-text: var(--md-accent-color);
+
+    --md-control-background-color: var(--md-background-color-50);
+    --md-control-border-color: transparent;
+
+    --md-input-background-color: var(--md-background-color-100);
+
+    --md-menu-background-color: var(--md-background-color-100);
+    --md-menu-background-color-hover: var(--md-background-color-0);
+    --md-menu-border-color: var(--md-background-color-0);
+
+    --md-tab-background-color-hover: var(--md-accent-color-transparent-active);
+
+    --md-tab-separator-color: color-mix(in srgb, var(--md-black) 20%, transparent);
+    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 20%, transparent);
+
+    --md-tab-opacity: 1;
+    --md-tab-opacity-hover: 0.5;
+
+    --md-tab-icon-color: var(--md-grey-900);
+    --md-tab-label-color: var(--md-grey-900);
+    --md-tab-label-color-inactive: #474747;
+
+    --md-icon-color-primary: var(--md-grey-700);
+    --md-icon-color-secondary: var(--md-grey-700);
+
+    --md-content-separator-color: #dbdcdd;
+
+    --md-urlbar-background-color-hover: var(--md-menu-background-color-hover);
+    --md-urlbar-background-color-open: var(--md-background-color-100);
+
+    --md-selection-text-color: var(--md-black);
+    --md-selection-background-color: var(--md-blue-200);
+
+    --md-search-input-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.2784313725);
+
+    --md-tile-background-color: #e1e3e1;
+  }
+}
+
+/* =========================================================
+   MATERIAL THEME OVERRIDE
+   ========================================================= */
+
+@media (-moz-pref("userChrome.theme-material")) {
+
+  :root,
+  html,
+  body {
+    --md-accent-color: var(--md-sys-color-primary);
+    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+
+    --md-background-color-0: color-mix(in srgb, var(--md-grey-100) 80%, var(--md-accent-color));
+    --md-background-color-50: color-mix(in srgb, var(--md-grey-100) 95%, var(--md-accent-color));
+    --md-background-color-100: color-mix(in srgb, white 98%, var(--md-accent-color));
+
+    --md-text-primary: var(--md-sys-color-on-surface);
+    --md-text-secondary: var(--md-sys-color-secondary);
+    --md-text-disabled: color-mix(in srgb, var(--md-text-secondary) 80%, transparent);
+
+    --md-text-on-accent: var(--md-sys-color-on-primary);
+
+    --md-secondary-button-text: var(--md-accent-color);
+
+    --md-menu-background-color: var(--md-background-color-100);
+    --md-menu-background-color-hover: var(--md-background-color-0);
+    --md-menu-border-color: var(--md-background-color-0);
+
+    --md-tab-background-color-hover: var(--md-accent-color-transparent-active);
+
+    --md-tab-separator-color: color-mix(in srgb, var(--md-black) 20%, transparent);
+    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 20%, transparent);
+
+    --md-tab-icon-color: var(--md-text-primary);
+    --md-tab-label-color: var(--md-text-primary);
+
+    --md-icon-color-primary: var(--md-text-secondary);
+    --md-icon-color-secondary: var(--md-text-secondary);
+
+    --md-content-separator-color: #dbdcdd;
+
+    --md-selection-text-color: var(--md-sys-color-on-primary);
+    --md-selection-background-color: var(--md-sys-color-primary);
+  }
+}
+
+/* =========================================================
+   MATERIAL THEME — DARK MODE OVERRIDE
+   ========================================================= */
+
+@media (-moz-pref("userChrome.theme-material")) and (prefers-color-scheme: dark) {
+
+  :root,
+  html,
+  body {
+    --md-accent-color: var(--md-sys-color-primary);
+    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+
+    --md-background-color-0: color-mix(in srgb, #1f2020 90%, var(--md-accent-color));
+    --md-background-color-50: color-mix(in srgb, #282828 90%, var(--md-accent-color));
+    --md-background-color-100: color-mix(in srgb, #3c3c3c 90%, var(--md-accent-color));
+
+    --md-text-primary: var(--md-sys-color-on-surface);
+    --md-text-secondary: var(--md-sys-color-secondary);
+    --md-text-disabled: color-mix(in srgb, var(--md-text-secondary) 80%, transparent);
+
+    --md-text-on-accent: var(--md-sys-color-on-primary);
+
+    --md-secondary-button-text: var(--md-accent-color);
+
+    --md-menu-background-color: var(--md-background-color-50);
+    --md-menu-background-color-hover: color-mix(in srgb, var(--md-accent-color) 15%, var(--md-background-color-100));
+    --md-menu-border-color: color-mix(in srgb, #444746 90%, var(--md-sys-color-outline));
+
+    --md-tab-background-color-hover: color-mix(in srgb, var(--md-sys-color-primary) 20%, transparent);
+
+    --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
+    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
+
+    --md-tab-icon-color: var(--md-text-secondary);
+    --md-tab-label-color: var(--md-text-primary);
+
+    --md-icon-color-primary: var(--md-text-primary);
+    --md-icon-color-secondary: var(--md-text-secondary);
+
+    --md-content-separator-color: #606164;
+
+    --md-selection-text-color: var(--md-sys-color-on-primary);
+    --md-selection-background-color: var(--md-sys-color-primary);
+  }
+}
+/* =========================================================
+   SECTION 4 — ICON SYSTEM & URL BAR ELEMENTS
+   Unifies icon appearance across Firefox chrome, including
+   identity box, navigation icons, star button, and URL bar.
+   ========================================================= */
+
+/* =========================================================
+   DEFAULT ICON FALLBACKS
+   ========================================================= */
+
+/* Tabs with no favicon */
+.tab-icon-image:not([src]),
+.tab-icon-image:-moz-broken {
+  content: var(--md-no-src-icon) !important;
+  fill: var(--md-icon-color-secondary) !important;
+}
+
+/* Bookmark items with no icon */
+.bookmark-item {
+  list-style-image: var(--md-no-src-icon) !important;
+}
+
+/* Navigation buttons on about: pages */
+.unified-nav-forward:not([_moz-menuactive])[uri*="about:"],
+.unified-nav-back:not([_moz-menuactive])[uri*="about:"] {
+  list-style-image: var(--md-no-src-icon) !important;
+  fill: var(--md-icon-color-secondary) !important;
+}
+
+/* Default favicon override in URL bar results */
+#urlbar-results .urlbarView-favicon[src="chrome://global/skin/icons/defaultFavicon.svg"] {
+  fill: transparent !important;
+  background: var(--md-no-src-icon) !important;
+}
+
+/* All-tabs button fallback */
+.all-tabs-button:not([src]) {
+  list-style-image: var(--md-no-src-icon) !important;
+  fill: var(--md-icon-color-secondary) !important;
+}
+
+/* =========================================================
+   NAVIGATION BUTTON ICONS
+   ========================================================= */
+
+.tab-close-button,
+.close-icon {
+  list-style-image: var(--md-close-tab-icon) !important;
+}
+
+#tabs-newtab-button,
+#new-tab-button {
+  list-style-image: var(--md-plus-icon) !important;
+}
+
+.toolbarbutton-1:is(#back-button, #forward-button),
+.subviewbutton-back,
+.identity-popup-expander {
+  list-style-image: var(--md-arrow-back-icon) !important;
+}
+
+/* Forward/backward icon flipping */
+.unified-nav-forward[_moz-menuactive]:-moz-locale-dir(ltr),
+.unidied-nav-back[_moz-menuactive]:-moz-locale-dir(rtl) {
+  list-style-image: var(--md-arrow-forward-icon) !important;
+}
+
+.unified-nav-back[_moz-menuactive]:-moz-locale-dir(ltr),
+.unidied-nav-forward[_moz-menuactive]:-moz-locale-dir(rtl) {
+  list-style-image: var(--md-arrow-back-icon) !important;
+}
+
+/* Flip forward button icon */
+.toolbarbutton-1#forward-button .toolbarbutton-icon,
+#context-forward .menu-iconic-icon {
+  transform: scaleX(-1) !important;
+}
+
+/* Reload / Stop / Home */
+#reload-button {
+  list-style-image: var(--md-refresh-icon) !important;
+  -moz-box-align: center !important;
+  align-items: center !important;
+}
+
+#stop-button {
+  list-style-image: var(--md-close-icon) !important;
+}
+
+#nav-bar #reload-button .toolbarbutton-icon,
+#nav-bar #stop-button .toolbarbutton-icon {
+  padding: 4px !important;
+}
+
+#home-button {
+  list-style-image: var(--md-home-icon) !important;
+}
+
+#nav-bar #home-button .toolbarbutton-icon {
+  padding: 4px !important;
+}
+
+/* Old icon padding override */
+@media (not (-moz-pref("userChrome.ui-chrome-refresh"))) and
+       (-moz-pref("userChrome.ui-force-old-icons")) {
+  #nav-bar #home-button .toolbarbutton-icon {
+    padding: 6px !important;
+  }
+}
+
+/* =========================================================
+   IDENTITY BOX ICONS (LOCK, WARNING, INFO)
+   ========================================================= */
+
+#identity-box[pageproxystate=valid]:is(.verifiedDomain, .mixedActiveBlocked)
+  #identity-icon {
+  list-style-image: var(--md-lock-icon) !important;
+}
+
+#identity-box[pageproxystate=valid]:is(
+    .notSecure,
+    .mixedActiveContent,
+    .httpsOnlyErrorPage,
+    .weakCipher,
+    .mixedDisplayContent,
+    .mixedDisplayContentLoadedActiveBlocked,
+    .certUserOverridden,
+    #identity-box[pageproxystate=valid].certErrorPage
+  ) #identity-icon {
+  list-style-image: var(--md-warning-icon) !important;
+}
+
+/* Identity popup icons */
+#identity-popup[connection^="secure"]
+  .identity-popup-security-connection
+  .identity-popup-security-connection-icon {
+  list-style-image: var(--md-lock-icon) !important;
+}
+
+#identity-popup:is(
+    [connection="secure-cert-user-overridden"],
+    [connection="cert-error-page"],
+    [connection^="not-secure"]
+  )
+  .identity-popup-security-connection
+  .identity-popup-security-connection-icon {
+  list-style-image: var(--md-warning-icon) !important;
+}
+
+/* Permissions icon */
+#permissions-granted-icon {
+  list-style-image: var(--md-properties-icon) !important;
+}
+
+/* Tracking protection icon (shield/eye) */
+#tracking-protection-icon {
+  list-style-image: var(--md-tracking-protection-icon) !important;
+}
+
+/* =========================================================
+   BOOKMARK STAR & PAGE ACTIONS
+   ========================================================= */
+
+#star-button,
+#pageAction-panel-bookmark {
+  list-style-image: var(--md-star-icon) !important;
+}
+
+/* One-off search engine icons */
+#urlbar-engine-one-off-item {
+  list-style-image: var(--md-search-icon) !important;
+}
+
+/* =========================================================
+   URL BAR ICON BASE STYLING
+   ========================================================= */
+
+#urlbar .urlbar-icon,
+#urlbar .toolbarbutton-icon,
+#urlbar .urlbar-page-action,
+#urlbar .urlbar-action-button,
+#urlbar .identity-box image,
+#urlbar .identity-box .icon,
+#urlbar .urlbarView-favicon,
+#urlbar .urlbarView-type-icon,
+#urlbar .urlbarView-row .urlbarView-icon {
+  color: var(--md-icon-color-primary) !important;
+  fill: currentColor !important;
+  stroke: currentColor !important;
+}
+/* =========================================================
+   SECTION 5 — TAB BAR (CHROME‑STYLE FLAT TABS)
+   Fully rewritten tab system:
+   - Flat inactive tabs
+   - Slightly elevated active tab
+   - Chrome‑style separators
+   - Clean geometry & hit‑testing
+   - Smooth hover transitions
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. TAB DRAG GEOMETRY FIX
+   Prevents tabs from overflowing and restores hit‑test areas.
+   --------------------------------------------------------- */
+
+.tabbrowser-tab {
+  overflow: hidden !important; /* override overflow: visible */
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+
+.tabbrowser-tab::before,
+.tabbrowser-tab::after {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  border-inline-width: 1px !important;
+  border-color: color-mix(in srgb, var(--md-text-primary) 10%, transparent) !important;
+}
+
+.tabbrowser-tab[selected]::before,
+.tabbrowser-tab[selected]::after {
+  border-color: transparent !important;
+}
+
+/* ---------------------------------------------------------
+   2. TAB BACKGROUND — CHROME‑STYLE FLAT TABS
+   --------------------------------------------------------- */
+
+.tab-background {
+  margin-inline: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--md-background-color-100) !important;
+  opacity: 0.7 !important;
+  transition: background-color 150ms var(--md-fast-invoke),
+              opacity 150ms var(--md-fast-invoke),
+              filter 150ms var(--md-fast-invoke) !important;
+  box-shadow: none !important;
+}
+
+/* Active tab — slightly elevated, Chrome‑like */
+.tabbrowser-tab[selected] .tab-background {
+  background-color: var(--md-background-color-50) !important;
+  opacity: 1 !important;
+  filter: brightness(1.15) !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: 0 0 0 1px var(--md-tab-outline-color) !important;
+}
+
+/* Hover effect for inactive tabs */
+.tabbrowser-tab:not([selected]):hover .tab-background {
+  opacity: 0.9 !important;
+  filter: brightness(1.05) !important;
+}
+
+/* ---------------------------------------------------------
+   3. TAB LABELS & ICONS
+   --------------------------------------------------------- */
+
+.tab-content {
+  padding: 0 12px !important;
+  position: relative !important;
+}
+
+.tab-label {
+  margin-left: 8px !important;
+}
+
+/* Active tab label */
+.tabbrowser-tab[selected] .tab-label {
+  color: var(--md-tab-label-color) !important;
+  font-weight: 500 !important;
+}
+
+/* Inactive tab label */
+.tabbrowser-tab:not([selected]) .tab-label {
+  color: var(--md-tab-label-color-inactive) !important;
+}
+
+/* Pinned tabs centered */
+.tabbrowser-tab[pinned] .tab-content {
+  display: grid !important;
+  place-content: center !important;
+  place-items: center !important;
+}
+
+/* ---------------------------------------------------------
+   4. CHROME‑STYLE TAB SEPARATORS
+   --------------------------------------------------------- */
+
+.tab-content::before,
+.tab-content::after {
+  content: "" !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 20px !important;
+  background-color: var(--md-tab-separator-color) !important;
+  opacity: 0.25 !important;
+  transition: opacity var(--md-medium-short-duration) var(--md-point-to-point) !important;
+}
+
+.tab-content::before { left: 0 !important; }
+.tab-content::after  { right: 0 !important; }
+
+/* Hide separators on active tab */
+.tabbrowser-tab[selected] .tab-content::before,
+.tabbrowser-tab[selected] .tab-content::after {
+  opacity: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   5. INACTIVE TAB BACKGROUND COLOR (CHROME‑LIKE)
+   --------------------------------------------------------- */
+
+.tabbrowser-tab:not([selected]) {
+  background-color: transparent !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-background,
+.tabbrowser-tab:not([selected]) [class*="tab-background"] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Active tab background */
+.tabbrowser-tab[selected] .tab-background {
+  background-color: var(--toolbar-bgcolor) !important;
+  filter: none !important;          /* remove brightness boost */
+  box-shadow: none !important;      /* optional: removes outline */
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   SECTION 6 — ADDITIONAL FIXES & OVERRIDES
+   These rules address specific UI elements that need extra attention to fit the Material/Chrome aesthetic.
+   ========================================================= */
+
+/* =========================================================
+   USE THE FIREFOX LOGO FOR VIEW BUTTON
+   ========================================================= */
+#firefox-view-button .toolbarbutton-icon,
+#firefox-view-button .toolbarbutton-badge-stack,
+#firefox-view-button image,
+#firefox-view-button .icon {
+  list-style-image: url("chrome://branding/content/icon32.png") !important;
+
+  /* Enlarge icon */
+  width: 28px !important;
+  height: 28px !important;
+
+  /* Reset everything else */
+  content: unset !important;
+  filter: none !important;
+  fill: unset !important;
+  stroke: unset !important;
+  background: none !important;
+  mask: none !important;
+}
+
+/* Prevent fallback rules from overriding it */
+#firefox-view-button .toolbarbutton-icon:not([src]),
+#firefox-view-button image:not([src]) {
+  list-style-image: url("chrome://branding/content/icon32.png") !important;
+}
+
+/* Adjust the button so the icon isn't clipped and reposition it */
+#firefox-view-button {
+  --toolbarbutton-icon-size: 28px !important;
+  --toolbarbutton-inner-padding: 2px !important;
+  margin-inline-start: 6px !important;
+}
+
+/* Remove any separator/border drawn on the left edge of the tab strip */
+#tabbrowser-tabs,
+#tabbrowser-tabs[haspinnedtabs] {
+  border-inline-start: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Shift the entire tabstrip left */
+#tabbrowser-tabs {
+  margin-inline-start: -6px !important;
+}
+
+/* =========================================================
+   MAKE TOOLBAR TOP CORNERS ROUNDED
+   ========================================================= */
+
+/* Round the top corners of the entire browser */
+#navigator-toolbox {
+  border-radius: 0 !important;
+  overflow: visible !important;
+}
+
+/* Ensure the nav-bar respects the rounding */
+#nav-bar {
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+/* Prevent the tabstrip from visually "breaking" the curve */
+#TabsToolbar {
+  background-clip: padding-box !important;
+}
+
+#navigator-toolbox > toolbar {
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* For some themes such as Firefox Alpenglow, you may need to uncomment the following lines to remove the thin line below the toolbar */
+/* #navigator-toolbox {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-color: var(--toolbar-bgcolor) !important;
+} */
+
+/* =========================================================
+   URL BAR — EDGE PADDING (LEFT + RIGHT)
+   ========================================================= */
+
+/* This pushes the entire contents inward from the pill edges */
+#nav-bar #urlbar {
+  padding-inline: 2px !important;
+}
+
+/* =========================================================
+   THEME-ADAPTIVE TOOLBOX FLATTENING
+   Only flatten when the theme does NOT use a gradient.
+   ========================================================= */
+
+/* Default: flatten toolbox for flat-color themes */
+#navigator-toolbox {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+/* If the theme provides a gradient background, preserve it */
+#navigator-toolbox[style*="--toolbar-bgimage"] {
+  background-color: var(--toolbar-bgcolor) !important;
+  background-image: var(--toolbar-bgimage) !important;
+}
+
+/* Correct the position of the urlbar search mode switcher and identity icon box */
+  #urlbar-searchmode-switcher,
+  #identity-icon-box {
+    margin-left: -2px !important;
+  }
+
+/* =========================================================
+   MAKE URL BAR AND IDENTITY BOX PILL-SHAPED
+   ========================================================= */
+/* Force the unfocused, initial state to use the pill radius */
+#urlbar:not([focused]):not([open]), #urlbar-background:not([focused]):not([open]) { border-radius: 999px !important; overflow: hidden !important; }
+
+/* Firefox inserts an anonymous box around the urlbar during breakout.
+   This selector targets that wrapper and forces it to match the radius. */
+#urlbar[breakout][breakout-extend],
+#urlbar[breakout][breakout-extend] > *,
+#urlbar[breakout][breakout-extend-animate],
+#urlbar[breakout][breakout-extend-animate] > * {
+  border-radius: 24px !important;
+  overflow: visible !important;
+}
+
+#urlbar-searchmode-switcher {
+  border-radius: 999px !important;
+  padding: 4px 8px !important;
+}
+
+.searchmode-switcher-chicklet {
+  border-radius: 999px !important;
+  padding: 4px 8px !important;
+  background-color: var(--toolbar-field-background-color) !important;
+}
+
+#identity-icon-box.identity-box-button {
+  border-radius: 999px !important;
+  padding: 4px 8px !important;
+}
+
+/* Vertically align logo using the same offset as tabs */
+#firefox-view-button .toolbarbutton-icon,
+#firefox-view-button .toolbarbutton-badge-stack,
+#firefox-view-button image,
+#firefox-view-button .icon {
+  margin-top: var(--tab-block-margin) !important;
+}
+
+/* =========================================================
+    FIX TAB TOP PADDING
+   ========================================================= */
+/* Fix padding below menu bar and tabs*/
+:root {
+  --tab-block-margin: 0px !important;
+}
+#menubar-items {
+	flex-direction: inherit !important;
+	padding-left: 5px !important;
+}
+
+/* Chrome-style 3px offset only when menu bar is hidden */
+#toolbar-menubar[inactive="true"] + #TabsToolbar {
+  --tab-block-margin: 3px !important;
+}
+
+/* Remove toolbar padding entirely */
+#TabsToolbar {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Shift the entire tab strip down visually */
+#tabbrowser-tabs {
+  transform: translateY(var(--tab-block-margin)) !important;
+}
+
+/* Pinned tabs live in a separate container — shift them too */
+#tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
+  transform: translateY(var(--tab-block-margin)) !important;
+}
+
+/* When the menu bar is visible, Chrome collapses the offset */
+#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs,
+#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
+  transform: translateY(0) !important;
+}
+
+/* =========================================================
+    REMOVE DRAGGABLE BORDER PADDING WHEN NOT MAXIMIZED
+   ========================================================= */
+/* Remove extra left padding when window is not maximized */
+:root:not([sizemode="maximized"]) #TabsToolbar {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+}
+
+/* Remove draggable border spacing */
+:root:not([sizemode="maximized"]) #titlebar {
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Remove the spacer that appears only in restored windows */
+:root:not([sizemode="maximized"]) .titlebar-spacer[type="pre-tabs"] {
+    width: 0 !important;
+}
+
+/* =========================================================
+  FIX PINNED TAB HEIGHT AND ICON ALIGNMENT
+   ========================================================= */
+/* Force pinned tabs to use the same height as normal tabs */
+.tabbrowser-tab[pinned] {
+  height: var(--tab-min-height) !important;
+  min-height: var(--tab-min-height) !important;
+  max-height: var(--tab-min-height) !important;
+}
+
+/* Force the internal layout to center the icon */
+.tabbrowser-tab[pinned] .tab-stack,
+.tabbrowser-tab[pinned] .tab-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Make the background fill the full tab height */
+.tabbrowser-tab[pinned] .tab-background {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Nudge the pinned tab icon down by double the top padding of the unpinned tabs */
+.tabbrowser-tab[pinned] .tab-icon-stack {
+  margin-top: calc(2 * var(--tab-block-margin)) !important;
+}
+
+/* Exception: when menu bar is visible, remove the offset */
+#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar .tabbrowser-tab[pinned] .tab-icon-stack {
+  margin-top: 0px !important;
+}
+
+/* Restore horizontal padding */
+.tabbrowser-tab[pinned] .tab-content {
+  padding-inline: 12px !important;
+}
+
+/* =========================================================
+   OVERRIDE FIREFOX TAB COLOR VARIABLES DIRECTLY
+   ========================================================= */
+
+/* Inactive tab background = toolbar background */
+:root {
+  --lwt-background-tab-separator-color: transparent !important;
+  --lwt-tab-line-color: transparent !important;
+  --lwt-tab-background-color: var(--toolbar-bgcolor) !important;
+  --lwt-non-selected-tab-background-color: var(--toolbar-bgcolor) !important;
+}
+
+/* Active tab background */
+:root {
+  --lwt-selected-tab-background-color: color-mix(in srgb, var(--toolbar-bgcolor) 95%, white) !important;
+}
+
+/* Prevent Firefox from dimming the UI when inactive */
+:root:-moz-window-inactive,
+:root:-moz-window-inactive toolbar,
+:root:-moz-window-inactive #TabsToolbar,
+:root:-moz-window-inactive #nav-bar,
+:root:-moz-window-inactive .tabbrowser-tab,
+:root:-moz-window-inactive .tab-background,
+:root:-moz-window-inactive .tab-stack {
+  opacity: 1 !important;
+  filter: none !important;
+}
