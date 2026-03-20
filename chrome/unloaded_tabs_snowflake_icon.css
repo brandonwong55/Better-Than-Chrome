@@ -1,0 +1,24 @@
+/* =========================================================
+   MAKE UNLOADED TABS USE ❄️ ICON
+   ========================================================= */
+
+/* Hide the normal favicon on pending tabs */
+.tabbrowser-tab[pending] .tab-icon-image {
+  visibility: hidden !important;
+}
+
+/* Inject ❄️ (snowflake emoji) in the icon area */
+.tabbrowser-tab[pending] .tab-icon-stack::before {
+  content: "❄️";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px; /* Adjust if needed */
+}
+
+/* Ensure the stack can position the pseudo-element */
+.tabbrowser-tab[pending] .tab-icon-stack {
+  position: relative !important;
+}

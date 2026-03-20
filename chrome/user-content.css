@@ -1,0 +1,1113 @@
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 1                                              */
+/*  ROOT VARIABLES, COLOR SYSTEM, ICON SET, TYPOGRAPHY                        */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  :root,
+  html,
+  body {
+
+    /* --- Animation curves ------------------------------------------------- */
+    --md-fast-invoke: cubic-bezier(0, 0, 0, 1);
+    --md-strong-invoke: cubic-bezier(0.13, 1.62, 0, 0.92);
+    --md-fast-dismiss: cubic-bezier(0, 0, 0, 1);
+    --md-soft-dismiss: cubic-bezier(1, 0, 1, 1);
+    --md-point-to-point: cubic-bezier(0.55, 0.55, 0, 1);
+    --md-fade-in-out: linear;
+
+    /* --- Icon URLs -------------------------------------------------------- */
+    --md-no-src-icon: url("icons/no-src.svg");
+    --md-audio-icon: url("icons/audio.svg");
+    --md-audio-muted-icon: url("icons/audio-muted.svg");
+    --md-audio-blocked-icon: url("icons/audio-blocked.svg");
+    --md-close-tab-icon: url("icons/close-tab.svg");
+    --md-plus-icon: url("icons/plus.svg");
+    --md-keyboard-arrow-down-icon: url("icons/keyboard-arrow-down.svg");
+    --md-keyboard-arrow-up-icon: url("icons/keyboard-arrow-up.svg");
+    --md-arrow-back-icon: url("icons/arrow-back.svg");
+    --md-arrow-forward-icon: url("icons/arrow-forward.svg");
+    --md-refresh-icon: url("icons/refresh.svg");
+    --md-close-icon: url("icons/close.svg");
+    --md-home-icon: url("icons/home.svg");
+    --md-dev-icon: url("icons/dev.svg");
+    --md-menu-icon: url("icons/menu.svg");
+    --md-menu-update-icon: url("icons/menu-update.svg");
+    --md-extension-icon: url("icons/extension.svg");
+    --md-extension-blocked-icon: url("icons/extension-blocked.svg");
+    --md-download-icon: url("icons/download.svg");
+    --md-account-icon: url("icons/account.svg");
+    --md-side-panel-icon: url("icons/side-panel.svg");
+    --md-open-in-full-icon: url("icons/menu/open-in-full.svg");
+    --md-mail-icon: url("icons/mail.svg");
+    --md-glyphs-icon: url("icons/glyphs.svg");
+    --md-file-open-icon: url("icons/file-open.svg");
+    --md-info-icon: url("icons/info.svg");
+    --md-lock-icon: url("icons/lock.svg");
+    --md-page-info: url("icons/page-info.svg");
+    --md-warning-icon: url("icons/warning.svg");
+    --md-properties-icon: url("icons/properties.svg");
+    --md-tracking-protection-icon: url("icons/tracking-protection.svg");
+    --md-star-icon: url("icons/star.svg");
+    --md-chevron-icon: url("icons/chevron.svg");
+    --md-folder-icon: url("icons/folder.svg");
+    --md-check-icon: url("icons/check.svg");
+    --md-edit-icon: url("icons/edit.svg");
+    --md-arrow-right-icon: url("icons/arrow-right.svg");
+    --md-arrow-down-icon: url("icons/arrow-down.svg");
+    --md-organization-icon: url("icons/organization.svg");
+    --md-new-tab-icon: url("icons/new-tab.svg");
+    --md-new-window-icon: url("icons/new-window.svg");
+    --md-incognito-icon: url("icons/incognito.svg");
+    --md-history-icon: url("icons/history.svg");
+    --md-key-icon: url("icons/key.svg");
+    --md-print-icon: url("icons/print.svg");
+    --md-file-save-icon: url("icons/file-save.svg");
+    --md-find-icon: url("icons/find.svg");
+    --md-translate-icon: url("icons/translate.svg");
+    --md-settings-icon: url("icons/settings.svg");
+    --md-tools-icon: url("icons/tools.svg");
+    --md-help-icon: url("icons/help.svg");
+    --md-zoom-in-icon: url("icons/zoom-in.svg");
+    --md-exit-icon: url("icons/exit.svg");
+    --md-search-icon: url("icons/search.svg");
+    --md-multiaccountcontainer-icon: url("icons/multiaccountcontainer.svg");
+    --md-toolbar-icon: url("icons/toolbar.svg");
+    --md-bookmark-manager-icon: url("icons/bookmark-manager.svg");
+    --md-trash-icon: url("icons/trash.svg");
+    --md-task-manager-icon: url("icons/task-manager.svg");
+    --md-eyedropper-icon: url("icons/eyedropper.svg");
+    --md-devices-icon: url("icons/devices.svg");
+    --md-remote-icon: url("icons/remote.svg");
+    --md-code-icon: url("icons/code.svg");
+    --md-report-icon: url("icons/report.svg");
+    --md-feedback-icon: url("icons/feedback.svg");
+    --md-open-in-icon: url("icons/open-in.svg");
+
+    /* Old icon set */
+    --md-extension-old-icon: url("icons/old/extension.svg");
+
+    /* Menu icons */
+    --md-copy-icon: url("icons/menu/copy.svg");
+    --md-select-all-icon: url("icons/menu/select-all.svg");
+    --md-screenshot-icon: url("icons/menu/screenshot.svg");
+    --md-cut-icon: url("icons/menu/cut.svg");
+    --md-paste-icon: url("icons/menu/paste.svg");
+    --md-undo-icon: url("icons/menu/undo.svg");
+    --md-redo-icon: url("icons/menu/redo.svg");
+    --md-pin-icon: url("icons/menu/pin.svg");
+    --md-unpin-icon: url("icons/menu/unpin.svg");
+    --md-tab-duplicate-icon: url("icons/menu/tab-duplicate.svg");
+    --md-tab-close-icon: url("icons/menu/tab-close.svg");
+    --md-link-icon: url("icons/menu/link.svg");
+    --md-link-off-icon: url("icons/menu/link-off.svg");
+    --md-share-icon: url("icons/menu/share.svg");
+    --md-reply-icon: url("icons/menu/reply.svg");
+    --md-swap-icon: url("icons/menu/swap.svg");
+
+    /* --- Base colors ------------------------------------------------------ */
+    --md-white: #fff;
+    --md-black: #000;
+
+    /* Greys */
+    --md-grey-900-white-4-percent: #292a2d;
+    --md-grey-900-white-5-percent: #35363a;
+    --md-grey-900: #202124;
+    --md-grey-800: #3c4043;
+    --md-grey-700: #5f6368;
+    --md-grey-600: #80868b;
+    --md-grey-500: #9aa0a6;
+    --md-grey-400: #bdc1c6;
+    --md-grey-300: #dadce0;
+    --md-grey-200: #e8eaed;
+    --md-grey-100: #f1f3f4;
+    --md-grey-50: #f8f9fa;
+
+    /* Blues */
+    --md-blue-900: #174ea6;
+    --md-blue-800: #185abc;
+    --md-blue-700: #1967d2;
+    --md-blue-600: #1a73e8;
+    --md-blue-500: #4285f4;
+    --md-blue-400: #669df6;
+    --md-blue-300: #8ab4f8;
+    --md-blue-200: #aecbfa;
+    --md-blue-100: #d2e3fc;
+    --md-blue-50: #e8f0fe;
+
+    /* --- Theme colors ----------------------------------------------------- */
+    --md-accent-color: var(--md-blue-300);
+    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+    --md-accent-color-transparent-active: color-mix(in srgb, var(--md-accent-color) 20%, transparent);
+
+    /* Background layers */
+    --md-background-color-0: var(--md-grey-900);
+    --md-background-color-50: var(--md-grey-900-white-4-percent);
+    --md-background-color-100: var(--md-grey-900-white-5-percent);
+
+    /* Text colors */
+    --md-text-primary: var(--md-grey-200);
+    --md-text-secondary: var(--md-grey-500);
+    --md-text-disabled: var(--md-text-secondary);
+    --md-text-on-accent: var(--md-grey-900);
+
+    /* UI element colors */
+    --md-secondary-button-text: var(--md-accent-color);
+    --md-control-background-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+    --md-control-border-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+    --md-input-background-color: var(--md-background-color-0);
+
+    /* Menus */
+    --md-menu-background-color: var(--md-background-color-50);
+    --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
+    --md-menu-border-color: var(--md-grey-800);
+
+    /* Tabs */
+    --md-tab-background-color-hover: #004a77;
+    --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
+    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
+    --md-tab-opacity: 1;
+    --md-tab-opacity-hover: 0.5;
+    --md-tab-icon-color: #c3c3c3;
+    --md-tab-label-color: #e3e3e3;
+    --md-tab-label-color-inactive: #c3c3c3;
+
+    /* URL bar */
+    --md-urlbar-background-color-hover: color-mix(in srgb, var(--md-menu-background-color-hover) 70%, transparent);
+    --md-urlbar-background-color-open: var(--md-background-color-50);
+
+    /* Icons */
+    --md-icon-color-primary: var(--md-grey-100);
+    --md-icon-color-secondary: var(--md-grey-500);
+
+    /* Misc */
+    --md-content-separator-color: #606164;
+    --md-selection-text-color: var(--md-white);
+    --md-selection-background-color: var(--md-blue-900);
+    --md-search-input-shadow: 0 2px 6px 0 rgba(32, 33, 36, 0.3176470588);
+    --md-tile-background-color: #444746;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 2                                              */
+/*  TYPOGRAPHY, FONTS, GLOBAL TEXT RULES                                      */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* --- Text selection ----------------------------------------------------- */
+  ::selection {
+    background-color: var(--md-selection-background-color) !important;
+    color: var(--md-selection-text-color) !important;
+  }
+
+  /* --- Global font family ------------------------------------------------- */
+  :root,
+  html,
+  body {
+    --md-font-family: system-ui, -apple-system, "Roboto", sans-serif,
+                      "Apple Color Emoji", "Segoe UI Emoji",
+                      "Segoe UI Symbol", "Noto Color Emoji";
+
+    font-family: var(--md-font-family) !important;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    line-height: 1.2;
+    tab-size: 4;
+  }
+
+  /* --- Windows override when system font is not forced -------------------- */
+  @media (-moz-platform: windows) and (not (-moz-pref("userChrome.ui-system-font"))) {
+
+    :root,
+    html,
+    body {
+      --md-font-family: "Roboto", sans-serif,
+                        "Apple Color Emoji", "Segoe UI Emoji",
+                        "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    *,
+    *::before,
+    *::after {
+      font-family: var(--md-font-family) !important;
+    }
+  }
+
+  /* --- Roboto font faces -------------------------------------------------- */
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Medium.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Bold.ttf") format("truetype");
+  }
+
+  /* --- Buttons inherit font weight --------------------------------------- */
+  button {
+    font-weight: 500 !important;
+  }
+
+  /* --- Invalid UI state cleanup ------------------------------------------ */
+  :-moz-ui-invalid {
+    box-shadow: none !important;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 3                                              */
+/*  BUTTONS, INPUTS, FORM CONTROLS, TOGGLES, INTERACTIVE ELEMENTS             */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  BUTTONS — PRIMARY, SECONDARY, ACCESSORY                                 */
+  /* ------------------------------------------------------------------------ */
+
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                [autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button, .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]),
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit] {
+
+    min-width: 5.14em !important;
+    border-radius: 4px !important;
+    padding: 8px 16px !important;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-weight: 500 !important;
+
+    transition-property: background-color !important;
+    transition-duration: var(--md-medium-short-duration) !important;
+    transition-timing-function: var(--md-fast-invoke) !important;
+  }
+
+  /* Secondary buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]) {
+
+    color: var(--md-secondary-button-text) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+  }
+
+  /* Secondary hover */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover {
+
+    background-color: var(--md-accent-color-transparent) !important;
+  }
+
+  /* Secondary active */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active {
+
+    background-color: var(--md-accent-color-transparent-active) !important;
+  }
+
+  /* Primary buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]),
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit] {
+
+    border: none !important;
+    color: var(--md-text-on-accent) !important;
+    background-color: var(--md-accent-color) !important;
+  }
+
+  /* Primary hover */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover,
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit]:not(.disabled, :disabled, [disabled]):hover {
+
+    background-color: var(--md-accent-color-hover) !important;
+  }
+
+  /* Primary active */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active,
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit]:not(.disabled, :disabled, [disabled]):hover:active {
+
+    background-color: color-mix(in srgb,
+                                var(--md-accent-color-hover) 80%,
+                                transparent) !important;
+  }
+
+  /* Cursor for enabled buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:not(.disabled, :disabled, [disabled]) {
+    cursor: pointer;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  INPUTS, TEXTAREAS, SEARCH BOXES                                         */
+  /* ------------------------------------------------------------------------ */
+
+  input:is([type=email], [type=tel], [type=text], [type=password],
+           [type=url], [type=number]),
+  textarea,
+  search-textbox {
+
+    border: 1px solid var(--md-menu-border-color) !important;
+    background-color: var(--md-input-background-color) !important;
+    border-radius: 4px !important;
+  }
+
+  /* Focus */
+  input:is([type=email], [type=tel], [type=text], [type=password],
+           [type=url], [type=number]):focus,
+  textarea:focus,
+  search-textbox:focus {
+
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SELECTS, MENULISTS, DROPDOWNS                                           */
+  /* ------------------------------------------------------------------------ */
+
+  select,
+  menulist,
+  .expander-down,
+  .expander-up,
+  button[type=menu] {
+
+    border: 1px solid var(--md-menu-border-color) !important;
+    background-color: var(--md-input-background-color) !important;
+    border-radius: 4px !important;
+
+    height: 36px !important;
+    line-height: 36px !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Popup menu line height */
+  select menupopup,
+  select menuitem,
+  menulist menupopup,
+  menulist menuitem,
+  .expander-down menupopup,
+  .expander-down menuitem,
+  .expander-up menupopup,
+  .expander-up menuitem,
+  button[type=menu] menupopup,
+  button[type=menu] menuitem {
+
+    line-height: 18px !important;
+  }
+
+  /* Focus */
+  select:focus,
+  menulist:focus,
+  .expander-down:focus,
+  .expander-up:focus,
+  button[type=menu]:focus {
+
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* Menulist popup styling */
+  menulist > menupopup {
+    --panel-shadow: var(--md-elevation-2) !important;
+    --panel-border-color: var(--md-menu-border-color) !important;
+    --panel-border-radius: 4px !important;
+    --panel-background: var(--md-input-background-color) !important;
+    --panel-color: var(--md-text-primary) !important;
+  }
+
+  /* Dropdown arrow */
+  dropmarker {
+    content: var(--md-arrow-down-icon) !important;
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* Menu button layout */
+  button[type=menu] .button-box {
+    display: flex;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CHECKBOXES                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  input[type=checkbox],
+  .checkbox-check,
+  .sponsored-checkbox {
+
+    border-width: 2px !important;
+    border-style: solid !important;
+    border-color: var(--md-menu-border-color) !important;
+
+    background-color: var(--md-background-color-0) !important;
+
+    border-radius: 2px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Checked */
+  input[type=checkbox]:is([checked], :checked),
+  .checkbox-check:is([checked], :checked),
+  .sponsored-checkbox:is([checked], :checked) {
+
+    background-image: var(--md-check-icon) !important;
+    background-color: var(--md-accent-color) !important;
+    border-color: var(--md-accent-color) !important;
+  }
+
+  /* Hover */
+  input[type=checkbox]:not(:disabled, [disabled=true]):hover:not([checked], :checked),
+  checkbox:not([disabled=true]):hover > .checkbox-check:not([checked], :checked) {
+
+    background-color: var(--md-background-color-50) !important;
+  }
+
+  /* Checkbox ripple container */
+  :not(.findbar-container) > checkbox {
+    position: relative !important;
+  }
+
+  :not(.findbar-container) > checkbox::after {
+    content: "";
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+    top: 50%;
+    left: -15px;
+
+    background-color: transparent;
+    border-radius: 50%;
+    z-index: 1;
+
+    transform: translateY(-50%);
+    transition-property: background-color;
+    transition-duration: var(--md-medium-short-duration);
+    transition-timing-function: var(--md-fast-invoke);
+  }
+
+  /* RTL fix */
+  [dir=rtl] :not(.findbar-container) > checkbox::after {
+    left: unset;
+    right: -15px;
+  }
+
+  /* Hover ripple */
+  :not(.findbar-container) > checkbox:not([disabled=true]):hover::after {
+    background-color: var(--md-accent-color-transparent);
+    animation-name: control-hover;
+    animation-duration: var(--md-short-duration);
+    animation-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Active ripple */
+  :not(.findbar-container) > checkbox:not([disabled=true]):hover:active::after {
+    background-color: var(--md-accent-color-transparent-active);
+  }
+
+  /* Cursor */
+  checkbox:not([disabled=true]) {
+    cursor: pointer !important;
+  }
+
+  checkbox:not([disabled=true]) label {
+    cursor: pointer !important;
+  }
+
+  /* Checked icon color */
+  .checkbox-check[checked] {
+    fill: var(--md-text-on-accent) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  RADIOS                                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  input[type=radio]:not(.wallpaper-input),
+  .radio-check {
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    background-color: var(--md-background-color-0) !important;
+
+    width: 16px !important;
+    height: 16px !important;
+
+    color: var(--md-accent-color) !important;
+    border-color: var(--md-accent-color) !important;
+
+    background-size: 16px !important;
+    background-position: center !important;
+
+    transition-property: background-size !important;
+    transition-duration: var(--md-medium-short-duration) !important;
+    transition-timing-function: var(--md-fast-invoke) !important;
+  }
+
+  /* Hover */
+  input[type=radio]:enabled:hover:not([selected], :checked),
+  radio:not([disabled=true]):hover > .radio-check:not([selected], :checked) {
+
+    background-color: var(--md-background-color-50) !important;
+  }
+
+  /* Checked */
+  input[type=radio]:checked,
+  .radio-check[selected] {
+    background-size: 16px !important;
+    border: none !important;
+  }
+
+  /* Ripple container */
+  radio {
+    position: relative !important;
+  }
+
+  radio::after {
+    content: "";
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+    display: grid;
+    align-items: center !important;
+
+    top: 50%;
+    left: -15px;
+
+    background-color: transparent;
+    border-radius: 50%;
+    z-index: 1;
+
+    transform: translateY(-50%);
+    transition-property: background-color;
+    transition-duration: var(--md-medium-short-duration);
+    transition-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Hover ripple */
+  radio:not([disabled=true]):hover::after {
+    background-color: var(--md-accent-color-transparent);
+    animation-name: control-hover;
+    animation-duration: var(--md-short-duration);
+    animation-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Active ripple */
+  radio:not([disabled=true]):hover:active::after {
+    background-color: var(--md-accent-color-transparent-active);
+  }
+
+  /* Cursor */
+  radio:not([disabled=true]) {
+    cursor: pointer !important;
+  }
+
+  radio:not([disabled=true]) label {
+    cursor: pointer !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOGGLE SWITCHES                                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .toggle-button {
+    --toggle-background-color-pressed: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-hover: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-active: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  RIPPLE ANIMATION KEYFRAMES                                              */
+  /* ------------------------------------------------------------------------ */
+
+  @keyframes control-hover {
+    0%   { transform: scale(0.8) translateY(-50%); }
+    100% { transform: scale(1)   translateY(-50%); }
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 4                                              */
+/*  IN-CONTENT COLORS, LINKS, FOCUS OUTLINES, ACCENT BEHAVIOR                 */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  IN-CONTENT PRIMARY BUTTON COLORS                                        */
+  /* ------------------------------------------------------------------------ */
+
+  :root,
+  html,
+  body,
+  dialog {
+    --in-content-primary-button-text-color: var(--md-text-on-accent) !important;
+    --in-content-primary-button-background: var(--md-accent-color) !important;
+    --in-content-primary-button-background-hover: var(--md-accent-color-hover) !important;
+    --in-content-primary-button-background-active: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  IN-CONTENT TEXT, BORDER, AND LINK COLORS                                */
+  /* ------------------------------------------------------------------------ */
+
+  :root,
+  html,
+  body {
+    --in-content-border-color: var(--md-menu-border-color) !important;
+    --in-content-text-color: var(--md-text-primary) !important;
+    --in-content-page-color: var(--md-text-primary) !important;
+
+    --in-content-link-color: var(--md-accent-color) !important;
+    --in-content-link-color-hover: var(--md-accent-color) !important;
+    --in-content-accent-color: var(--md-accent-color) !important;
+
+    --in-content-focus-outline-color: var(--md-accent-color) !important;
+    --focus-outline-color: var(--md-accent-color) !important;
+
+    --link-color: var(--md-accent-color) !important;
+    --link-color-hover: var(--md-accent-color) !important;
+    --link-color-active: var(--md-accent-color) !important;
+    --link-color-visited: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ACCENT-COLOR PROPAGATION                                                */
+  /* ------------------------------------------------------------------------ */
+
+  :root,
+  html,
+  body {
+    --color-accent-primary: var(--md-accent-color) !important;
+    accent-color: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  NEW TAB / ABOUT:HOME ACCENT COLORS                                      */
+  /* ------------------------------------------------------------------------ */
+
+  :root,
+  html,
+  body {
+    --newtab-primary-action-background: var(--md-accent-color) !important;
+    --brand-color-accent: var(--md-accent-color) !important;
+    --brand-color-accent-hover: var(--md-accent-color-hover) !important;
+
+    --in-content-primary-button-text-color: var(--md-text-on-accent) !important;
+    --in-content-primary-button-background: var(--md-accent-color) !important;
+    --in-content-primary-button-background-hover: var(--md-accent-color-hover) !important;
+    --in-content-primary-button-background-active: var(--md-accent-color) !important;
+
+    --color-accent-primary: var(--md-accent-color) !important;
+    accent-color: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOGGLE SWITCHES (IN-CONTENT)                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .toggle-button {
+    --toggle-background-color-pressed: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-hover: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-active: var(--md-accent-color) !important;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 5                                              */
+/*  NEW TAB PAGE (about:newtab & about:home)                                  */
+/* ========================================================================== */
+
+@-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  BASE COLORS FOR NEW TAB PAGE                                            */
+  /* ------------------------------------------------------------------------ */
+
+  html,
+  body {
+    --newtab-background-color: var(--md-background-color-100) !important;
+    --newtab-background-color-secondary: var(--md-background-color-0) !important;
+    --newtab-background-card: var(--md-background-color-0) !important;
+
+    --newtab-element-hover-color: var(--md-control-background-color) !important;
+    --newtab-text-primary-color: var(--md-text-primary) !important;
+    --newtab-primary-element-text-color: var(--md-text-on-accent) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  LIGHT MODE ADJUSTMENTS                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  @media (prefers-color-scheme: light) {
+
+    html,
+    body {
+      --newtab-background-color: var(--md-background-color-100) !important;
+      --newtab-background-color-secondary: var(--md-background-color-100) !important;
+      --newtab-element-hover-color: var(--md-background-color-0) !important;
+      --newtab-text-primary-color: var(--md-text-primary) !important;
+    }
+
+    .top-site-outer .tile {
+      --newtab-background-color-secondary: var(--md-background-color-50) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CHROME REFRESH THEME ADJUSTMENTS                                        */
+  /* ------------------------------------------------------------------------ */
+
+  @media (-moz-pref("userChrome.theme-chrome-refresh")) {
+    .top-site-outer .tile {
+      --newtab-background-color-secondary: var(--md-tile-background-color) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOP SITE TILES                                                          */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    border-radius: 100px !important;
+    height: 44px !important;
+    width: 44px !important;
+    box-shadow: none !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper {
+    border-radius: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .top-site-outer .default-icon,
+  .top-site-outer .search-topsite {
+    background-size: 16px !important;
+    height: 24px !important;
+    width: 24px !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper.letter-fallback::before {
+    font-size: 32px !important;
+  }
+
+  /* Hide pin icon */
+  .icon.icon-pin-small {
+    display: none !important;
+  }
+
+  /* Unpinned titles slightly dimmed */
+  .top-site-button .title:not(.pinned) {
+    opacity: 0.7 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SEARCH BAR                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .search-wrapper .search-inner-wrapper {
+    min-height: 48px !important;
+  }
+
+  .search-handoff-button {
+    border-radius: 99px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    box-shadow: var(--md-elevation-2) !important;
+  }
+
+  .search-wrapper.fake-focus:not(.search.disabled) .search-handoff-button {
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -2px !important;
+  }
+
+  .search-handoff-button .fake-caret {
+    top: 13px !important;
+  }
+
+  .search-disabled .search-handoff-button {
+    opacity: 0 !important;
+  }
+
+  .search-wrapper .search-handoff-button,
+  .search-wrapper input {
+    background-color: var(--md-input-background-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOP SITE OUTER WRAPPER                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer {
+    border-radius: 18px !important;
+  }
+
+  .top-site-outer.placeholder.add-button .tile {
+    background-color: var(--md-tab-background-color-hover) !important;
+    cursor: pointer !important;
+  }
+
+  .top-site-outer.placeholder.add-button {
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  .top-site-outer .context-menu-button {
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CARDS (Pocket stories, etc.)                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .card-outer,
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    border-radius: 18px !important;
+  }
+
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    box-shadow: 0 1px 4px rgba(0,0,0,.3) !important;
+  }
+
+  .card-outer .card-preview-image-outer,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder)
+    .img-wrapper .img img {
+
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SEARCH-ONLY LAYOUT                                                      */
+  /* ------------------------------------------------------------------------ */
+
+  .outer-wrapper.only-search {
+    display: flex !important;
+    padding: 30px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  INFO BOXES                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .info {
+    border-radius: 18px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  PERSONALIZE BUTTON                                                      */
+  /* ------------------------------------------------------------------------ */
+
+  .personalize-button {
+    box-shadow:
+      rgba(0,0,0,.16) 0px 3px 6px,
+      rgba(0,0,0,.23) 0px 1px 2px;
+
+    min-width: 32px !important;
+    border-radius: 100px !important;
+  }
+
+  /* Settings icon */
+  .icon.icon-settings {
+    background-image: var(--md-edit-icon) !important;
+    background-color: var(--md-tab-background-color-hover) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon.icon-settings:hover {
+      background-color: var(--md-alltabs-background-color-open) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TILE BACKGROUND OVERRIDES                                               */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    background-color: var(--newtab-background-color-secondary) !important;
+  }
+
+  .top-site-outer .tile:hover {
+    background-color: var(--newtab-element-hover-color) !important;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 6                                              */
+/*  MISC ABOUT:* PAGE FIXES, OVERFLOW RULES, FINAL CLEANUP                    */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  GENERIC TEXTBOX / FAKE TEXTBOX CLEANUP                                  */
+  /* ------------------------------------------------------------------------ */
+
+  .fake-textbox {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 400 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — SEARCH-ONLY LAYOUT                                      */
+  /* ------------------------------------------------------------------------ */
+
+  .outer-wrapper.only-search {
+    display: flex !important;
+    padding: 30px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — INFO BOXES                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .info {
+    border-radius: 18px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — CARD GRID                                               */
+  /* ------------------------------------------------------------------------ */
+
+  .card-outer,
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    border-radius: 18px !important;
+  }
+
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    box-shadow: 0 1px 4px rgba(0,0,0,.3) !important;
+  }
+
+  .card-outer .card-preview-image-outer,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder)
+    .img-wrapper .img img {
+
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — TILE BACKGROUND                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    background-color: var(--newtab-background-color-secondary) !important;
+  }
+
+  .top-site-outer .tile:hover {
+    background-color: var(--newtab-element-hover-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — PINNED ICONS                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .icon.icon-pin-small {
+    display: none !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — TITLE OPACITY                                           */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-button .title:not(.pinned) {
+    opacity: 0.7 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — CONTEXT MENU BUTTON                                     */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .context-menu-button {
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — SETTINGS ICON                                           */
+  /* ------------------------------------------------------------------------ */
+
+  .icon.icon-settings {
+    background-image: var(--md-edit-icon) !important;
+    background-color: var(--md-tab-background-color-hover) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon.icon-settings:hover {
+      background-color: var(--md-alltabs-background-color-open) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — ADD BUTTON TILE                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer.placeholder.add-button .tile {
+    background-color: var(--md-tab-background-color-hover) !important;
+    cursor: pointer !important;
+  }
+
+  .top-site-outer.placeholder.add-button {
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+}

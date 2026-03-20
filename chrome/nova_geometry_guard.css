@@ -1,0 +1,475 @@
+/*
+ * ============================================================================
+ * nova-geometry-guard.css
+ * Firefox 148.0 Geometry Guard — Load this BEFORE your theme stylesheet
+ * ============================================================================
+ *
+ * PURPOSE
+ * -------
+ * Firefox Nova introduces a floating "islands" UI: the tab strip and nav-bar
+ * become visually separated cards with large border-radius, increased outer
+ * margins, and gap-spacing between them.  This file locks in the flat,
+ * contiguous geometry of Firefox 148.0 by:
+ *
+ *   1. Overriding the CSS custom properties (design tokens) Nova will change
+ *   2. Explicitly resetting border-radius on every affected element
+ *   3. Collapsing the outer margins / padding Nova uses to "float" its islands
+ *   4. Neutralising box-shadow and backdrop-filter used on island surfaces
+ *   5. Pre-emptively targeting Nova-specific attributes and class names
+ *
+ * PLACEMENT
+ * ---------
+ *   @import "nova-geometry-guard.css";
+ *   @import "your-theme.css";
+ *
+ * MAINTENANCE
+ * -----------
+ * Sections are tagged with the Nova feature they guard against.  When a
+ * Nightly build confirms a selector is live (or dead), adjust only that
+ * section — blast radius stays small.
+ *
+ * ============================================================================
+ */
+
+
+/* ── 0. SCOPE ─────────────────────────────────────────────────────────────── */
+/*
+ * All rules below apply inside the browser chrome document.
+ * userChrome.css is already scoped to that document, so no extra wrapper
+ * is needed — but the comment serves as a reminder.
+ */
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 1  CSS CUSTOM PROPERTY OVERRIDES (design tokens)                           */
+/* ══════════════════════════════════════════════════════════════════════════ */
+/*
+ * Nova will likely ship new or altered token values.  Setting them here at
+ * :root wins specificity before Nova's own UA stylesheet can apply them.
+ *
+ * 148.0 reference values confirmed via browser.css / tabbrowser.css.
+ */
+
+:root {
+    /* ── Tab geometry ─────────────────────────────────────────────────────── */
+    --tab-border-radius:                4px !important;
+    --tab-min-height:                   36px !important;
+    --tab-block-margin:                 4px !important;   /* vertical within strip */
+    --tab-inline-padding:               10px !important;
+    --tab-overflow-pinned-tabs-width:   var(--tab-min-height) !important;
+
+    /* ── Toolbar buttons ──────────────────────────────────────────────────── */
+    --toolbarbutton-border-radius:      4px !important;
+    --toolbarbutton-inner-padding:      6px !important;
+    --toolbarbutton-outer-padding:      2px !important;
+
+    /* ── URL bar ──────────────────────────────────────────────────────────── */
+    --urlbar-border-radius:             4px !important;
+    --urlbar-icon-border-radius:        2px !important;
+    --urlbar-margin-inline:             5px !important;   /* lateral gap each side */
+
+    /* ── Panels / popups ──────────────────────────────────────────────────── */
+    --arrowpanel-border-radius:         8px !important;   /* 148.0 panel radius    */
+    --panel-border-radius:              8px !important;
+    --menupopup-border-radius:          4px !important;
+
+    /* ── Nova island tokens (pre-emptive) ─────────────────────────────────── */
+    /*
+     * Nova is expected to introduce tokens similar to these.
+     * Setting them to 0 / minimal values here prevents any island geometry
+     * from leaking into your theme even before you explicitly handle them.
+     */
+    --browser-toolbar-island-radius:    0px !important;
+    --browser-toolbar-island-margin:    0px !important;
+    --browser-toolbar-island-padding:   0px !important;
+    --tab-strip-island-radius:          0px !important;
+    --tab-strip-island-margin:          0px !important;
+    --island-box-shadow:                none !important;
+    --island-border-radius:             0px !important;
+    --island-gap:                       0px !important;
+    --toolbar-start-cap-size:           0px !important;
+    --toolbar-end-cap-size:             0px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 2  TAB STRIP  [Nova: tab strip becomes a floating island]                  */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* Outer tab bar container — remove island floating margin */
+#TabsToolbar,
+#TabsToolbar[nova-island],
+#TabsToolbar[island],
+.tab-strip-container,
+.tab-strip-container[nova-island] {
+    border-radius:  0 !important;
+    margin:         0 !important;
+    padding-block:  0 !important;
+    box-shadow:     none !important;
+    backdrop-filter: none !important;
+}
+
+/* Individual tab backgrounds — Nova raises these to ~8–12px radius */
+.tabbrowser-tab .tab-background,
+.tabbrowser-tab:is([selected], [multiselected]) .tab-background,
+.tabbrowser-tab:hover .tab-background {
+    border-radius:  var(--tab-border-radius, 4px) !important;  /* 148.0: 4px top corners */
+    margin-block:   var(--tab-block-margin, 4px) !important;
+}
+
+/* Tab inner content area */
+.tabbrowser-tab .tab-content,
+.tabbrowser-tab .tab-stack {
+    border-radius:  0 !important;
+    padding-inline: var(--tab-inline-padding, 10px) !important;
+}
+
+/* Tab group containers (already in 148.0, Nova may restyle heavily) */
+.tab-group-label-container,
+tab-group {
+    border-radius:  4px !important;
+    margin-inline:  2px !important;
+}
+
+/* New tab button */
+#tabs-newtab-button,
+.tabs-newtab-button {
+    border-radius:  var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 3  NAVIGATION BAR  [Nova: nav-bar floats as a separate island]             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#nav-bar,
+#nav-bar[nova-island],
+#nav-bar[island] {
+    border-radius:   0 !important;
+    margin:          0 !important;
+    padding-block:   0 !important;
+    box-shadow:      none !important;
+    backdrop-filter: none !important;
+}
+
+/* Spacers Nova may insert between islands */
+#nav-bar-overflow-button,
+.nav-bar-overflow-button {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+/* Back / Forward / Reload cluster — Nova gives these a pill shape */
+#back-button,
+#forward-button,
+#stop-button,
+#reload-button,
+#home-button {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+/* Toolbar gap / padding Nova inserts to create visual separation */
+#nav-bar .toolbaritem-combined-buttons {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+    margin-inline:  0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 4  URL BAR  [Nova: megabar radius increases, pill-shaped in some modes]    */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#urlbar,
+#urlbar[nova-island],
+#urlbar[breakout],
+#urlbar[breakout-extend] {
+    border-radius: var(--urlbar-border-radius, 4px) !important;
+}
+
+#urlbar-background {
+    border-radius: var(--urlbar-border-radius, 4px) !important;
+}
+
+.urlbar-input-container {
+    border-radius: var(--urlbar-border-radius, 4px) !important;
+    padding-inline: 0 !important;
+}
+
+/* URL bar icon area (lock icon, etc.) */
+#urlbar-label-box,
+.urlbar-page-action,
+#page-action-buttons,
+#identity-box {
+    border-radius: var(--urlbar-icon-border-radius, 2px) !important;
+}
+
+/* Results popup — Nova expected to round this more aggressively */
+#urlbar-results,
+.urlbarView,
+.urlbarView-body-inner {
+    border-radius: var(--arrowpanel-border-radius, 8px) !important;
+}
+
+.urlbarView-row-inner,
+.urlbarView-url,
+.urlbarView-title {
+    border-radius: 0 !important;    /* row items stay flat */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 5  TOOLBARS  [Nova: each toolbar may become its own island]                */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#toolbar-menubar,
+#PersonalToolbar,
+#toolbar-menubar[nova-island],
+#PersonalToolbar[nova-island] {
+    border-radius:   0 !important;
+    margin:          0 !important;
+    padding-block:   0 !important;
+    box-shadow:      none !important;
+    backdrop-filter: none !important;
+}
+
+/* Generic toolbar button — covers extensions and built-ins */
+/* toolbarbutton,
+.toolbarbutton-1,
+toolbarbutton.toolbarbutton-1 {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+} */
+
+/* Extension buttons in the overflow panel / toolbar */
+.webextension-browser-action,
+.unified-extensions-item {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+/* Unified extensions panel button */
+#unified-extensions-button {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+/* Overflow chevron button */
+#nav-bar-overflow-button,
+.overflow-button {
+    border-radius: var(--toolbarbutton-border-radius, 4px) !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 6  PANELS & POPUPS  [Nova: all panels get card-style radius ~12–16px]      */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* Arrow panels (the main popup type) */
+panel.panel-arrowcontainer > .panel-arrowcontent,
+.panel-arrowcontent {
+    border-radius: var(--arrowpanel-border-radius, 8px) !important;
+}
+
+/* Menu popups */
+menupopup,
+menupopup > .menupopup-arrowscrollbox {
+    border-radius: var(--menupopup-border-radius, 4px) !important;
+}
+
+/* App menu (hamburger) — Nova may round this heavily */
+#appMenu-popup > .panel-arrowcontent,
+#customizationui-widget-panel > .panel-arrowcontent {
+    border-radius: var(--arrowpanel-border-radius, 8px) !important;
+}
+
+/* Notification popups */
+#notification-popup > .panel-arrowcontent,
+.notification-popup > .panel-arrowcontent {
+    border-radius: var(--arrowpanel-border-radius, 8px) !important;
+}
+
+/* Autocomplete / search suggestion popup */
+.autocomplete-richlistbox,
+.autocomplete-richlistitem {
+    border-radius: 0 !important;    /* list items: flat in 148.0 */
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 7  BROWSER BODY / CHROME FRAME  [Nova: outer chrome gets island gaps]      */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/*
+ * Nova inserts margin/padding around the browser-chrome area to expose the
+ * desktop background between islands.  This collapses that gap back to zero.
+ */
+#browser,
+#appcontent,
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels,
+.browserStack {
+    border-radius: 0 !important;
+    margin:        0 !important;
+}
+
+/* The main chrome wrapper — pre-emptively catch Nova's island wrapper */
+#browser-chrome,
+#browser-chrome[nova],
+.browser-chrome-container,
+.browser-chrome-container[nova-island] {
+    border-radius:   0 !important;
+    padding:         0 !important;
+    gap:             0 !important;
+    box-shadow:      none !important;
+    backdrop-filter: none !important;
+}
+
+/* Titlebar / caption bar area */
+#titlebar {
+    border-radius: 0 !important;
+    padding-block: 0 !important;
+}
+
+#titlebar-buttonbox-container,
+.titlebar-buttonbox {
+    border-radius: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 8  SIDEBAR  [Nova: sidebar may get island-style detachment]                */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#sidebar-box,
+#sidebar,
+#sidebar-header,
+#sidebar-splitter {
+    border-radius: 0 !important;
+    margin:        0 !important;
+}
+
+/* Nova "sidebar launcher" — anticipated new element */
+#sidebar-main,
+#sidebar-launcher,
+#sidebar-launcher[nova-island] {
+    border-radius: 0 !important;
+    margin:        0 !important;
+    box-shadow:    none !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 9  FINDBAR & NOTIFICATION BOX                                              */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+.findbar-container,
+findbar,
+.notificationbox-stack,
+notification {
+    border-radius: 0 !important;
+    margin-inline: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 10  CATCH-ALL: Nova island attribute selectors (pre-emptive)               */
+/* ══════════════════════════════════════════════════════════════════════════ */
+/*
+ * Mozilla's island implementation is not yet finalised.  These rules cast a
+ * wide net using attribute selectors that match any element Nova marks as an
+ * island, regardless of which specific attribute name ships.
+ *
+ * Low risk: the selectors only fire if Mozilla actually adds these attrs.
+ */
+
+[nova-island],
+[island],
+[data-island],
+[toolbar-island],
+[floating-toolbar] {
+    border-radius:   0 !important;
+    margin:          0 !important;
+    padding:         0 !important;        /* override only if you want no extra padding */
+    box-shadow:      none !important;
+    backdrop-filter: none !important;
+}
+
+/*
+ * If Nova ships a gap/grid layout on a chrome container, collapse it.
+ * Only triggers when the attribute is present, so safe to pre-declare.
+ */
+[nova-chrome-layout],
+[nova-layout] {
+    gap:    0 !important;
+    margin: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 11  SPACING NORMALIZATION                                                  */
+/* ══════════════════════════════════════════════════════════════════════════ */
+/*
+ * Nova increases several spacing constants.  Restore 148.0 defaults.
+ * These are additive overrides — they only affect elements that already
+ * exist in 148.0, so they won't conflict with your theme's own spacing.
+ */
+
+/* Toolbar vertical rhythm */
+#nav-bar .toolbarbutton-1 > .toolbarbutton-icon {
+    padding: var(--toolbarbutton-inner-padding, 6px) !important;
+}
+
+/* Inline spacing between toolbar groups */
+#nav-bar > .toolbar-items {
+    gap: 0 !important;
+}
+
+/* Tab bar top / bottom breathing room */
+#TabsToolbar > .toolbar-items {
+    padding-block: 0 !important;
+}
+
+/* urlbar container horizontal margin */
+#urlbar-container {
+    margin-inline: var(--urlbar-margin-inline, 5px) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 12  FIXES                                                                  */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* UNPINNED tabs: no extra side margins (so they sit closer to neighbors) */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: 0 !important;
+  margin-inline-end: 0 !important;
+}
+
+/* PINNED tabs: no extra margin on their right edge before unpinned tabs */
+#tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
+  margin-inline-end: 0 !important;
+}
+
+/* Only tighten spacing when both neighbors are unpinned */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) + .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: -20px !important;
+}
+
+/* UNPINNED tabs: Pull bottom curves inward */
+#tabbrowser-tabs{
+  --uc-curve-inset: 10px;
+}
+
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before{
+  left: calc(0px - var(--uc-tab-curve-size) + var(--uc-curve-inset)) !important;
+}
+
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after{
+  right: calc(0px - var(--uc-tab-curve-size) + var(--uc-curve-inset)) !important;
+}
+
+/* UNPINNED tabs: Adjust vertical position of bottom curves */
+/* #tabbrowser-tabs{
+  --uc-curve-raise: 0px;
+}
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before{
+  transform: translateY(calc(-1 * var(--uc-curve-raise))) !important;
+}
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after{
+  transform: scaleX(-1) translateY(calc(-1 * var(--uc-curve-raise))) !important;
+} */

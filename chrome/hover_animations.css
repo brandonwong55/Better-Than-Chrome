@@ -1,0 +1,156 @@
+/* =========================================================
+   ROUNDED SPOTLIGHT HOVER EFFECT ON TOOLBAR BUTTONS
+   ========================================================= */
+
+:root {
+    --tab-border-radius:                999px !important;
+    --toolbarbutton-border-radius:      999px !important;
+    --urlbar-icon-border-radius:        999px !important;
+}
+
+.webextension-browser-action .toolbarbutton-icon,
+.unified-extensions-item .toolbarbutton-icon,
+#unified-extensions-button .toolbarbutton-icon {
+    overflow: visible !important;
+}
+
+/* =========================================================
+   URL BAR — HOVER HIGHLIGHT
+   ========================================================= */
+
+#urlbar,
+#urlbar-background,
+#urlbar-input-container {
+  filter: none !important;
+  transition: filter 140ms ease-out !important;
+}
+
+#urlbar:hover,
+#urlbar:hover > #urlbar-background,
+#urlbar:hover > #urlbar-input-container {
+  filter: brightness(0.9) contrast(1.1) !important;
+}
+
+/* =========================================================
+   SLOW HOVER SPOTLIGHT — EXCLUDING HAMBURGER MENU
+   Slows hover fade-in/out everywhere except inside
+   the main app menu (#appMenu-popup).
+   ========================================================= */
+
+:root {
+  --md-hover-slow-duration: 240ms;
+  --md-hover-slow-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --inactive-tab-hover-radius: 8px;
+}
+
+/* ---------------------------------------------------------
+   APPLY SLOW HOVER TO NORMAL UI ELEMENTS
+   (tabs, toolbar buttons, urlbar, searchbar, etc.)
+   --------------------------------------------------------- */
+
+/* IMPORTANT FIX:
+   Exclude window control buttons so they don't animate
+   and don't flash duplicates when the menubar appears.
+*/
+.tabbrowser-tab,
+toolbarbutton:not(.titlebar-button):not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.titlebar-restore),
+#urlbar,
+#searchbar,
+checkbox::after,
+radio::after {
+  transition-duration: var(--md-hover-slow-duration) !important;
+  transition-timing-function: var(--md-hover-slow-ease) !important;
+}
+
+/* ---------------------------------------------------------
+   EXCLUDE THE HAMBURGER MENU
+   (#appMenu-popup contains all its items)
+   --------------------------------------------------------- */
+
+#appMenu-popup toolbarbutton,
+#appMenu-popup .subviewbutton {
+  transition-property: none !important;
+  transition-duration: initial !important;
+  transition-timing-function: initial !important;
+}
+
+/* =========================================================
+   UNIVERSAL INACTIVE TAB HOVER HIGHLIGHT
+   Works for BOTH pinned and unpinned tabs.
+   Rounded corners + slow spotlight fade.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   UNPINNED TABS (use .tab-background)
+   --------------------------------------------------------- */
+.tabbrowser-tab:not([pinned]):not([selected]) .tab-background {
+  border-radius: var(--inactive-tab-hover-radius) !important;
+  transition:
+    background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease),
+    opacity var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+}
+
+.tabbrowser-tab:not([pinned]):not([selected]):hover .tab-background {
+  background-color: var(--md-tab-background-color-hover) !important;
+  opacity: 0.97;
+}
+
+/* ---------------------------------------------------------
+   PINNED TABS (use .tab-icon-stack::before)
+   Enlarged highlight to match unpinned tab footprint.
+   --------------------------------------------------------- */
+.tabbrowser-tab[pinned]:not([selected]) .tab-icon-stack::before {
+  content: "";
+  position: absolute;
+  inset: -10px -12px;
+  border-radius: var(--inactive-tab-hover-radius);
+  background-color: transparent;
+  opacity: 0;
+  transition:
+    background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease),
+    opacity var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tabbrowser-tab[pinned]:not([selected]):hover .tab-icon-stack::before {
+  background-color: var(--md-tab-background-color-hover);
+  opacity: 0.97;
+}
+/* =========================================================
+   TAB VOLUME / MUTE BUTTON — CIRCULAR SPOTLIGHT
+   .tab-icon-overlay is the mute/unmute button on audio tabs.
+   The native hover paints but ignores --toolbarbutton-border-radius,
+   so we apply it explicitly here.
+   ========================================================= */
+
+.tab-audio-button {
+  position: relative;
+  clip-path: circle(50%);
+}
+
+.tab-audio-button:hover {
+  --toolbarbutton-hover-background: transparent;
+}
+
+.tab-audio-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--toolbarbutton-border-radius);
+  background: transparent;
+  transition: background var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+  pointer-events: none;
+}
+
+.tab-audio-button:hover::after {
+  background: color-mix(in srgb, currentColor 2%, transparent);
+}
+/* =========================================================
+   NEW TAB BUTTON — BLUE SPOTLIGHT
+   ========================================================= */
+
+#tabs-newtab-button:hover > .toolbarbutton-icon,
+#tabs-newtab-button:hover > .toolbarbutton-badge-stack {
+  background-color: var(--md-tab-background-color-hover) !important;
+}
