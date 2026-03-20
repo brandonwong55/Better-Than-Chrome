@@ -2,9 +2,9 @@
   Better Than Chrome (BTC)
 </h1>
 
-<h2 align="center">
+<h3 align="center">
   A Firefox theme meant to emulate Chrome with a few improvements.
-</h2>
+</h3>
 
 ## About
 
