@@ -1,0 +1,228 @@
+/* Source: https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/floating_findbar_on_top.css
+   Made available under Mozilla Public License v. 2.0
+   See the repository for updates and full license text. */
+
+/* =========================================================
+   FLOATING FINDBAR AT TOP-RIGHT
+   ========================================================= */
+
+findbar {
+  order: -1;
+  margin-bottom: -33px;
+  position: relative;
+  border-top: none !important;
+  border-right: 1px solid var(--chrome-content-separator-color);
+  padding: 0 11px 0 0 !important;
+  transition: transform 100ms linear, opacity 100ms linear 50ms !important;
+  background: none !important;
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  flex-direction: row-reverse;
+}
+
+findbar[hidden] {
+  transform: translateY(-30px);
+}
+
+/* ---------------------------------------------------------
+   MAIN CONTAINER AND CLOSE ICON STYLING
+   --------------------------------------------------------- */
+
+findbar > .findbar-container,
+findbar > .close-icon {
+  border: 1px solid var(--chrome-content-separator-color);
+  background-color: var(--lwt-accent-color, var(--toolbox-bgcolor)) !important;
+  background-image: linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none);
+  pointer-events: auto;
+}
+
+findbar > .findbar-container {
+  border-width: 0 0 1px 1px;
+  border-bottom-left-radius: 8px !important;
+  border-bottom-right-radius: 0 !important;
+  height: initial !important;
+  margin-inline: 0px !important;
+  overflow-inline: visible !important;
+  flex-direction: row-reverse;
+}
+
+.findbar-container > .findbar-find-fast {
+  padding: var(--toolbarbutton-inner-padding) 1px;
+  margin: 0 !important;
+}
+
+.findbar-find-status {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+findbar > .findbar-container > hbox {
+  margin: 0 5px;
+}
+
+/* RIGHT SIDE (close-icon wrapper) — owns the full right border + radius */
+findbar > .close-icon {
+  border-radius: 0 !important;
+  border-width: 0 1px 1px 0 !important;
+  border-bottom-right-radius: 8px !important;
+}
+
+/* ---------------------------------------------------------
+   CLOSE BUTTON INTERNAL STYLING
+   --------------------------------------------------------- */
+
+.findbar-closebutton {
+  margin: 0 !important;
+  padding: 5px !important;
+  width: initial !important;
+  order: -1;
+}
+
+.findbar-closebutton > image,
+.findbar-find-previous > image,
+.findbar-find-next > image {
+  padding: 3px;
+}
+
+/* Suppress native rectangular hover on prev/next — ::after provides the spotlight */
+.findbar-find-previous:hover,
+.findbar-find-next:hover {
+  background: transparent !important;
+}
+
+/* Paint spotlight color via ::after so native button shape/radius is untouched */
+findbar toolbarbutton {
+  position: relative;
+}
+
+findbar toolbarbutton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--toolbarbutton-border-radius);
+  background: transparent;
+  transition: background var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+  pointer-events: none;
+}
+
+findbar toolbarbutton:hover::after {
+  background: var(--toolbarbutton-hover-background);
+}
+
+/* ---------------------------------------------------------
+   SPACER
+   --------------------------------------------------------- */
+
+findbar::after {
+  content: "";
+  display: flex;
+  flex-grow: 100;
+}
+
+/* ---------------------------------------------------------
+   ICONIZE CHECKBOXES, REORDER ELEMENTS, AND HIDE UNUSED CONTROLS
+   --------------------------------------------------------- */
+
+/* --- Hide unused controls --- */
+.findbar-highlight {
+    display: none !important;
+}
+
+/* --- Ordering of elements --- */
+.findbar-container > .findbar-find-status { display: none !important; }
+
+hbox[anonid="findbar-textbox-wrapper"] { order: 1 !important; }
+.findbar-label.found-matches { order: 2 !important; }
+.findbar-label.findbar-find-status { order: 3 !important; }
+.findbar-highlight { order: 4 !important; }
+.findbar-case-sensitive { order: 5 !important; }
+.findbar-match-diacritics { order: 6 !important; }
+.findbar-entire-word { order: 7 !important; }
+label[anonid="match-case-status"] { order: 8 !important; }
+label[anonid="match-diacritics-status"] { order: 9 !important; }
+label[anonid="entire-word-status"] { order: 10 !important; }
+
+/* --- Hide checkbox buttons (Match Case / Match Diacritics / Match Word) --- */
+.findbar-case-sensitive > .checkbox-check,
+.findbar-case-sensitive > .checkbox-label-box,
+.findbar-match-diacritics > .checkbox-check,
+.findbar-match-diacritics > .checkbox-label-box,
+.findbar-entire-word > .checkbox-check,
+.findbar-entire-word > .checkbox-label-box {
+    display: none !important;
+}
+
+.findbar-case-sensitive,
+.findbar-match-diacritics,
+.findbar-entire-word {
+    -moz-appearance: none !important;
+    width: 30px !important;
+    height: 25px !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 2px 6px 2px 8px !important;
+    border-radius: 999px !important;
+    position: relative !important;
+    background-color: transparent !important;
+    color: var(--md-icon-color-secondary) !important;
+}
+
+/* --- Icon masks --- */
+.findbar-case-sensitive::before,
+.findbar-match-diacritics::before,
+.findbar-entire-word::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 30px !important;
+    height: 25px !important;
+    background-color: currentColor !important;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+}
+
+/* Match Case icon */
+.findbar-case-sensitive::before {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path fill='currentColor' d='m7.5 35 8.05 -22h2.65l8.1 22h-2.6l-2.15 -6.05H12.2L10.05 35H7.5Zm5.5 -8.25h7.75L16.9 15.9h-0.1L13 26.75Zm20.3 8.75c-1.7 0 -3.0917 -0.4333 -4.175 -1.3S27.5 32.1667 27.5 30.7c0 -1.5667 0.5917 -2.825 1.775 -3.775C30.4583 25.975 32 25.5 33.9 25.5c0.8667 0 1.675 0.075 2.425 0.225 0.75 0.15 1.3917 0.3583 1.925 0.625v-0.9c0 -1.2667 -0.3417 -2.2417 -1.025 -2.925 -0.6833 -0.6833 -1.675 -1.025 -2.975 -1.025 -0.7667 0 -1.4833 0.1333 -2.15 0.4 -0.6667 0.2667 -1.2833 0.6833 -1.85 1.25l-1.55 -1.4c0.8 -0.7667 1.6333 -1.3333 2.5 -1.7s1.8833 -0.55 3.05 -0.55c2.0667 0 3.625 0.5167 4.675 1.55 1.05 1.0333 1.575 2.5833 1.575 4.65V35h-2.2v-2.1h-0.2c-0.5333 0.8667 -1.2583 1.5167 -2.175 1.95 -0.9167 0.4333 -1.7917 0.65 -2.625 0.65Zm0 -1.9c1.2 0 2.3333 -0.5 3.4 -1.5s1.6 -2.2667 1.6 -3.8c-0.5333 -0.2667 -1.1667 -0.4833 -1.9 -0.65 -0.7333 -0.1667 -1.45 -0.25 -2.15 -0.25 -1.4 0 -2.4917 0.2917 -3.275 0.875 -0.7833 0.5833 -1.175 1.3917 -1.175 2.425 0 0.8667 0.3417 1.5667 1.025 2.1 0.6833 0.5333 1.5083 0.8 2.475 0.8Z'/></svg>");
+}
+
+/* Match Diacritics icon — grave "à" (à = a + grave accent, path-based for mask compatibility) */
+.findbar-match-diacritics::before {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path fill='currentColor' d='M20.55 35.5c-1.4333 0 -2.5833 -0.3917 -3.45 -1.175 -0.8667 -0.7833 -1.3 -1.825 -1.3 -3.125 0 -1.4333 0.5083 -2.5917 1.525 -3.475 1.0167 -0.8833 2.375 -1.325 4.075 -1.325 0.6667 0 1.325 0.0667 1.975 0.2 0.65 0.1333 1.2083 0.3333 1.675 0.6v-1c0 -1.1667 -0.3167 -2.0667 -0.95 -2.7 -0.6333 -0.6333 -1.5333 -0.95 -2.7 -0.95 -0.7333 0 -1.4 0.125 -2 0.375 -0.6 0.25 -1.1667 0.625 -1.7 1.125l-1.45 -1.25c0.7 -0.7333 1.4667 -1.2667 2.3 -1.6 0.8333 -0.3333 1.7833 -0.5 2.85 -0.5 1.8667 0 3.2833 0.475 4.25 1.425 0.9667 0.95 1.45 2.375 1.45 4.275v8.9h-2v-2.15h-0.2c-0.4667 0.7667 -1.0667 1.35 -1.8 1.75 -0.7333 0.4 -1.5833 0.6 -2.55 0.6Zm0.45 -1.8c1.2667 0 2.3167 -0.4583 3.15 -1.375 0.8333 -0.9167 1.25 -2.0583 1.25 -3.425 -0.4 -0.2667 -0.9083 -0.4667 -1.525 -0.6 -0.6167 -0.1333 -1.2417 -0.2 -1.875 -0.2 -1.1667 0 -2.0917 0.2667 -2.775 0.8 -0.6833 0.5333 -1.025 1.2667 -1.025 2.2 0 0.8 0.25 1.4333 0.75 1.9 0.5 0.4667 1.1833 0.7 2.05 0.7ZM25.5 20l-2.35 -4.65h-2.5l3.1 4.65H25.5Z'/></svg>");
+}
+
+/* Match Word icon */
+.findbar-entire-word::before {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><path fill='currentColor' d='M2 38.0502v-9.5h3v6.5h38v-6.5h3v9.5H2Zm17.3 -8.1v-2.15h-0.2c-0.4667 0.7667 -1.0667 1.35 -1.8 1.75 -0.7333 0.4 -1.5833 0.6 -2.55 0.6 -1.4333 0 -2.5833 -0.3917 -3.45 -1.175 -0.8667 -0.7833 -1.3 -1.825 -1.3 -3.125 0 -1.4333 0.5083 -2.5917 1.525 -3.475 1.0167 -0.8833 2.375 -1.325 4.075 -1.325 0.6667 0 1.325 0.0667 1.975 0.2 0.65 0.1333 1.2083 0.3333 1.675 0.6v-1c0 -1.1667 -0.3167 -2.0667 -0.95 -2.7 -0.6333 -0.6333 -1.5333 -0.95 -2.7 -0.95 -0.7333 0 -1.4 0.125 -2 0.375 -0.6 0.25 -1.1667 0.625 -1.7 1.125l-1.45 -1.25c0.7 -0.7333 1.4667 -1.2667 2.3 -1.6 0.8333 -0.3333 1.7833 -0.5 2.85 -0.5 1.8667 0 3.2833 0.475 4.25 1.425 0.9667 0.95 1.45 2.375 1.45 4.275v8.9h-2Zm-3.4 -7.15c-1.1667 0 -2.0917 0.2667 -2.775 0.8 -0.6833 0.5333 -1.025 1.2667 -1.025 2.2 0 0.8 0.25 1.4333 0.75 1.9 0.5 0.4667 1.1833 0.7 2.05 0.7 1.2667 0 2.3167 -0.4583 3.15 -1.375 0.8333 -0.9167 1.25 -2.0583 1.25 -3.425 -0.4 -0.2667 -0.9083 -0.4667 -1.525 -0.6 -0.6167 -0.1333 -1.2417 -0.2 -1.875 -0.2Zm9.25 7.15v-20h2v6.65l-0.15 2h0.1c0.4333 -0.6667 1.0833 -1.2167 1.95 -1.65s1.8 -0.65 2.8 -0.65c1.7 0 3.1583 0.65 4.375 1.95 1.2167 1.3 1.825 2.95 1.825 4.95s-0.6 3.6583 -1.8 4.975c-1.2 1.3167 -2.6667 1.975 -4.4 1.975 -0.9667 0 -1.8583 -0.2 -2.675 -0.6 -0.8167 -0.4 -1.4583 -0.9333 -1.925 -1.6h-0.1v2h-2Zm6.3 -11.85c-1.2667 0 -2.325 0.4917 -3.175 1.475 -0.85 0.9833 -1.275 2.2083 -1.275 3.675s0.425 2.675 1.275 3.625c0.85 0.95 1.9083 1.425 3.175 1.425 1.2667 0 2.3333 -0.4833 3.2 -1.45 0.8667 -0.9667 1.3 -2.1833 1.3 -3.65s-0.4333 -2.6833 -1.3 -3.65c-0.8667 -0.9667 -1.9333 -1.45 -3.2 -1.45Z'/></svg>");
+}
+
+/* Hover spotlight — ::after overlay avoids XUL's rectangular background-color paint */
+.findbar-case-sensitive::after,
+.findbar-match-diacritics::after,
+.findbar-entire-word::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border-radius: 999px !important;
+    background: transparent;
+    transition: background var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+    pointer-events: none !important;
+}
+
+.findbar-case-sensitive:hover::after,
+.findbar-match-diacritics:hover::after,
+.findbar-entire-word:hover::after {
+    background: color-mix(in srgb, var(--toolbar-color) 17%, transparent) !important;
+}
+
+/* Checked state — blue background, icon inherits toolbar color via currentColor */
+.findbar-case-sensitive[checked="true"],
+.findbar-match-diacritics[checked="true"],
+.findbar-entire-word[checked="true"] {
+    background-color: var(--button-primary-active-bgcolor) !important;
+    color: var(--toolbar-field-background-color) !important;
+}
