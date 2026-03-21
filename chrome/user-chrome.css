@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    SECTION 1 — ROOT VARIABLES & THEME SYSTEM
    Core Material/Chrome variables, color system, icon paths,
    animation curves, and theme overrides.
@@ -175,6 +175,7 @@ body {
 
   /* Required: keep Firefox UA loader in fragment mode */
   --_end: ;
+
 
 /* =========================================================
    SECTION 2 — GLOBAL UI ELEMENTS
@@ -1153,6 +1154,8 @@ richlistitem[selected] {
 #navigator-toolbox {
   border-bottom: none !important;
   box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
 }
 
 #navigator-toolbox[style*="--toolbar-bgimage"] {
@@ -1198,6 +1201,7 @@ richlistitem[selected] {
 #TabsToolbar {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
+  background-clip: padding-box !important;
 }
 
 #tabbrowser-tabs {
@@ -1254,20 +1258,21 @@ richlistitem[selected] {
    MAKE TOOLBAR TOP CORNERS ROUNDED
    ========================================================= */
 
-#navigator-toolbox {
-  border-radius: 0 !important;
-  overflow: visible !important;
-}
 
 #nav-bar {
   border-top-left-radius: 8px !important;
   border-top-right-radius: 8px !important;
-  overflow: hidden !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 3px !important;
+  padding-bottom: 8px !important;
+  --toolbar-field-height: 36px !important;
 }
 
-#TabsToolbar {
-  background-clip: padding-box !important;
-}
 
 #navigator-toolbox > toolbar:not(#nav-bar):not(#PersonalToolbar) {
   border-top: none !important;
@@ -1280,16 +1285,6 @@ richlistitem[selected] {
   margin-bottom: 0 !important;
 }
 
-#nav-bar {
-  border-top: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: 3px !important;
-  padding-bottom: 8px !important;
-}
 
 #PersonalToolbar {
   padding-top: 0px !important;
@@ -1297,10 +1292,6 @@ richlistitem[selected] {
   margin-top: -5px !important;
 }
 
-#PersonalToolbar .bookmark-item,
-#PersonalToolbar toolbarbutton {
-  margin-top: -2px !important;
-}
 
 /* =========================================================
    MAKE URL BAR AND IDENTITY BOX PILL-SHAPED
@@ -1348,15 +1339,6 @@ richlistitem[selected] {
    NAV-BAR HEIGHT — Match Chrome proportions
    ========================================================= */
 
-#main-window #nav-bar {
-  --toolbar-field-height: 36px !important;
-  --urlbar-height: 36px !important;
-  padding-block: 4px 12px !important;
-}
-
-#main-window #urlbar-container {
-  height: 36px !important;
-}
 
 /* =========================================================
    URLBAR — REMOVE BORDER AND SEPARATOR LINE
@@ -1376,27 +1358,25 @@ richlistitem[selected] {
   --urlbar-focus-outline-width: 0px !important;
 }
 
-/* Remove separator between input and results */
-.urlbarView-body-inner {
-  border-top: none !important;
-}
-
+/* Remove separator between input and results, and all urlbar borders */
+/* Consolidated urlbar border and separator removal */
+.urlbarView,
+.urlbarView-body-inner,
 #urlbar .search-one-offs {
   border-top: none !important;
 }
 
-.urlbarView {
-  border-top: none !important;
-}
-
-.urlbar-input-container {
-  border-bottom: none !important;
-}
-
+.urlbar-input-container,
+#urlbar[open] .urlbar-input-container,
 #urlbar[breakout][breakout-extend] .urlbar-input-container,
 #urlbar[breakout][breakout-extend-animate] .urlbar-input-container {
   --urlbar-container-border-width: 0px !important;
   border: none !important;
+  box-shadow: none !important;
+}
+
+#urlbar-background {
+  border-top: none !important;
 }
 
 #urlbar > .urlbarView {
@@ -1411,16 +1391,39 @@ menupopup > .menupopup-arrowscrollbox {
   border: none !important;
   outline: none !important;
   -moz-window-shadow: none !important;
+  overflow: visible !important;
+}
+
+menupopup > .menupopup-arrowscrollbox {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+/* Push first and last menuitems away from rounded corners to prevent spotlight clipping */
+menupopup > menuitem:first-child,
+menupopup > menu:first-child {
+  margin-top: 4px !important;
+}
+
+menupopup > menuitem:last-child,
+menupopup > menu:last-child {
+  margin-bottom: 4px !important;
+}
+
+/* Add padding inside shadow DOM panel content to prevent spotlight clipping */
+menupopup::part(content),
+menupopup::part(arrowscrollbox) {
+  padding-block: 4px !important;
 }
 
 menupopup::part(arrowscrollbox),
-menupopup::part(scrollbox) {
+menupopup::part(scrollbox),
+menupopup::part(content) {
   border: none !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
-menupopup#contentAreaContextMenu,
 menupopup {
   --panel-border-color: transparent !important;
   --panel-shadow: none !important;
@@ -1428,16 +1431,8 @@ menupopup {
 
 :root {
   --menupopup-border-width: 0px !important;
-}
-
-#urlbar-background {
-  border-top: none !important;
-}
-
-#urlbar[open] .urlbar-input-container,
-#urlbar[breakout][breakout-extend] .urlbar-input-container {
-  border-bottom: none !important;
-  box-shadow: none !important;
+  --panel-border-width: 0px !important;
+  --menu-border-color: transparent !important;
 }
 
 /* =========================================================
@@ -1473,6 +1468,7 @@ menupopup {
   stroke: unset !important;
   background: none !important;
   mask: none !important;
+  margin-top: var(--tab-block-margin) !important;
 }
 
 #firefox-view-button .toolbarbutton-icon:not([src]),
@@ -1486,16 +1482,6 @@ menupopup {
   margin-inline-start: 6px !important;
 }
 
-/* =========================================================
-   VERTICALLY ALIGN LOGO USING THE SAME OFFSET AS TABS
-   ========================================================= */
-
-#firefox-view-button .toolbarbutton-icon,
-#firefox-view-button .toolbarbutton-badge-stack,
-#firefox-view-button image,
-#firefox-view-button .icon {
-  margin-top: var(--tab-block-margin) !important;
-}
 
 /* =========================================================
    REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
@@ -1521,5 +1507,15 @@ menupopup {
 :root:-moz-window-inactive .tab-background,
 :root:-moz-window-inactive .tab-stack {
   opacity: 1 !important;
+  filter: none !important;
+}
+
+/* =========================================================
+   MAKE UNLOADED TABS USE FADED ICON
+   ========================================================= */
+
+/* Fade the favicon on pending tabs — keep color, just reduce opacity */
+.tabbrowser-tab[pending] .tab-icon-image {
+  opacity: 0.4 !important;
   filter: none !important;
 }
