@@ -71,7 +71,7 @@
     /* ── Panels / popups ──────────────────────────────────────────────────── */
     --arrowpanel-border-radius:         8px !important;   /* 148.0 panel radius    */
     --panel-border-radius:              8px !important;
-    --menupopup-border-radius:          12px !important;
+    --menupopup-border-radius:          8px !important;
 
     /* ── Nova island tokens (pre-emptive) ─────────────────────────────────── */
     /*
