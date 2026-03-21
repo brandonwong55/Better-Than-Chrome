@@ -20,4 +20,4 @@ Most of this theme was vibe-coded, since I have little to no knowledge of CSS. P
 
 ## Comments
 
-Since [Firefox Nova is coming](https://www.soeren-hentzschel.at/firefox/exklusiv-so-sieht-das-neue-nova-design-von-firefox-aus/?ref=omgubuntu.co.uk), I've written a file to harden my theme in an attempt to reduce the likelihood of it breaking when Nova is released. I have no guarantees whether this will work, but this theme is working as of version 148.0
+Since [Firefox Nova is coming](https://www.soeren-hentzschel.at/firefox/exklusiv-so-sieht-das-neue-nova-design-von-firefox-aus/?ref=omgubuntu.co.uk), I've written a file to harden my theme in an attempt to reduce the likelihood of it breaking when Nova is released. I have no guarantees whether this will work, but my theme is working as of Firefox version 148.0
