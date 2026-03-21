@@ -1,0 +1,8 @@
+/* =========================================================
+   MAKE UNLOADED TABS USE FADED ICON
+   ========================================================= */
+
+/* Fade the favicon on pending tabs */
+.tabbrowser-tab[pending] .tab-icon-image {
+  opacity: 0.4 !important;
+}
