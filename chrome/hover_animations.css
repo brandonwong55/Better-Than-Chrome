@@ -154,3 +154,26 @@ radio::after {
 #tabs-newtab-button:hover > .toolbarbutton-badge-stack {
   background-color: var(--md-tab-background-color-hover) !important;
 }
+/* =========================================================
+   FIREFOX VIEW BUTTON — CIRCULAR SPOTLIGHT
+   ========================================================= */
+
+#firefox-view-button {
+  position: relative;
+  overflow: visible !important;
+  clip-path: circle(50%);
+}
+
+#firefox-view-button::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: var(--toolbarbutton-border-radius);
+  background: transparent;
+  transition: background var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+  pointer-events: none;
+}
+
+#firefox-view-button:hover::after {
+  background: var(--toolbarbutton-hover-background);
+}
