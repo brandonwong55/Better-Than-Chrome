@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
-  A Firefox theme meant to emulate Chrome with a few enhancements/improvements.
+  A Firefox theme meant to emulate Chrome with a few enhancements.
 </h3>
 
 ## About
