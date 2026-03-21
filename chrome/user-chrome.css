@@ -1479,9 +1479,8 @@ menupopup {
 #firefox-view-button {
   --toolbarbutton-icon-size: 28px !important;
   --toolbarbutton-inner-padding: 2px !important;
-  margin-inline-start: 6px !important;
+  margin-inline-start: calc(-1 * var(--tab-shift)) !important;
 }
-
 
 /* =========================================================
    REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
