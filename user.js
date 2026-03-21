@@ -1,3 +1,4 @@
+user_pref("findbar.highlightAll", true);
 user_pref("gfx.webrender.all", true);
 user_pref("gfx.webrender.enabled", true);
 user_pref("layers.acceleration.force-enabled", true);
