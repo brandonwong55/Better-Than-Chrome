@@ -6,6 +6,10 @@
   A Firefox theme meant to emulate Chrome with a few enhancements.
 </h3>
 
+## Screenshots
+
+(coming soon)
+
 ## About
 
 I want to thank [edelvarden](https://github.com/edelvarden/), the creator of [MaterialFox UPDATED](https://github.com/edelvarden/material-fox-updated/), for providing a basis for this theme.
