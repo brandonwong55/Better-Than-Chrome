@@ -5,6 +5,7 @@
 :root {
   --findbar-border-radius: 8px !important;
   --findbar-separation: 4px !important;
+  --findbar-offset: 11px !important;
 }
 
 /* =========================================================
@@ -17,7 +18,7 @@ findbar {
   position: relative;
   border-top: none !important;
   border-right: 1px solid var(--chrome-content-separator-color);
-  padding: 0 11px 0 0 !important;
+  padding: 0 var(--findbar-offset) 0 0 !important;
   transition: transform 100ms linear, opacity 100ms linear 50ms !important;
   background: none !important;
   pointer-events: none;
