@@ -424,19 +424,19 @@ input[type=checkbox]:is([checked], :checked),
   transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
 }
 
-:not(.findbar-container) > checkbox:not([disabled=true]):hover::after {
+:not(.findbar-container) > checkbox:not([disabled]):hover::after {
   background-color: var(--md-accent-color-transparent);
 }
 
-:not(.findbar-container) > checkbox:not([disabled=true]):hover:active::after {
+:not(.findbar-container) > checkbox:not([disabled]):hover:active::after {
   background-color: var(--md-accent-color-transparent-active);
 }
 
-checkbox:not([disabled=true]) {
+checkbox:not([disabled]) {
   cursor: pointer !important;
 }
 
-checkbox:not([disabled=true]) label {
+checkbox:not([disabled]) label {
   cursor: pointer !important;
 }
 
@@ -464,7 +464,7 @@ input[type=radio]:not(.wallpaper-input),
 }
 
 input[type=radio]:enabled:hover:not([selected], :checked),
-radio:not([disabled=true]):hover > .radio-check:not([selected], :checked) {
+radio:not([disabled]):hover > .radio-check:not([selected], :checked) {
   background-color: var(--md-background-color-50) !important;
 }
 
@@ -491,19 +491,19 @@ radio::after {
   transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
 }
 
-radio:not([disabled=true]):hover::after {
+radio:not([disabled]):hover::after {
   background-color: var(--md-accent-color-transparent);
 }
 
-radio:not([disabled=true]):hover:active::after {
+radio:not([disabled]):hover:active::after {
   background-color: var(--md-accent-color-transparent-active);
 }
 
-radio:not([disabled=true]) {
+radio:not([disabled]) {
   cursor: pointer !important;
 }
 
-radio:not([disabled=true]) label {
+radio:not([disabled]) label {
   cursor: pointer !important;
 }
 
@@ -1164,7 +1164,7 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   REMOVE DRAGGABLE BORDER PADDING WHEN NOT MAXIMIZED
+   FIX DRAGGABLE BORDER PADDING WHEN NOT MAXIMIZED
    ========================================================= */
 
 :root:not([sizemode="maximized"]) #TabsToolbar {
