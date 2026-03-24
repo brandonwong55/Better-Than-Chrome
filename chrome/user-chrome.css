@@ -1258,7 +1258,6 @@ richlistitem[selected] {
    MAKE TOOLBAR TOP CORNERS ROUNDED
    ========================================================= */
 
-
 #nav-bar {
   border-top-left-radius: 8px !important;
   border-top-right-radius: 8px !important;
@@ -1273,7 +1272,6 @@ richlistitem[selected] {
   --toolbar-field-height: 36px !important;
 }
 
-
 #navigator-toolbox > toolbar:not(#nav-bar):not(#PersonalToolbar) {
   border-top: none !important;
   border-bottom: none !important;
@@ -1285,13 +1283,11 @@ richlistitem[selected] {
   margin-bottom: 0 !important;
 }
 
-
 #PersonalToolbar {
   padding-top: 0px !important;
   padding-bottom: 8px !important;
   margin-top: -5px !important;
 }
-
 
 /* =========================================================
    MAKE URL BAR AND IDENTITY BOX PILL-SHAPED
@@ -1327,24 +1323,10 @@ richlistitem[selected] {
   padding: 4px 8px !important;
 }
 
-/* =========================================================
-   URL BAR — EDGE PADDING (LEFT + RIGHT)
-   ========================================================= */
-
 #nav-bar #urlbar {
   padding-inline: 2px !important;
 }
 
-/* =========================================================
-   NAV-BAR HEIGHT — Match Chrome proportions
-   ========================================================= */
-
-
-/* =========================================================
-   URLBAR — REMOVE BORDER AND SEPARATOR LINE
-   ========================================================= */
-
-/* Remove border around expanded urlbar */
 #urlbar > #urlbar-background,
 #urlbar[open] > #urlbar-background,
 #urlbar[focused] > #urlbar-background,
@@ -1358,8 +1340,6 @@ richlistitem[selected] {
   --urlbar-focus-outline-width: 0px !important;
 }
 
-/* Remove separator between input and results, and all urlbar borders */
-/* Consolidated urlbar border and separator removal */
 .urlbarView,
 .urlbarView-body-inner,
 #urlbar .search-one-offs {
@@ -1384,7 +1364,6 @@ richlistitem[selected] {
   --arrowpanel-border-color: transparent !important;
 }
 
-/* Remove border and shadow from context menus */
 menupopup,
 menupopup > .menupopup-arrowscrollbox {
   box-shadow: none !important;
@@ -1399,7 +1378,6 @@ menupopup > .menupopup-arrowscrollbox {
   padding-bottom: 4px !important;
 }
 
-/* Push first and last menuitems away from rounded corners to prevent spotlight clipping */
 menupopup > menuitem:first-child,
 menupopup > menu:first-child {
   margin-top: 4px !important;
@@ -1410,7 +1388,6 @@ menupopup > menu:last-child {
   margin-bottom: 4px !important;
 }
 
-/* Add padding inside shadow DOM panel content to prevent spotlight clipping */
 menupopup::part(content),
 menupopup::part(arrowscrollbox) {
   padding-block: 4px !important;
@@ -1436,6 +1413,18 @@ menupopup {
 }
 
 /* =========================================================
+   REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
+   ========================================================= */
+
+#tabbrowser-tabs,
+#tabbrowser-tabs[haspinnedtabs] {
+  border-inline-start: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* =========================================================
    SHIFT THE ENTIRE TABSTRIP
    ========================================================= */
 
@@ -1448,6 +1437,8 @@ menupopup {
 }
 
 #main-window[privatebrowsingmode] #tabbrowser-tabs {
+  /* For Flexible Space or List All Tabs button in the top-left, use var(--tab-shift) */
+  /* For Firefox View button in the top-left, use calc(var(--tab-shift) + 40px) */
   margin-inline-start: calc(var(--tab-shift) + 40px) !important;
 }
 
@@ -1479,19 +1470,14 @@ menupopup {
 #firefox-view-button {
   --toolbarbutton-icon-size: 28px !important;
   --toolbarbutton-inner-padding: 2px !important;
+
+  /* For Firefox View button in the top-left */
   margin-inline-start: calc(-1 * var(--tab-shift)) !important;
 }
 
-/* =========================================================
-   REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
-   ========================================================= */
-
-#tabbrowser-tabs,
-#tabbrowser-tabs[haspinnedtabs] {
-  border-inline-start: none !important;
-  border-left: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
+/* For List All Tabs button in the top-left */
+#alltabs-button {
+  margin-inline-start: calc(-1 * var(--tab-shift)) !important;
 }
 
 /* =========================================================
@@ -1513,8 +1499,62 @@ menupopup {
    MAKE UNLOADED TABS USE FADED ICON
    ========================================================= */
 
-/* Fade the favicon on pending tabs — keep color, just reduce opacity */
 .tabbrowser-tab[pending] .tab-icon-image {
   opacity: 0.4 !important;
   filter: none !important;
+}
+
+/* =========================================================
+   CHROME-STYLE TAB LOADING SPINNER
+   ========================================================= */
+
+.tab-icon-image[busy] {
+  opacity: 1 !important;
+  display: block !important;
+}
+
+.tab-icon-stack {
+  position: relative !important;
+}
+
+.tab-throbber {
+  list-style-image: none !important;
+}
+
+.tab-throbber::before {
+  display: none !important;
+  content: none !important;
+}
+
+@keyframes tab-throbber-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.tab-throbber[busy] {
+  width: 16px;
+  height: 16px;
+
+  transform-origin: center !important;
+
+  border: 2px solid rgba(128,128,128,0.25);
+  border-top-color: var(--md-accent-color);
+  border-radius: 50%;
+
+  animation: tab-throbber-spin 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+
+  background: none !important;
+}
+
+.tab-throbber:not([busy]) {
+  display: none !important;
+}
+
+.tab-icon-image {
+  transform: scale(1);
+  transition: transform 0.15s ease;
+}
+
+.tab-icon-image[busy] {
+  transform: scale(0.7);
 }
