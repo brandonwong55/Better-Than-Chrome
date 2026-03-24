@@ -229,9 +229,9 @@ label[anonid="entire-word-status"] { order: 10 !important; }
 }
 
 /* Checked state — blue background, icon inherits toolbar color via currentColor */
-.findbar-case-sensitive[checked="true"],
-.findbar-match-diacritics[checked="true"],
-.findbar-entire-word[checked="true"] {
+.findbar-case-sensitive[checked],
+.findbar-match-diacritics[checked],
+.findbar-entire-word[checked] {
     background-color: var(--button-primary-active-bgcolor) !important;
     color: var(--toolbar-field-background-color) !important;
 }
