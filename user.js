@@ -5,6 +5,7 @@
 
 user_pref("browser.tabs.hoverPreview.showThumbnailDelay", 1000);
 user_pref("findbar.highlightAll", true);
+user_pref("full-screen-api.transition-duration.enter", "0 0");
 user_pref("general.smoothScroll", true);
 user_pref("general.smoothScroll.currentVelocityWeighting", "0.15");
 user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 250);
