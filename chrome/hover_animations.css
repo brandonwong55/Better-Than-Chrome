@@ -48,12 +48,11 @@
    (tabs, toolbar buttons, urlbar, searchbar, etc.)
    --------------------------------------------------------- */
 
-/* IMPORTANT FIX:
-   Exclude window control buttons so they don't animate
-   and don't flash duplicates when the menubar appears.
-*/
+/* 1. Define the transition for the container and its icons */
 .tabbrowser-tab,
-toolbarbutton:not(.titlebar-button):not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.titlebar-restore),
+toolbarbutton:not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.titlebar-restore),
+#nav-bar .toolbarbutton-icon,
+#nav-bar .toolbarbutton-badge-stack,
 #urlbar,
 #searchbar,
 checkbox::after,
