@@ -957,19 +957,6 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   BOOKMARK STAR & PAGE ACTIONS
-   ========================================================= */
-
-#star-button,
-#pageAction-panel-bookmark {
-  list-style-image: var(--md-star-icon) !important;
-}
-
-#urlbar-engine-one-off-item {
-  list-style-image: var(--md-search-icon) !important;
-}
-
-/* =========================================================
    URL BAR ICON BASE STYLING
    ========================================================= */
 
@@ -985,6 +972,35 @@ richlistitem[selected] {
   color: var(--md-icon-color-primary) !important;
   fill: currentColor !important;
   stroke: currentColor !important;
+}
+
+/* =========================================================
+   BOOKMARK STAR & PAGE ACTIONS
+   ========================================================= */
+
+#star-button,#pageAction-panel-bookmark,#urlbar-engine-one-off-item-bookmarks {
+  list-style-image:var(--md-star-icon) !important;
+  fill-opacity:0 !important
+}
+
+#urlbar-engine-one-off-item-bookmarks {
+  fill-opacity:1 !important
+}
+
+#star-button[starred],#tracking-protection-icon-box[active] {
+  fill: var(--color-accent-primary) !important
+}
+
+#urlbar-engine-one-off-item {
+  list-style-image: var(--md-search-icon) !important;
+}
+
+#star-button[starred],#context-bookmarkpage[starred] {
+  fill-opacity:1 !important
+}
+
+#PlacesChevron,#nav-bar-overflow-button {
+  list-style-image:var(--md-chevron-icon) !important
 }
 
 /* =========================================================
@@ -1395,6 +1411,30 @@ richlistitem[selected] {
 }
 
 /* =========================================================
+   STYLE LIST ALL TABS BUTTON 
+   ========================================================= */
+
+#alltabs-button .toolbarbutton-badge-stack {
+    transform:translate(0px, 1px) !important;
+    min-width:28px !important;
+    max-width:28px !important;
+    min-height:28px !important;
+    max-height:28px !important;
+    display:grid !important;
+    align-content:center !important;
+    place-content:center !important;
+    place-items:center !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+    border-radius:11px !important
+}
+
+/* For List All Tabs button in the top-left */
+#alltabs-button {
+  margin-inline-start: calc(-1 * var(--tab-shift)) !important;
+}
+
+/* =========================================================
    USE THE FIREFOX LOGO FOR VIEW BUTTON
    ========================================================= */
 
@@ -1424,11 +1464,6 @@ richlistitem[selected] {
   --toolbarbutton-inner-padding: 2px !important;
 
   /* For Firefox View button in the top-left */
-  margin-inline-start: calc(-1 * var(--tab-shift)) !important;
-}
-
-/* For List All Tabs button in the top-left */
-#alltabs-button {
   margin-inline-start: calc(-1 * var(--tab-shift)) !important;
 }
 
