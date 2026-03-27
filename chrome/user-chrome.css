@@ -1411,23 +1411,8 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   STYLE LIST ALL TABS BUTTON 
+   LIST ALL TABS BUTTON TOP-LEFT
    ========================================================= */
-
-#alltabs-button .toolbarbutton-badge-stack {
-    transform:translate(0px, 1px) !important;
-    min-width:28px !important;
-    max-width:28px !important;
-    min-height:28px !important;
-    max-height:28px !important;
-    display:grid !important;
-    align-content:center !important;
-    place-content:center !important;
-    place-items:center !important;
-    justify-content:center !important;
-    overflow:hidden !important;
-    border-radius:11px !important
-}
 
 /* For List All Tabs button in the top-left */
 #alltabs-button {
@@ -1435,7 +1420,7 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   USE THE FIREFOX LOGO FOR VIEW BUTTON
+   FIREFOX VIEW BUTTON TOP-LEFT
    ========================================================= */
 
 #firefox-view-button .toolbarbutton-icon,
