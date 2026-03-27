@@ -1,5 +1,5 @@
 :root {
-  --md-hover-slow-duration:      240ms;
+  --md-hover-slow-duration:      250ms;
   --md-hover-slow-ease:          cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -17,7 +17,7 @@
 #urlbar-background,
 #urlbar-input-container {
   filter: none !important;
-  transition: filter 140ms ease-out !important;
+  transition: filter 150ms ease-out !important;
 }
 
 #urlbar:not([breakout-extend="true"]):not([focused="true"]):hover:not(:has(
