@@ -71,7 +71,7 @@
   #urlbar-searchmode-switcher:hover,
   .searchmode-switcher-icon:hover
 )) > #urlbar-input-container {
-  filter: brightness(0.9) contrast(1.1) !important;
+  filter: brightness(0.9) contrast(1.05) !important;
 }
 
 /* =========================================================
