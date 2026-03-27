@@ -1,11 +1,4 @@
-/* =========================================================
-   ROUNDED SPOTLIGHT HOVER EFFECT ON TOOLBAR BUTTONS
-   ========================================================= */
-
 :root {
-  --tab-border-radius:           999px !important;
-  --toolbarbutton-border-radius: 999px !important;
-  --urlbar-icon-border-radius:   999px !important;
   --md-hover-slow-duration:      240ms;
   --md-hover-slow-ease:          cubic-bezier(0.25, 0.1, 0.25, 1);
 }
@@ -14,17 +7,6 @@
 .unified-extensions-item .toolbarbutton-icon,
 #unified-extensions-button .toolbarbutton-icon {
   overflow: visible !important;
-}
-
-/* =========================================================
-   URL BAR — HOVER HIGHLIGHT
-   ========================================================= */
-
-#urlbar,
-#urlbar-background,
-#urlbar-input-container {
-  filter: none !important;
-  transition: filter 140ms ease-out !important;
 }
 
 /* =========================================================
@@ -90,18 +72,17 @@ toolbarbutton:not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.ti
 #nav-bar .toolbarbutton-icon,
 #nav-bar .toolbarbutton-badge-stack,
 #urlbar,
-#searchbar,
-#trust-protection-icon-container,
-#trust-protection-icon-container:hover,
-#tracking-protection-icon-container,
-#tracking-protection-icon-container:hover,
 #identity-box,
 #identity-box > box:hover:not([open]),
 #identity-permission-box:hover:not([open]),
+.urlbar-page-action:hover,
+#trust-icon-container:hover,
+#trust-icon:hover,
+#tracking-protection-icon-container,
+#tracking-protection-icon:hover,
 #star-button-box,
 #reader-mode-button,
 #urlbar-go-button,
-.urlbar-page-action,
 checkbox::after,
 radio::after {
   transition-duration: var(--md-hover-slow-duration) !important;
