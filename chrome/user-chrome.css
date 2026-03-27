@@ -1364,54 +1364,6 @@ richlistitem[selected] {
   --arrowpanel-border-color: transparent !important;
 }
 
-menupopup,
-menupopup > .menupopup-arrowscrollbox {
-  box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
-  -moz-window-shadow: none !important;
-  overflow: visible !important;
-}
-
-menupopup > .menupopup-arrowscrollbox {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-}
-
-menupopup > menuitem:first-child,
-menupopup > menu:first-child {
-  margin-top: 4px !important;
-}
-
-menupopup > menuitem:last-child,
-menupopup > menu:last-child {
-  margin-bottom: 4px !important;
-}
-
-menupopup::part(content),
-menupopup::part(arrowscrollbox) {
-  padding-block: 4px !important;
-}
-
-menupopup::part(arrowscrollbox),
-menupopup::part(scrollbox),
-menupopup::part(content) {
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-menupopup {
-  --panel-border-color: transparent !important;
-  --panel-shadow: none !important;
-}
-
-:root {
-  --menupopup-border-width: 0px !important;
-  --panel-border-width: 0px !important;
-  --menu-border-color: transparent !important;
-}
-
 /* =========================================================
    REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
    ========================================================= */
@@ -1557,4 +1509,66 @@ menupopup {
 
 .tab-icon-image[busy] {
   transform: scale(0.7);
+}
+
+/* =========================================================
+   CHROME-STYLE DUAL-LAYER SHADOW (UNIFIED FIX)
+   ========================================================= */
+
+/* 1. Expand the engine's window bounds for ALL popups */
+:root,
+menupopup,
+panel {
+  --panel-shadow-margin: 24px !important; 
+  
+  /* Dual-Layer: Layer 1 (Ambient Glow), Layer 2 (Core Edge) */
+  --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  --windows-panel-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15) !important;
+  --panel-border-color: transparent !important;
+}
+
+/* 2. Strip outer layers for Context, App Menu, and Bookmarks */
+#contentAreaContextMenu,
+#appMenu-popup,
+#BMB_bookmarksPopup,
+#editBookmarkPanel,
+menupopup,
+panel {
+  --arrowpanel-background: var(--toolbar-field-background-color) !important;
+  --panel-background: var(--toolbar-field-background-color) !important;
+  appearance: none !important;
+  background: transparent !important;
+  border: none !important;
+  -moz-window-shadow: none !important; 
+}
+
+/* 3. Apply the 'Good' shadow to the inner containers of all menus */
+#contentAreaContextMenu .menupopup-arrowscrollbox,
+#appMenu-popup .panel-subview-body,
+#appMenu-popup .panel-arrowcontent,
+#BMB_bookmarksPopup .panel-arrowcontent,
+#editBookmarkPanel .panel-arrowcontent,
+.panel-arrowcontent,
+menupopup > .menupopup-arrowscrollbox {
+  background-color: var(--toolbar-field-background-color) !important;
+  border-radius: 8px !important;
+  border: none !important;
+  
+  /* Use the Chrome-tuned shadow */
+  box-shadow: var(--panel-shadow) !important;
+  
+  /* Mask the 1px ghost line */
+  outline: 1px solid var(--toolbar-field-background-color) !important;
+  outline-offset: -1px !important;
+}
+
+/* 4. Global Arrow Removal (Prevents gaps/clipping in the shadow) */
+.panel-arrow, 
+.panel-arrowbox {
+  display: none !important;
+}
+
+/* 5. Force the shadow to be visible in scrollable lists */
+.menupopup-arrowscrollbox {
+  overflow: visible !important;
 }
