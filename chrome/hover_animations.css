@@ -3,15 +3,17 @@
    ========================================================= */
 
 :root {
-    --tab-border-radius:                999px !important;
-    --toolbarbutton-border-radius:      999px !important;
-    --urlbar-icon-border-radius:        999px !important;
+  --tab-border-radius:           999px !important;
+  --toolbarbutton-border-radius: 999px !important;
+  --urlbar-icon-border-radius:   999px !important;
+  --md-hover-slow-duration:      240ms;
+  --md-hover-slow-ease:          cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .webextension-browser-action .toolbarbutton-icon,
 .unified-extensions-item .toolbarbutton-icon,
 #unified-extensions-button .toolbarbutton-icon {
-    overflow: visible !important;
+  overflow: visible !important;
 }
 
 /* =========================================================
@@ -25,10 +27,51 @@
   transition: filter 140ms ease-out !important;
 }
 
-#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover,
-#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-background,
-#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-input-container {
-  filter: brightness(0.9) contrast(0.9) !important;
+/* =========================================================
+   URL BAR — HOVER HIGHLIGHT
+   ========================================================= */
+
+#urlbar,
+#urlbar-background,
+#urlbar-input-container {
+  filter: none !important;
+  transition: filter 140ms ease-out !important;
+}
+
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover:not(:has(
+  .urlbar-icon:hover, 
+  #identity-box:hover, 
+  .urlbar-page-action:hover, 
+  #trust-icon-container:hover, 
+  #trust-icon:hover, 
+  #tracking-protection-icon-container:hover, 
+  #tracking-protection-icon:hover, 
+  #urlbar-searchmode-switcher:hover,
+  .searchmode-switcher-icon:hover
+)),
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover:not(:has(
+  .urlbar-icon:hover, 
+  #identity-box:hover, 
+  .urlbar-page-action:hover, 
+  #trust-icon-container:hover, 
+  #trust-icon:hover, 
+  #tracking-protection-icon-container:hover, 
+  #tracking-protection-icon:hover, 
+  #urlbar-searchmode-switcher:hover,
+  .searchmode-switcher-icon:hover
+)) > #urlbar-background,
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover:not(:has(
+  .urlbar-icon:hover, 
+  #identity-box:hover, 
+  .urlbar-page-action:hover, 
+  #trust-icon-container:hover, 
+  #trust-icon:hover, 
+  #tracking-protection-icon-container:hover, 
+  #tracking-protection-icon:hover, 
+  #urlbar-searchmode-switcher:hover,
+  .searchmode-switcher-icon:hover
+)) > #urlbar-input-container {
+  filter: brightness(0.9) contrast(1.1) !important;
 }
 
 /* =========================================================
@@ -37,24 +80,28 @@
    the main app menu (#appMenu-popup).
    ========================================================= */
 
-:root {
-  --md-hover-slow-duration: 240ms;
-  --md-hover-slow-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --inactive-tab-hover-radius: 8px;
-}
-
 /* ---------------------------------------------------------
    APPLY SLOW HOVER TO NORMAL UI ELEMENTS
    (tabs, toolbar buttons, urlbar, searchbar, etc.)
    --------------------------------------------------------- */
 
-/* 1. Define the transition for the container and its icons */
 .tabbrowser-tab,
 toolbarbutton:not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.titlebar-restore),
 #nav-bar .toolbarbutton-icon,
 #nav-bar .toolbarbutton-badge-stack,
 #urlbar,
 #searchbar,
+#trust-protection-icon-container,
+#trust-protection-icon-container:hover,
+#tracking-protection-icon-container,
+#tracking-protection-icon-container:hover,
+#identity-box,
+#identity-box > box:hover:not([open]),
+#identity-permission-box:hover:not([open]),
+#star-button-box,
+#reader-mode-button,
+#urlbar-go-button,
+.urlbar-page-action,
 checkbox::after,
 radio::after {
   transition-duration: var(--md-hover-slow-duration) !important;
@@ -68,9 +115,28 @@ radio::after {
 
 #appMenu-popup toolbarbutton,
 #appMenu-popup .subviewbutton {
-  transition-property: none !important;
-  transition-duration: initial !important;
-  transition-timing-function: initial !important;
+  transition: none !important;
+}
+
+/* =========================================================
+   SEARCH MODE SWITCHER — SLOW SPOTLIGHT
+   ========================================================= */
+
+#urlbar-searchmode-switcher {
+  /* Use your defined variables for consistency with other icons */
+  transition: background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
+  
+  /* Apply the circular shape defined in your :root */
+  border-radius: var(--urlbar-icon-border-radius) !important;
+}
+
+#urlbar-searchmode-switcher:hover {
+  background-color: var(--toolbarbutton-hover-background) !important;
+}
+
+/* Hide the default Firefox 'box' highlight so it doesn't clash with your circle */
+#urlbar-searchmode-switcher {
+  background-image: none !important;
 }
 
 /* =========================================================
@@ -84,10 +150,10 @@ radio::after {
    --------------------------------------------------------- */
 
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-background {
-  border-radius: var(--inactive-tab-hover-radius) !important;
-  transition-property: background-color, opacity !important;
-  transition-duration: var(--md-hover-slow-duration) !important;
-  transition-timing-function: var(--md-hover-slow-ease) !important;
+  border-radius: 8px !important;
+  transition:
+    background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease),
+    opacity var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
 }
 
 .tabbrowser-tab:not([pinned]):not([selected]):hover .tab-background {
@@ -104,7 +170,7 @@ radio::after {
   content: "";
   position: absolute;
   inset: -10px -12px;
-  border-radius: var(--inactive-tab-hover-radius);
+  border-radius: 8px;
   background-color: transparent;
   opacity: 0;
   transition:
@@ -155,13 +221,31 @@ radio::after {
 
 #tabs-newtab-button > .toolbarbutton-icon,
 #tabs-newtab-button > .toolbarbutton-badge-stack {
-  /* Add the slow hover transition here */
   transition: background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
 }
 
 #tabs-newtab-button:hover > .toolbarbutton-icon,
 #tabs-newtab-button:hover > .toolbarbutton-badge-stack {
   background-color: var(--md-tab-background-color-hover) !important;
+}
+
+/* =========================================================
+   LIST ALL TABS BUTTON - RECTANGULAR SPOTLIGHT
+   ========================================================= */
+
+#alltabs-button .toolbarbutton-badge-stack {
+    transform:translate(0px, 1px) !important;
+    min-width:28px !important;
+    max-width:28px !important;
+    min-height:28px !important;
+    max-height:28px !important;
+    display:grid !important;
+    align-content:center !important;
+    place-content:center !important;
+    place-items:center !important;
+    justify-content:center !important;
+    overflow:hidden !important;
+    border-radius:11px !important
 }
 
 /* =========================================================
