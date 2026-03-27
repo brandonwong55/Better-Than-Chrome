@@ -25,7 +25,6 @@
   transition: filter 140ms ease-out !important;
 }
 
-/* 2. Apply filter ONLY when hovered AND NOT expanded/focused */
 #urlbar:not([breakout-extend="true"]):not([focused="true"]):hover,
 #urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-background,
 #urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-input-container {
@@ -84,22 +83,24 @@ radio::after {
 /* ---------------------------------------------------------
    UNPINNED TABS (use .tab-background)
    --------------------------------------------------------- */
+
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-background {
   border-radius: var(--inactive-tab-hover-radius) !important;
-  transition:
-    background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease),
-    opacity var(--md-hover-slow-duration) var(--md-hover-slow-ease);
+  transition-property: background-color, opacity !important;
+  transition-duration: var(--md-hover-slow-duration) !important;
+  transition-timing-function: var(--md-hover-slow-ease) !important;
 }
 
 .tabbrowser-tab:not([pinned]):not([selected]):hover .tab-background {
   background-color: var(--md-tab-background-color-hover) !important;
-  opacity: 0.97;
+  opacity: 0.97 !important;
 }
 
 /* ---------------------------------------------------------
    PINNED TABS (use .tab-icon-stack::before)
    Enlarged highlight to match unpinned tab footprint.
    --------------------------------------------------------- */
+
 .tabbrowser-tab[pinned]:not([selected]) .tab-icon-stack::before {
   content: "";
   position: absolute;
@@ -118,6 +119,7 @@ radio::after {
   background-color: var(--md-tab-background-color-hover);
   opacity: 0.97;
 }
+
 /* =========================================================
    TAB VOLUME / MUTE BUTTON — CIRCULAR SPOTLIGHT
    .tab-icon-overlay is the mute/unmute button on audio tabs.
@@ -147,14 +149,22 @@ radio::after {
 .tab-audio-button:hover::after {
   background: color-mix(in srgb, currentColor 2%, transparent);
 }
+
 /* =========================================================
    NEW TAB BUTTON — BLUE SPOTLIGHT
    ========================================================= */
+
+#tabs-newtab-button > .toolbarbutton-icon,
+#tabs-newtab-button > .toolbarbutton-badge-stack {
+  /* Add the slow hover transition here */
+  transition: background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
+}
 
 #tabs-newtab-button:hover > .toolbarbutton-icon,
 #tabs-newtab-button:hover > .toolbarbutton-badge-stack {
   background-color: var(--md-tab-background-color-hover) !important;
 }
+
 /* =========================================================
    FIREFOX VIEW BUTTON — CIRCULAR SPOTLIGHT
    ========================================================= */
