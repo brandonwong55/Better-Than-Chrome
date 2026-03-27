@@ -25,10 +25,11 @@
   transition: filter 140ms ease-out !important;
 }
 
-#urlbar:hover,
-#urlbar:hover > #urlbar-background,
-#urlbar:hover > #urlbar-input-container {
-  filter: brightness(0.9) contrast(1.1) !important;
+/* 2. Apply filter ONLY when hovered AND NOT expanded/focused */
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover,
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-background,
+#urlbar:not([breakout-extend="true"]):not([focused="true"]):hover > #urlbar-input-container {
+  filter: brightness(0.9) contrast(0.9) !important;
 }
 
 /* =========================================================
