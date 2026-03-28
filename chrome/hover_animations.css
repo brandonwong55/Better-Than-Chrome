@@ -54,15 +54,8 @@
   filter: brightness(0.9) contrast(1.05) !important;
 }
 
-/* =========================================================
-   SLOW HOVER SPOTLIGHT — EXCLUDING HAMBURGER MENU
-   Slows hover fade-in/out everywhere except inside
-   the main app menu (#appMenu-popup).
-   ========================================================= */
-
 /* ---------------------------------------------------------
-   APPLY SLOW HOVER TO NORMAL UI ELEMENTS
-   (tabs, toolbar buttons, urlbar, searchbar, etc.)
+   NORMAL UI ELEMENTS
    --------------------------------------------------------- */
 
 .tabbrowser-tab,
@@ -89,7 +82,6 @@ radio::after {
 
 /* ---------------------------------------------------------
    EXCLUDE THE HAMBURGER MENU
-   (#appMenu-popup contains all its items)
    --------------------------------------------------------- */
 
 #appMenu-popup toolbarbutton,
@@ -98,7 +90,7 @@ radio::after {
 }
 
 /* =========================================================
-   SEARCH MODE SWITCHER — SLOW SPOTLIGHT
+   SEARCH MODE SWITCHER
    ========================================================= */
 
 #urlbar-searchmode-switcher {
@@ -118,14 +110,8 @@ radio::after {
   background-image: none !important;
 }
 
-/* =========================================================
-   UNIVERSAL INACTIVE TAB HOVER HIGHLIGHT
-   Works for BOTH pinned and unpinned tabs.
-   Rounded corners + slow spotlight fade.
-   ========================================================= */
-
 /* ---------------------------------------------------------
-   UNPINNED TABS (use .tab-background)
+   UNPINNED TABS
    --------------------------------------------------------- */
 
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-background {
@@ -141,8 +127,7 @@ radio::after {
 }
 
 /* ---------------------------------------------------------
-   PINNED TABS (use .tab-icon-stack::before)
-   Enlarged highlight to match unpinned tab footprint.
+   PINNED TABS
    --------------------------------------------------------- */
 
 .tabbrowser-tab[pinned]:not([selected]) .tab-icon-stack::before {
@@ -165,10 +150,7 @@ radio::after {
 }
 
 /* =========================================================
-   TAB VOLUME / MUTE BUTTON — CIRCULAR SPOTLIGHT
-   .tab-icon-overlay is the mute/unmute button on audio tabs.
-   The native hover paints but ignores --toolbarbutton-border-radius,
-   so we apply it explicitly here.
+   TAB VOLUME / MUTE BUTTON
    ========================================================= */
 
 .tab-audio-button {
@@ -195,7 +177,7 @@ radio::after {
 }
 
 /* =========================================================
-   NEW TAB BUTTON — BLUE SPOTLIGHT
+   NEW TAB BUTTON
    ========================================================= */
 
 #tabs-newtab-button > .toolbarbutton-icon,
@@ -209,7 +191,7 @@ radio::after {
 }
 
 /* =========================================================
-   LIST ALL TABS BUTTON - RECTANGULAR SPOTLIGHT
+   LIST ALL TABS BUTTON
    ========================================================= */
 
 #alltabs-button .toolbarbutton-badge-stack {
@@ -228,7 +210,7 @@ radio::after {
 }
 
 /* =========================================================
-   FIREFOX VIEW BUTTON — CIRCULAR SPOTLIGHT
+   FIREFOX VIEW BUTTON
    ========================================================= */
 
 #firefox-view-button {
