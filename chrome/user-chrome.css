@@ -1359,9 +1359,6 @@ richlistitem[selected] {
    MAKE SEARCH BAR PILL-SHAPED (WIP)
    ========================================================= */
 
-#search-container {
-  --toolbarbutton-border-radius: 999px !important;
-}
 #search-container:focus-within {
   --toolbarbutton-border-radius: 24px !important;
 }
