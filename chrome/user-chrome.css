@@ -1393,8 +1393,8 @@ richlistitem[selected] {
 }
 
 #main-window[privatebrowsingmode] #tabbrowser-tabs {
-  /* For Flexible Space or List All Tabs button in the top-left, use var(--tab-shift) */
-  /* For Firefox View button in the top-left, use calc(var(--tab-shift) + 40px) */
+  /* Use var(--tab-shift) for Flexible Space or List All Tabs button in the top-left  */
+  /* Use calc(var(--tab-shift) + 40px) for Firefox View button in the top-left  */
   margin-inline-start: calc(var(--tab-shift) + 40px) !important;
 }
 
@@ -1520,22 +1520,18 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   CHROME-STYLE DUAL-LAYER SHADOW (UNIFIED FIX)
+   CHROME-STYLE DUAL-LAYER SHADOW
    ========================================================= */
 
-/* 1. Expand the engine's window bounds for ALL popups */
 :root,
 menupopup,
 panel {
   --panel-shadow-margin: 24px !important; 
-  
-  /* Dual-Layer: Layer 1 (Ambient Glow), Layer 2 (Core Edge) */
   --panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15) !important;
   --windows-panel-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15) !important;
   --panel-border-color: transparent !important;
 }
 
-/* 2. Strip outer layers for Context, App Menu, and Bookmarks */
 #contentAreaContextMenu,
 #appMenu-popup,
 #BMB_bookmarksPopup,
@@ -1550,7 +1546,6 @@ panel {
   -moz-window-shadow: none !important; 
 }
 
-/* 3. Apply the 'Good' shadow to the inner containers of all menus */
 #contentAreaContextMenu .menupopup-arrowscrollbox,
 #appMenu-popup .panel-subview-body,
 #appMenu-popup .panel-arrowcontent,
@@ -1561,22 +1556,16 @@ menupopup > .menupopup-arrowscrollbox {
   background-color: var(--toolbar-field-background-color) !important;
   border-radius: 8px !important;
   border: none !important;
-  
-  /* Use the Chrome-tuned shadow */
   box-shadow: var(--panel-shadow) !important;
-  
-  /* Mask the 1px ghost line */
   outline: 1px solid var(--toolbar-field-background-color) !important;
   outline-offset: -1px !important;
 }
 
-/* 4. Global Arrow Removal (Prevents gaps/clipping in the shadow) */
 .panel-arrow, 
 .panel-arrowbox {
   display: none !important;
 }
 
-/* 5. Force the shadow to be visible in scrollable lists */
 .menupopup-arrowscrollbox {
   overflow: visible !important;
 }
