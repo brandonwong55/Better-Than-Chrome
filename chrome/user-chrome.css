@@ -1167,23 +1167,6 @@ richlistitem[selected] {
 }
 
 /* =========================================================
-   THEME-ADAPTIVE TOOLBOX FLATTENING
-   Only flatten when the theme does NOT use a gradient.
-   ========================================================= */
-
-#navigator-toolbox {
-  border-bottom: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-}
-
-#navigator-toolbox[style*="--toolbar-bgimage"] {
-  background-color: var(--toolbar-bgcolor) !important;
-  background-image: var(--toolbar-bgimage) !important;
-}
-
-/* =========================================================
    FIX DRAGGABLE BORDER PADDING WHEN NOT MAXIMIZED
    ========================================================= */
 
@@ -1273,6 +1256,12 @@ richlistitem[selected] {
 .tabbrowser-tab[pinned] .tab-content {
   padding-inline: 12px !important;
 }
+
+/* =========================================================
+   1PX HAIRLINE BELOW NAVBAR
+   ========================================================= */
+
+
 
 /* =========================================================
    MAKE TOOLBAR TOP CORNERS ROUNDED
@@ -1388,7 +1377,6 @@ richlistitem[selected] {
    MAKE SEARCH BAR PILL-SHAPED (WIP)
    ========================================================= */
 
-/* 1. Scoped Variable for the Pill-to-24px Breakout */
 #search-container {
   --toolbarbutton-border-radius: 999px !important;
 }
@@ -1396,23 +1384,9 @@ richlistitem[selected] {
   --toolbarbutton-border-radius: 24px !important;
 }
 
-/* 2. Main Search Bar - Mirroring URL Bar logic */
 #searchbar {
-  border-radius: var(--toolbarbutton-border-radius) !important;
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
   background-color: var(--toolbar-field-background-color) !important;
   transition: border-radius 150ms ease, background-color 150ms ease !important;
-}
-
-/* 6. Ensure internal textbox is clean */
-#searchbar .searchbar-textbox {
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  appearance: none !important;
 }
 
 /* =========================================================
