@@ -912,13 +912,6 @@ richlistitem[selected] {
   padding: 4px !important;
 }
 
-@media (not (-moz-pref("userChrome.ui-chrome-refresh"))) and
-       (-moz-pref("userChrome.ui-force-old-icons")) {
-  #nav-bar #home-button .toolbarbutton-icon {
-    padding: 6px !important;
-  }
-}
-
 /* =========================================================
    IDENTITY BOX ICONS (LOCK, WARNING, INFO)
    ========================================================= */
@@ -1192,13 +1185,8 @@ richlistitem[selected] {
   --tab-block-margin: 0px !important;
 }
 
-#menubar-items {
-  flex-direction: inherit !important;
-  padding-left: 5px !important;
-}
-
-#toolbar-menubar[inactive="true"] + #TabsToolbar {
-  --tab-block-margin: 3px !important;
+#toolbar-menubar[inactive] + #TabsToolbar #tabbrowser-tabs {
+  margin-top: 6px !important;
 }
 
 #TabsToolbar {
