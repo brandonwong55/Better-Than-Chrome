@@ -6,7 +6,7 @@
 
 findbar {
   order: -1;
-  margin-bottom: -33px;
+  margin-bottom: -34px;
   position: relative;
   border-top: none !important;
   border-right: 1px solid var(--chrome-content-separator-color);
