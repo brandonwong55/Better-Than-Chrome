@@ -27,22 +27,19 @@
   width: var(--uc-tab-curve-size) !important;
   height: var(--uc-tab-curve-size) !important;
   z-index: 1 !important;
-  
   fill: var(--tab-selected-bgcolor) !important;
-  
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxzdmcgc3Ryb2tlLXdpZHRoPSIxLjEiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmlld0JveD0iMCAwIDE3IDE2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8cGF0aCBkPSJNMCAxNyBMMCAxNiBBMTYgMTYgMCAwIDAgMTYgMCBMIDE4IDAgTCAxOCAxNyBaIiBmaWxsPSJjb250ZXh0LWZpbGwiPjwvcGF0aD4NCiAgPHBhdGggZD0iTTAgMTYgQTE2IDE2IDAgMCAwIDE2IDAiIHN0cm9rZT0iY29udGV4dC1zdHJva2UiIHN0cm9rZS1vcGFjaXR5PSJjb250ZXh0LXN0cm9rZS1vcGFjaXR5IiBmaWxsPSJ0cmFuc3BhcmVudCI+PC9wYXRoPg0KPC9zdmc+") !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='context-fill' d='M0,0 L0,10 L10,10 A10,10 0 0,1 0,0 Z'/%3E%3C/svg%3E") !important;
   background-size: cover !important;
-  
   -moz-context-properties: fill !important;
 }
 
 .tab-stack::before {
   left: calc(-1 * var(--uc-tab-curve-size)) !important;
+  transform: scaleX(-1) !important;
 }
 
 .tab-stack::after {
   right: calc(-1 * var(--uc-tab-curve-size)) !important;
-  transform: scaleX(-1) !important;
 }
 
 .tabbrowser-tab[selected] > .tab-stack::before,
