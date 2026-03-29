@@ -434,6 +434,11 @@ notification {
 /* 12  FIXES                                                                  */
 /* ══════════════════════════════════════════════════════════════════════════ */
 
+/* Squeeze together neighboring unpinned tabs */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) + .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
+}
+
 /* If the tab bar has at least one pinned tab, squeeze pinned and unpinned tabs together */
 #tabbrowser-tabs:has([pinned]) #tabbrowser-arrowscrollbox:not([overflowing]) {
   margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
@@ -444,12 +449,7 @@ notification {
   margin-inline-start: 0 !important;
 }
 
-/* Squeeze together neighboring unpinned tabs */
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]) + .tabbrowser-tab:not([pinned]) {
-  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
-}
-
-/* Push in the bottom curves for unpinned tabs */
+/* Push the bottom curves for unpinned tabs inwards*/
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
   margin-inline-end: 0 !important;
