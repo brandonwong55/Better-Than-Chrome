@@ -35,8 +35,8 @@ findbar > .close-icon {
 findbar > .findbar-container {
   border-width: 0 0 1px 1px;
   border-top: 1px solid var(--chrome-content-separator-color) !important;
+  border-radius: 0 !important;
   border-bottom-left-radius: var(--findbar-border-radius) !important;
-  border-bottom-right-radius: 0 !important;
   border-top-left-radius: var(--findbar-border-radius) !important;
   height: initial !important;
   margin-inline: 0px !important;
@@ -56,14 +56,10 @@ findbar > .findbar-container {
   flex-grow: 1;
 }
 
-findbar > .findbar-container > hbox {
-  margin: 0 5px;
-}
-
 findbar > .close-icon {
-  border-radius: 0 !important;
   border-width: 0 1px 1px 0 !important;
   border-top: 1px solid var(--chrome-content-separator-color) !important;
+  border-radius: 0 !important;
   border-bottom-right-radius: var(--findbar-border-radius) !important;
   border-top-right-radius: var(--findbar-border-radius) !important;
 }
@@ -142,7 +138,7 @@ label[anonid="entire-word-status"] { order: 10 !important; }
   height: 25px !important;
   border: none !important;
   padding: 0 !important;
-  margin: 2px 6px 2px 8px !important;
+  margin: 2px 6px 2px 6px !important;
   border-radius: 999px !important;
   position: relative !important;
   background-color: transparent !important;
