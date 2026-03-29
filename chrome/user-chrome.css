@@ -172,9 +172,9 @@ body {
   --md-tile-background-color: #444746;
   --in-content-box-border-color: var(--md-menu-border-color);
 
-  --tab-border-radius:           999px !important;
+  --tab-border-radius: 999px !important;
   --toolbarbutton-border-radius: 999px !important;
-  --urlbar-icon-border-radius:   999px !important;
+  --urlbar-icon-border-radius: 999px !important;
 }
 
   /* Required: keep Firefox UA loader in fragment mode */
