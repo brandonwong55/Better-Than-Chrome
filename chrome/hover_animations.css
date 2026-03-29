@@ -1,6 +1,6 @@
 :root {
-  --md-hover-slow-duration:      250ms;
-  --md-hover-slow-ease:          cubic-bezier(0.25, 0.1, 0.25, 1);
+  --md-hover-slow-duration: 250ms;
+  --md-hover-slow-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .webextension-browser-action .toolbarbutton-icon,
@@ -8,10 +8,6 @@
 #unified-extensions-button .toolbarbutton-icon {
   overflow: visible !important;
 }
-
-/* =========================================================
-   URL BAR — HOVER HIGHLIGHT
-   ========================================================= */
 
 #urlbar-background {
   filter: none !important;
@@ -54,10 +50,6 @@
   filter: brightness(0.9) contrast(1.05) !important;
 }
 
-/* ---------------------------------------------------------
-   NORMAL UI ELEMENTS
-   --------------------------------------------------------- */
-
 .tabbrowser-tab,
 toolbarbutton:not(.titlebar-close):not(.titlebar-min):not(.titlebar-max):not(.titlebar-restore),
 #nav-bar .toolbarbutton-icon,
@@ -80,24 +72,13 @@ radio::after {
   transition-timing-function: var(--md-hover-slow-ease) !important;
 }
 
-/* ---------------------------------------------------------
-   EXCLUDE THE HAMBURGER MENU
-   --------------------------------------------------------- */
-
 #appMenu-popup toolbarbutton,
 #appMenu-popup .subviewbutton {
   transition: none !important;
 }
 
-/* =========================================================
-   SEARCH MODE SWITCHER
-   ========================================================= */
-
 #urlbar-searchmode-switcher {
-  /* Use your defined variables for consistency with other icons */
   transition: background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
-  
-  /* Apply the circular shape defined in your :root */
   border-radius: var(--urlbar-icon-border-radius) !important;
 }
 
@@ -105,14 +86,9 @@ radio::after {
   background-color: var(--toolbarbutton-hover-background) !important;
 }
 
-/* Hide the default Firefox 'box' highlight so it doesn't clash with your circle */
 #urlbar-searchmode-switcher {
   background-image: none !important;
 }
-
-/* ---------------------------------------------------------
-   UNPINNED TABS
-   --------------------------------------------------------- */
 
 .tabbrowser-tab:not([pinned]):not([selected]) .tab-background {
   border-radius: 8px !important;
@@ -125,10 +101,6 @@ radio::after {
   background-color: var(--md-tab-background-color-hover) !important;
   opacity: 0.97 !important;
 }
-
-/* ---------------------------------------------------------
-   PINNED TABS
-   --------------------------------------------------------- */
 
 .tabbrowser-tab[pinned]:not([selected]) .tab-icon-stack::before {
   content: "";
@@ -148,10 +120,6 @@ radio::after {
   background-color: var(--md-tab-background-color-hover);
   opacity: 0.97;
 }
-
-/* =========================================================
-   TAB VOLUME / MUTE BUTTON
-   ========================================================= */
 
 .tab-audio-button {
   position: relative;
@@ -176,10 +144,6 @@ radio::after {
   background: color-mix(in srgb, currentColor 2%, transparent);
 }
 
-/* =========================================================
-   NEW TAB BUTTON
-   ========================================================= */
-
 #tabs-newtab-button > .toolbarbutton-icon,
 #tabs-newtab-button > .toolbarbutton-badge-stack {
   transition: background-color var(--md-hover-slow-duration) var(--md-hover-slow-ease) !important;
@@ -190,28 +154,20 @@ radio::after {
   background-color: var(--md-tab-background-color-hover) !important;
 }
 
-/* =========================================================
-   LIST ALL TABS BUTTON
-   ========================================================= */
-
 #alltabs-button .toolbarbutton-badge-stack {
-    transform:translate(0px, 1px) !important;
-    min-width:28px !important;
-    max-width:28px !important;
-    min-height:28px !important;
-    max-height:28px !important;
-    display:grid !important;
-    align-content:center !important;
-    place-content:center !important;
-    place-items:center !important;
-    justify-content:center !important;
-    overflow:hidden !important;
-    border-radius:11px !important
+  transform:translate(0px, 1px) !important;
+  min-width:28px !important;
+  max-width:28px !important;
+  min-height:28px !important;
+  max-height:28px !important;
+  display:grid !important;
+  align-content:center !important;
+  place-content:center !important;
+  place-items:center !important;
+  justify-content:center !important;
+  overflow:hidden !important;
+  border-radius:11px !important
 }
-
-/* =========================================================
-   FIREFOX VIEW BUTTON
-   ========================================================= */
 
 #firefox-view-button {
   position: relative;
