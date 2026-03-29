@@ -434,17 +434,22 @@ notification {
 /* 12  FIXES                                                                  */
 /* ══════════════════════════════════════════════════════════════════════════ */
 
-/* PINNED tabs: no extra margin on their right edge before unpinned tabs */
-#tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
-  margin-inline-end: 0 !important;
+/* If the tab bar has at least one pinned tab, squeeze pinned and unpinned tabs together */
+#tabbrowser-tabs:has([pinned]) #tabbrowser-arrowscrollbox:not([overflowing]) {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
 }
 
-/* Only tighten spacing when both neighbors are unpinned */
+/* If the tab bar doesn't have a pinned tab, don't apply the squeeze*/
+#tabbrowser-tabs:not(:has([pinned])) #tabbrowser-arrowscrollbox {
+  margin-inline-start: 0 !important;
+}
+
+/* Squeeze together neighboring unpinned tabs */
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]) + .tabbrowser-tab:not([pinned]) {
   margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
 }
 
-/* UNPINNED tabs: no extra side margins (so they sit closer to neighbors) */
+/* Push in the bottom curves for unpinned tabs */
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
   margin-inline-end: 0 !important;
