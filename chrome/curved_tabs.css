@@ -72,6 +72,14 @@
   margin-inline-end: var(--uc-tab-curve-size) !important;
 }
 
+#tabbrowser-tabs:has([pinned]) #tabbrowser-arrowscrollbox:not([overflowing]) {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
+}
+
+#tabbrowser-tabs:not(:has([pinned])) #tabbrowser-arrowscrollbox {
+  margin-inline-start: 0 !important;
+}
+
 #tabs-newtab-button {
   margin-inline-start: calc(2px - var(--uc-tab-curve-size)) !important;
 }
