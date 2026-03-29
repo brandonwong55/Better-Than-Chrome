@@ -180,7 +180,6 @@ body {
   /* Required: keep Firefox UA loader in fragment mode */
   --_end: ;
 
-
 /* =========================================================
    SECTION 2 — GLOBAL UI ELEMENTS
    Buttons, inputs, selects, checkboxes, radios, focus rings,
@@ -1047,9 +1046,10 @@ richlistitem[selected] {
   border-radius: 0 !important;
   background-color: var(--md-background-color-100) !important;
   opacity: 0.7 !important;
-  transition: background-color 150ms var(--md-fast-invoke),
-              opacity 150ms var(--md-fast-invoke),
-              filter 150ms var(--md-fast-invoke) !important;
+  transition:
+    background-color 150ms var(--md-fast-invoke),
+    opacity 150ms var(--md-fast-invoke),
+    filter 150ms var(--md-fast-invoke) !important;
   box-shadow: none !important;
 }
 
@@ -1488,7 +1488,7 @@ richlistitem[selected] {
 
 @keyframes tab-throbber-spin {
   from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
 .tab-throbber[busy] {
