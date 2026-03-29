@@ -434,12 +434,6 @@ notification {
 /* 12  FIXES                                                                  */
 /* ══════════════════════════════════════════════════════════════════════════ */
 
-/* UNPINNED tabs: no extra side margins (so they sit closer to neighbors) */
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
-  margin-inline-start: 0 !important;
-  margin-inline-end: 0 !important;
-}
-
 /* PINNED tabs: no extra margin on their right edge before unpinned tabs */
 #tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
   margin-inline-end: 0 !important;
@@ -447,10 +441,15 @@ notification {
 
 /* Only tighten spacing when both neighbors are unpinned */
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]) + .tabbrowser-tab:not([pinned]) {
-  margin-inline-start: calc(-1 * var(--uc-tab-curve-size)) !important;
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
 }
 
-/* UNPINNED tabs: Pull bottom curves inward */
+/* UNPINNED tabs: no extra side margins (so they sit closer to neighbors) */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: 0 !important;
+  margin-inline-end: 0 !important;
+}
+
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before{
   left: 0 !important;
 }
@@ -458,16 +457,3 @@ notification {
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after{
   right: 0 !important;
 }
-
-/* UNPINNED tabs: Adjust vertical position of bottom curves */
-/* #tabbrowser-tabs{
-  --uc-curve-raise: 0px;
-}
-
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before{
-  transform: translateY(calc(-1 * var(--uc-curve-raise))) !important;
-}
-  
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after{
-  transform: scaleX(-1) translateY(calc(-1 * var(--uc-curve-raise))) !important;
-} */
