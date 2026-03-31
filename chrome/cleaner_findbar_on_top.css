@@ -114,9 +114,9 @@ hbox[anonid="findbar-textbox-wrapper"] { order: 1 !important; }
 .findbar-label.found-matches { order: 2 !important; }
 .findbar-label.findbar-find-status { order: 3 !important; }
 .findbar-highlight { order: 4 !important; }
-.findbar-case-sensitive { order: 5 !important; }
-.findbar-match-diacritics { order: 6 !important; }
-.findbar-entire-word { order: 7 !important; }
+.findbar-match-diacritics { order: 5 !important; }
+.findbar-entire-word { order: 6 !important; }
+.findbar-case-sensitive { order: 7 !important; }
 label[anonid="match-case-status"] { order: 8 !important; }
 label[anonid="match-diacritics-status"] { order: 9 !important; }
 label[anonid="entire-word-status"] { order: 10 !important; }
@@ -138,7 +138,7 @@ label[anonid="entire-word-status"] { order: 10 !important; }
   height: 25px !important;
   border: none !important;
   padding: 0 !important;
-  margin: 2px 6px 2px 8px !important;
+  margin: 2px 7px !important;
   border-radius: 999px !important;
   position: relative !important;
   background-color: transparent !important;
