@@ -1185,6 +1185,11 @@ richlistitem[selected] {
   --tab-block-margin: 0px !important;
 }
 
+#menubar-items {
+  flex-direction: inherit !important;
+  padding-left: 0px !important;
+}
+
 #toolbar-menubar[inactive] + #TabsToolbar #tabbrowser-tabs {
   margin-top: 6px !important;
 }
