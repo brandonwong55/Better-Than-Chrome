@@ -224,7 +224,7 @@ select {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-weight: 500 !important;
+  font-weight: 500px !important;
   transition-property: background-color !important;
   transition-duration: var(--md-medium-short-duration) !important;
   transition-timing-function: var(--md-fast-invoke) !important;
@@ -338,8 +338,8 @@ button[type=menu] {
   border-radius: 4px !important;
   height: 36px !important;
   line-height: 36px !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 select menupopup,
@@ -976,11 +976,11 @@ richlistitem[selected] {
 
 #star-button,#pageAction-panel-bookmark,#urlbar-engine-one-off-item-bookmarks {
   list-style-image:var(--md-star-icon) !important;
-  fill-opacity:0 !important
+  fill-opacity: 0 !important
 }
 
 #urlbar-engine-one-off-item-bookmarks {
-  fill-opacity:1 !important
+  fill-opacity: 1 !important
 }
 
 #star-button[starred],#tracking-protection-icon-box[active] {
@@ -992,7 +992,7 @@ richlistitem[selected] {
 }
 
 #star-button[starred],#context-bookmarkpage[starred] {
-  fill-opacity:1 !important
+  fill-opacity: 1 !important
 }
 
 #PlacesChevron,#nav-bar-overflow-button {
@@ -1016,8 +1016,8 @@ richlistitem[selected] {
 
 .tabbrowser-tab {
   overflow: hidden !important;
-  padding-inline: 0 !important;
-  margin-inline: 0 !important;
+  padding-inline: 0px !important;
+  margin-inline: 0px !important;
 }
 
 .tabbrowser-tab::before,
@@ -1025,7 +1025,7 @@ richlistitem[selected] {
   display: block !important;
   content: "" !important;
   position: absolute !important;
-  inset: 0 !important;
+  inset: 0px !important;
   pointer-events: none !important;
   opacity: 0 !important;
   border-inline-width: 1px !important;
@@ -1042,8 +1042,8 @@ richlistitem[selected] {
    --------------------------------------------------------- */
 
 .tab-background {
-  margin-inline: 0 !important;
-  border-radius: 0 !important;
+  margin-inline: 0px !important;
+  border-radius: 0px !important;
   background-color: var(--md-background-color-100) !important;
   opacity: 0.7 !important;
   transition:
@@ -1059,8 +1059,8 @@ richlistitem[selected] {
   filter: brightness(1.15) !important;
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
   overflow: hidden !important;
   box-shadow: 0 0 0 1px var(--md-tab-outline-color) !important;
 }
@@ -1085,7 +1085,7 @@ richlistitem[selected] {
 
 .tabbrowser-tab[selected] .tab-label {
   color: var(--md-tab-label-color) !important;
-  font-weight: 500 !important;
+  font-weight: 500px !important;
 }
 
 .tabbrowser-tab:not([selected]) .tab-label {
@@ -1113,8 +1113,13 @@ richlistitem[selected] {
   transition: opacity var(--md-medium-short-duration) var(--md-point-to-point) !important;
 }
 
-.tab-content::before { left: 0 !important; }
-.tab-content::after  { right: 0 !important; }
+.tab-content::before {
+  left: 0px !important;
+}
+
+.tab-content::after {
+  right: 0px !important;
+}
 
 .tabbrowser-tab[selected] .tab-content::before,
 .tabbrowser-tab[selected] .tab-content::after {
@@ -1164,17 +1169,17 @@ richlistitem[selected] {
    ========================================================= */
 
 :root:not([sizemode="maximized"]) #TabsToolbar {
-  padding-left: 0 !important;
-  margin-left: 0 !important;
+  padding-left: 0px !important;
+  margin-left: 0px !important;
 }
 
 :root:not([sizemode="maximized"]) #titlebar {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
+  margin-left: 0px !important;
+  padding-left: 0px !important;
 }
 
 :root:not([sizemode="maximized"]) #TabsToolbar > .titlebar-spacer {
-  width: 0 !important;
+  width: 0px !important;
 }
 
 /* =========================================================
@@ -1198,22 +1203,9 @@ richlistitem[selected] {
 }
 
 #TabsToolbar {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
   background-clip: padding-box !important;
-}
-
-#tabbrowser-tabs {
-  transform: translateY(var(--tab-block-margin)) !important;
-}
-
-#tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
-  transform: translateY(var(--tab-block-margin)) !important;
-}
-
-#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs,
-#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
-  transform: translateY(0) !important;
 }
 
 /* =========================================================
@@ -1231,14 +1223,14 @@ richlistitem[selected] {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
 .tabbrowser-tab[pinned] .tab-background {
   height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
 .tabbrowser-tab[pinned] .tab-icon-stack {
@@ -1264,8 +1256,8 @@ richlistitem[selected] {
   border-bottom: none !important;
   box-shadow: none !important;
   background-image: none !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
   padding-top: 3px !important;
   padding-bottom: 8px !important;
   --toolbar-field-height: 36px !important;
@@ -1276,10 +1268,10 @@ richlistitem[selected] {
   border-bottom: none !important;
   box-shadow: none !important;
   background-image: none !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 #PersonalToolbar {
@@ -1432,7 +1424,7 @@ richlistitem[selected] {
   stroke: unset !important;
   background: none !important;
   mask: none !important;
-  margin-top: var(--tab-block-margin) !important;
+  margin-top: 3px !important;
 }
 
 #firefox-view-button .toolbarbutton-icon:not([src]),
