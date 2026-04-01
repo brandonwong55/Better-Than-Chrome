@@ -1,640 +1,698 @@
-/* =========================================================
-   SECTION 1 — ROOT VARIABLES & THEME SYSTEM
-   Core Material/Chrome variables, color system, icon paths,
-   animation curves, and theme overrides.
-   ========================================================= */
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 1                                              */
+/*  ROOT VARIABLES, COLOR SYSTEM, ICON SET, TYPOGRAPHY                        */
+/* ========================================================================== */
 
-:root,
-html,
-body {
-  /* --- Material system colors --- */
-  --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-outline: #606164;
-
-  /* --- Animation curves --- */
-  --md-fast-invoke: cubic-bezier(0, 0, 0, 1);
-  --md-strong-invoke: cubic-bezier(0.13, 1.62, 0, 0.92);
-  --md-fast-dismiss: cubic-bezier(0, 0, 0, 1);
-  --md-soft-dismiss: cubic-bezier(1, 0, 1, 1);
-  --md-point-to-point: cubic-bezier(0.55, 0.55, 0, 1);
-  --md-fade-in-out: linear;
-
-  /* --- Elevation (shadow) --- */
-  --md-elevation-2: 0 2px 8px 0 rgba(32, 33, 36, 0.15);
-  /* --- Animation durations --- */
-  --md-medium-short-duration: 150ms;
-
-  /* --- Icon paths (Material/Chrome style) --- */
-  --md-no-src-icon: url("icons/no-src.svg");
-  --md-audio-icon: url("icons/audio.svg");
-  --md-audio-muted-icon: url("icons/audio-muted.svg");
-  --md-audio-blocked-icon: url("icons/audio-blocked.svg");
-  --md-close-tab-icon: url("icons/close-tab.svg");
-  --md-plus-icon: url("icons/plus.svg");
-  --md-keyboard-arrow-down-icon: url("icons/keyboard-arrow-down.svg");
-  --md-keyboard-arrow-up-icon: url("icons/keyboard-arrow-up.svg");
-  --md-arrow-back-icon: url("icons/arrow-back.svg");
-  --md-arrow-forward-icon: url("icons/arrow-forward.svg");
-  --md-refresh-icon: url("icons/refresh.svg");
-  --md-close-icon: url("icons/close.svg");
-  --md-home-icon: url("icons/home.svg");
-  --md-dev-icon: url("icons/dev.svg");
-  --md-menu-icon: url("icons/menu.svg");
-  --md-menu-update-icon: url("icons/menu-update.svg");
-  --md-extension-icon: url("icons/extension.svg");
-  --md-extension-blocked-icon: url("icons/extension-blocked.svg");
-  --md-download-icon: url("icons/download.svg");
-  --md-account-icon: url("icons/account.svg");
-  --md-side-panel-icon: url("icons/side-panel.svg");
-  --md-open-in-full-icon: url("icons/menu/open-in-full.svg");
-  --md-mail-icon: url("icons/mail.svg");
-  --md-glyphs-icon: url("icons/glyphs.svg");
-  --md-file-open-icon: url("icons/file-open.svg");
-  --md-info-icon: url("icons/info.svg");
-  --md-lock-icon: url("icons/lock.svg");
-  --md-page-info: url("icons/page-info.svg");
-  --md-warning-icon: url("icons/warning.svg");
-  --md-properties-icon: url("icons/properties.svg");
-  --md-tracking-protection-icon: url("icons/tracking-protection.svg");
-  --md-star-icon: url("icons/star.svg");
-  --md-chevron-icon: url("icons/chevron.svg");
-  --md-folder-icon: url("icons/folder.svg");
-  --md-check-icon: url("icons/check.svg");
-  --md-edit-icon: url("icons/edit.svg");
-  --md-arrow-right-icon: url("icons/arrow-right.svg");
-  --md-arrow-down-icon: url("icons/arrow-down.svg");
-  --md-organization-icon: url("icons/organization.svg");
-  --md-new-tab-icon: url("icons/new-tab.svg");
-  --md-new-window-icon: url("icons/new-window.svg");
-  --md-incognito-icon: url("icons/incognito.svg");
-  --md-history-icon: url("icons/history.svg");
-  --md-key-icon: url("icons/key.svg");
-  --md-print-icon: url("icons/print.svg");
-  --md-file-save-icon: url("icons/file-save.svg");
-  --md-find-icon: url("icons/find.svg");
-  --md-translate-icon: url("icons/translate.svg");
-  --md-settings-icon: url("icons/settings.svg");
-  --md-tools-icon: url("icons/tools.svg");
-  --md-help-icon: url("icons/help.svg");
-  --md-zoom-in-icon: url("icons/zoom-in.svg");
-  --md-exit-icon: url("icons/exit.svg");
-  --md-search-icon: url("icons/search.svg");
-  --md-multiaccountcontainer-icon: url("icons/multiaccountcontainer.svg");
-  --md-toolbar-icon: url("icons/toolbar.svg");
-  --md-bookmark-manager-icon: url("icons/bookmark-manager.svg");
-  --md-trash-icon: url("icons/trash.svg");
-  --md-task-manager-icon: url("icons/task-manager.svg");
-  --md-eyedropper-icon: url("icons/eyedropper.svg");
-  --md-devices-icon: url("icons/devices.svg");
-  --md-remote-icon: url("icons/remote.svg");
-  --md-code-icon: url("icons/code.svg");
-  --md-report-icon: url("icons/report.svg");
-  --md-feedback-icon: url("icons/feedback.svg");
-  --md-open-in-icon: url("icons/open-in.svg");
-
-  /* --- Old icon set (fallback) --- */
-  --md-extension-old-icon: url("icons/old/extension.svg");
-
-  /* --- Menu icons --- */
-  --md-copy-icon: url("icons/menu/copy.svg");
-  --md-select-all-icon: url("icons/menu/select-all.svg");
-  --md-screenshot-icon: url("icons/menu/screenshot.svg");
-  --md-cut-icon: url("icons/menu/cut.svg");
-  --md-paste-icon: url("icons/menu/paste.svg");
-  --md-undo-icon: url("icons/menu/undo.svg");
-  --md-redo-icon: url("icons/menu/redo.svg");
-  --md-pin-icon: url("icons/menu/pin.svg");
-  --md-unpin-icon: url("icons/menu/unpin.svg");
-  --md-tab-duplicate-icon: url("icons/menu/tab-duplicate.svg");
-  --md-tab-close-icon: url("icons/menu/tab-close.svg");
-  --md-link-icon: url("icons/menu/link.svg");
-  --md-link-off-icon: url("icons/menu/link-off.svg");
-  --md-share-icon: url("icons/menu/share.svg");
-  --md-reply-icon: url("icons/menu/reply.svg");
-  --md-swap-icon: url("icons/menu/swap.svg");
-
-  /* --- Base color palette --- */
-  --md-white: #fff;
-  --md-black: #000;
-  --md-grey-900-white-4-percent: #292a2d;
-  --md-grey-900-white-5-percent: #35363a;
-  --md-grey-900: #202124;
-  --md-grey-800: #3c4043;
-  --md-grey-700: #5f6368;
-  --md-grey-600: #80868b;
-  --md-grey-500: #9aa0a6;
-  --md-grey-400: #bdc1c6;
-  --md-grey-300: #dadce0;
-  --md-grey-200: #e8eaed;
-  --md-grey-100: #f1f3f4;
-  --md-grey-50: #f8f9fa;
-  --md-blue-900: #174ea6;
-  --md-blue-800: #185abc;
-  --md-blue-700: #1967d2;
-  --md-blue-600: #1a73e8;
-  --md-blue-500: #4285f4;
-  --md-blue-400: #669df6;
-  --md-blue-300: #8ab4f8;
-  --md-blue-200: #aecbfa;
-  --md-blue-100: #d2e3fc;
-  --md-blue-50: #e8f0fe;
-
-  /* --- Core theme variables --- */
-  --md-accent-color: var(--md-blue-300);
-  --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
-  --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
-  --md-accent-color-transparent-active: color-mix(in srgb, var(--md-accent-color) 20%, transparent);
-  --md-background-color-0: var(--md-grey-900);
-  --md-background-color-50: var(--md-grey-900-white-4-percent);
-  --md-background-color-100: var(--md-grey-900-white-5-percent);
-  --md-text-primary: var(--md-grey-200);
-  --md-text-secondary: var(--md-grey-500);
-  --md-text-disabled: var(--md-text-secondary);
-  --md-text-on-accent: var(--md-grey-900);
-  --md-secondary-button-text: var(--md-accent-color);
-  --md-control-background-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
-  --md-control-border-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
-  --md-input-background-color: var(--md-background-color-0);
-  --md-menu-background-color: var(--md-background-color-50);
-  --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
-  --md-menu-border-color: var(--md-grey-800);
-  --md-tab-background-color-hover: #004a77;
-  --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
-  --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
-  --md-tab-opacity: 1;
-  --md-tab-opacity-hover: 0.5;
-  --md-tab-icon-color: #c3c3c3;
-  --md-tab-label-color: #e3e3e3;
-  --md-tab-label-color-inactive: #c3c3c3;
-  --md-icon-color-primary: var(--md-grey-100);
-  --md-icon-color-secondary: var(--md-grey-500);
-  --md-content-separator-color: #606164;
-  --md-tile-background-color: #444746;
-  --in-content-box-border-color: var(--md-menu-border-color);
-}
-
-  /* Required: keep Firefox UA loader in fragment mode */
-  --_end: ;
-
-
-/* =========================================================
-   SECTION 2 — GLOBAL UI ELEMENTS
-   Buttons, inputs, selects, checkboxes, radios, focus rings,
-   and general form controls styled to match Material/Chrome.
-   ========================================================= */
-
-/* --- Text selection --- */
-::selection {
-  background-color: var(--md-selection-background-color) !important;
-  color: var(--md-selection-text-color) !important;
-}
-
-/* --- Inherit font for form controls --- */
-input,
-textarea,
-select {
-  font: inherit !important;
-  letter-spacing: inherit !important;
-  word-spacing: inherit !important;
-}
-
-/* =========================================================
-   BUTTONS — PRIMARY, SECONDARY, AND GENERIC
-   ========================================================= */
-
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [accesskey],
-  .accessory-button,
-  [dlgtype=cancel],
-  [autofocus],
-  [default],
-  .primary,
-  .primary-button,
-  .popup-notification-primary-button,
-  .disco-cta-button,
-  [data-l10n-id=translations-manage-language-download-button]
-):not(button[type=menu]),
-:not(dialog, .dialogBox) :not(button-group) > button[type=submit] {
-  min-width: 5.14em !important;
-  border-radius: 4px !important;
-  padding: 8px 16px !important;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-weight: 500 !important;
-  transition-property: background-color !important;
-  transition-duration: var(--md-medium-short-duration) !important;
-  transition-timing-function: var(--md-fast-invoke) !important;
-}
-
-/* --- Secondary buttons --- */
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [accesskey],
-  .accessory-button,
-  [dlgtype=cancel],
-  .disco-cta-button,
-  [data-l10n-id=translations-manage-language-download-button]
-):not(button[type=menu]) {
-  color: var(--md-secondary-button-text) !important;
-  background-color: transparent !important;
-  border: 1px solid var(--in-content-box-border-color) !important;
-}
-
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [accesskey],
-  .accessory-button,
-  [dlgtype=cancel],
-  .disco-cta-button,
-  [data-l10n-id=translations-manage-language-download-button]
-):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover {
-  background-color: var(--md-accent-color-transparent) !important;
-}
-
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [accesskey],
-  .accessory-button,
-  [dlgtype=cancel],
-  .disco-cta-button,
-  [data-l10n-id=translations-manage-language-download-button]
-):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active {
-  background-color: var(--md-accent-color-transparent-active) !important;
-}
-
-/* --- Primary buttons --- */
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [autofocus],
-  [default],
-  .primary,
-  .primary-button,
-  .popup-notification-primary-button
-):not(button[type=menu]),
-:not(dialog, .dialogBox) :not(button-group) > button[type=submit] {
-  border: none !important;
-  color: var(--md-text-on-accent) !important;
-  background-color: var(--md-accent-color) !important;
-}
-
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [autofocus],
-  [default],
-  .primary,
-  .primary-button,
-  .popup-notification-primary-button
-):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover,
-:not(dialog, .dialogBox) :not(button-group) > button[type=submit]:not(.disabled, :disabled, [disabled]):hover {
-  background-color: var(--md-accent-color-hover) !important;
-}
-
-:not(dialog, .dialogBox) :not(button-group) > button:is(
-  [autofocus],
-  [default],
-  .primary,
-  .primary-button,
-  .popup-notification-primary-button
-):not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active,
-:not(dialog, .dialogBox) :not(button-group) > button[type=submit]:not(.disabled, :disabled, [disabled]):hover:active {
-  background-color: color-mix(in srgb, var(--md-accent-color-hover) 80%, transparent) !important;
-}
-
-/* --- Cursor for enabled buttons --- */
-:not(dialog, .dialogBox) :not(button-group) > button:not(.disabled, :disabled, [disabled]) {
-  cursor: pointer;
-}
-
-/* =========================================================
-   INPUTS, TEXTAREAS, SEARCH FIELDS
-   ========================================================= */
-
-input:is([type=email], [type=tel], [type=text], [type=password], [type=url], [type=number]),
-textarea,
-search-textbox {
-  border: 1px solid var(--md-menu-border-color) !important;
-  background-color: var(--md-input-background-color) !important;
-  border-radius: 4px !important;
-}
-
-input:is([type=email], [type=tel], [type=text], [type=password], [type=url], [type=number]):focus,
-textarea:focus,
-search-textbox:focus {
-  border-color: transparent !important;
-  outline: 2px solid var(--md-accent-color) !important;
-  outline-offset: -1px !important;
-}
-
-/* =========================================================
-   SELECT, MENULIST, MENU BUTTONS
-   ========================================================= */
-
-select,
-menulist,
-.expander-down,
-.expander-up,
-button[type=menu] {
-  border: 1px solid var(--md-menu-border-color) !important;
-  background-color: var(--md-input-background-color) !important;
-  border-radius: 4px !important;
-  height: 36px !important;
-  line-height: 36px !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-select menupopup,
-select menuitem,
-menulist menupopup,
-menulist menuitem,
-.expander-down menupopup,
-.expander-down menuitem,
-.expander-up menupopup,
-.expander-up menuitem,
-button[type=menu] menupopup,
-button[type=menu] menuitem {
-  line-height: 18px !important;
-}
-
-select:focus,
-menulist:focus,
-.expander-down:focus,
-.expander-up:focus,
-button[type=menu]:focus {
-  border-color: transparent !important;
-  outline: 2px solid var(--md-accent-color) !important;
-  outline-offset: -1px !important;
-}
-
-menulist > menupopup {
-  --panel-shadow: none !important;
-  --panel-border-color: transparent !important;
-  --panel-border-radius: 4px !important;
-  --panel-background: var(--md-input-background-color) !important;
-  --panel-color: var(--md-text-primary) !important;
-}
-
-/* --- Dropdown arrow icon --- */
-dropmarker {
-  content: var(--md-arrow-down-icon) !important;
-  fill: var(--md-icon-color-secondary) !important;
-}
-
-button[type=menu] .button-box {
-  display: flex;
-  justify-content: space-between !important;
-  width: 100% !important;
-}
-
-/* =========================================================
-   CHECKBOXES
-   ========================================================= */
-
-input[type=checkbox],
-.checkbox-check,
-.sponsored-checkbox {
-  border-width: 2px !important;
-  border-style: solid !important;
-  border-color: var(--md-menu-border-color) !important;
-  background-color: var(--md-background-color-0) !important;
-  border-radius: 2px !important;
-  width: 18px !important;
-  height: 18px !important;
-}
-
-input[type=checkbox]:is([checked], :checked),
-.checkbox-check:is([checked], :checked),
-.sponsored-checkbox:is([checked], :checked) {
-  background-image: var(--md-check-icon) !important;
-  background-color: var(--md-accent-color) !important;
-  border-color: var(--md-accent-color) !important;
-}
-
-/* --- Hover ring for checkboxes --- */
-:not(.findbar-container) > checkbox {
-  position: relative !important;
-}
-
-:not(.findbar-container) > checkbox::after {
-  content: "";
-  width: 48px;
-  height: 48px;
-  position: absolute;
-  top: 50%;
-  left: -15px;
-  background-color: transparent;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
-}
-
-:not(.findbar-container) > checkbox:not([disabled=true]):hover::after {
-  background-color: var(--md-accent-color-transparent);
-}
-
-:not(.findbar-container) > checkbox:not([disabled=true]):hover:active::after {
-  background-color: var(--md-accent-color-transparent-active);
-}
-
-checkbox:not([disabled=true]) {
-  cursor: pointer !important;
-}
-
-checkbox:not([disabled=true]) label {
-  cursor: pointer !important;
-}
-
-.checkbox-check[checked] {
-  fill: var(--md-text-on-accent) !important;
-}
-
-/* =========================================================
-   RADIOS
-   ========================================================= */
-
-input[type=radio]:not(.wallpaper-input),
-.radio-check {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  border: none !important;
-  background-color: var(--md-background-color-0) !important;
-  width: 16px !important;
-  height: 16px !important;
-  color: var(--md-accent-color) !important;
-  background-size: 16px !important;
-  background-position: center !important;
-  transition: background-size var(--md-medium-short-duration) var(--md-fast-invoke) !important;
-}
-
-input[type=radio]:enabled:hover:not([selected], :checked),
-radio:not([disabled=true]):hover > .radio-check:not([selected], :checked) {
-  background-color: var(--md-background-color-50) !important;
-}
-
-input[type=radio]:checked,
-.radio-check[selected] {
-  background-size: 16px !important;
-  border: none !important;
-}
-
-radio {
-  position: relative !important;
-}
-
-radio::after {
-  content: "";
-  width: 48px;
-  height: 48px;
-  position: absolute;
-  top: 50%;
-  left: -15px;
-  background-color: transparent;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  transition: background-color var(--md-medium-short-duration) var(--md-fast-invoke);
-}
-
-radio:not([disabled=true]):hover::after {
-  background-color: var(--md-accent-color-transparent);
-}
-
-radio:not([disabled=true]):hover:active::after {
-  background-color: var(--md-accent-color-transparent-active);
-}
-
-radio:not([disabled=true]) {
-  cursor: pointer !important;
-}
-
-radio:not([disabled=true]) label {
-  cursor: pointer !important;
-}
-
-/* =========================================================
-   FOCUS RINGS
-   ========================================================= */
-
-:root {
-  --default-focusring-width: 0px !important;
-  --default-focusring: var(--default-focusring-width) solid !important;
-}
-
-/* =========================================================
-   RICHLIST / DOWNLOADS / LIST ITEMS
-   ========================================================= */
-
-#downloadsListBox:focus > richlistitem[selected] {
-  border: none !important;
-  outline: none !important;
-}
-
-richlistbox {
-  background-color: var(--md-input-background-color) !important;
-}
-
-richlistitem[selected] {
-  background-color: var(--md-accent-color) !important;
-  color: var(--md-text-on-accent) !important;
-}
-
-/* =========================================================
-   SECTION 3 — FIREFOX UI VARIABLES & OVERRIDES
-   These rules override Firefox’s built‑in theme variables to
-   align the browser chrome with your Material/Chrome palette.
-   ========================================================= */
-
-/* =========================================================
-   GLOBAL OVERRIDES FOR NON-DEFAULT THEMES
-   ========================================================= */
-
-@media not (-moz-pref("userChrome.theme-default")) {
-  :root,
-  html,
-  body,
-  panel,
-  toolbar {
-    --lwt-brighttext-url-color: var(--md-accent-color) !important;
-    --toolbarbutton-icon-fill-attention: var(--md-accent-color) !important;
-    --panel-item-hover-bgcolor: var(--md-menu-background-color-hover) !important;
-  }
-
-  :root,
-  :is(panel, toolbar, #urlbar, #searchbar) {
-    --toolbar-field-icon-fill-attention: var(--md-accent-color) !important;
-  }
+@-moz-document regexp("about:(?!blank|devtools).*") {
 
   :root,
   html,
   body {
-    --color-accent-primary: var(--md-accent-color) !important;
-    accent-color: var(--md-accent-color) !important;
+
+    /* --- Animation curves ------------------------------------------------- */
+    --md-fast-invoke: cubic-bezier(0, 0, 0, 1);
+    --md-strong-invoke: cubic-bezier(0.13, 1.62, 0, 0.92);
+    --md-fast-dismiss: cubic-bezier(0, 0, 0, 1);
+    --md-soft-dismiss: cubic-bezier(1, 0, 1, 1);
+    --md-point-to-point: cubic-bezier(0.55, 0.55, 0, 1);
+    --md-fade-in-out: linear;
+
+    /* --- Icon URLs -------------------------------------------------------- */
+    --md-no-src-icon: url("icons/no-src.svg");
+    --md-audio-icon: url("icons/audio.svg");
+    --md-audio-muted-icon: url("icons/audio-muted.svg");
+    --md-audio-blocked-icon: url("icons/audio-blocked.svg");
+    --md-close-tab-icon: url("icons/close-tab.svg");
+    --md-plus-icon: url("icons/plus.svg");
+    --md-keyboard-arrow-down-icon: url("icons/keyboard-arrow-down.svg");
+    --md-keyboard-arrow-up-icon: url("icons/keyboard-arrow-up.svg");
+    --md-arrow-back-icon: url("icons/arrow-back.svg");
+    --md-arrow-forward-icon: url("icons/arrow-forward.svg");
+    --md-refresh-icon: url("icons/refresh.svg");
+    --md-close-icon: url("icons/close.svg");
+    --md-home-icon: url("icons/home.svg");
+    --md-dev-icon: url("icons/dev.svg");
+    --md-menu-icon: url("icons/menu.svg");
+    --md-menu-update-icon: url("icons/menu-update.svg");
+    --md-extension-icon: url("icons/extension.svg");
+    --md-extension-blocked-icon: url("icons/extension-blocked.svg");
+    --md-download-icon: url("icons/download.svg");
+    --md-account-icon: url("icons/account.svg");
+    --md-side-panel-icon: url("icons/side-panel.svg");
+    --md-open-in-full-icon: url("icons/menu/open-in-full.svg");
+    --md-mail-icon: url("icons/mail.svg");
+    --md-glyphs-icon: url("icons/glyphs.svg");
+    --md-file-open-icon: url("icons/file-open.svg");
+    --md-info-icon: url("icons/info.svg");
+    --md-lock-icon: url("icons/lock.svg");
+    --md-page-info: url("icons/page-info.svg");
+    --md-warning-icon: url("icons/warning.svg");
+    --md-properties-icon: url("icons/properties.svg");
+    --md-tracking-protection-icon: url("icons/tracking-protection.svg");
+    --md-star-icon: url("icons/star.svg");
+    --md-chevron-icon: url("icons/chevron.svg");
+    --md-folder-icon: url("icons/folder.svg");
+    --md-check-icon: url("icons/check.svg");
+    --md-edit-icon: url("icons/edit.svg");
+    --md-arrow-right-icon: url("icons/arrow-right.svg");
+    --md-arrow-down-icon: url("icons/arrow-down.svg");
+    --md-organization-icon: url("icons/organization.svg");
+    --md-new-tab-icon: url("icons/new-tab.svg");
+    --md-new-window-icon: url("icons/new-window.svg");
+    --md-incognito-icon: url("icons/incognito.svg");
+    --md-history-icon: url("icons/history.svg");
+    --md-key-icon: url("icons/key.svg");
+    --md-print-icon: url("icons/print.svg");
+    --md-file-save-icon: url("icons/file-save.svg");
+    --md-find-icon: url("icons/find.svg");
+    --md-translate-icon: url("icons/translate.svg");
+    --md-settings-icon: url("icons/settings.svg");
+    --md-tools-icon: url("icons/tools.svg");
+    --md-help-icon: url("icons/help.svg");
+    --md-zoom-in-icon: url("icons/zoom-in.svg");
+    --md-exit-icon: url("icons/exit.svg");
+    --md-search-icon: url("icons/search.svg");
+    --md-multiaccountcontainer-icon: url("icons/multiaccountcontainer.svg");
+    --md-toolbar-icon: url("icons/toolbar.svg");
+    --md-bookmark-manager-icon: url("icons/bookmark-manager.svg");
+    --md-trash-icon: url("icons/trash.svg");
+    --md-task-manager-icon: url("icons/task-manager.svg");
+    --md-eyedropper-icon: url("icons/eyedropper.svg");
+    --md-devices-icon: url("icons/devices.svg");
+    --md-remote-icon: url("icons/remote.svg");
+    --md-code-icon: url("icons/code.svg");
+    --md-report-icon: url("icons/report.svg");
+    --md-feedback-icon: url("icons/feedback.svg");
+    --md-open-in-icon: url("icons/open-in.svg");
+
+    /* Old icon set */
+    --md-extension-old-icon: url("icons/old/extension.svg");
+
+    /* Menu icons */
+    --md-copy-icon: url("icons/menu/copy.svg");
+    --md-select-all-icon: url("icons/menu/select-all.svg");
+    --md-screenshot-icon: url("icons/menu/screenshot.svg");
+    --md-cut-icon: url("icons/menu/cut.svg");
+    --md-paste-icon: url("icons/menu/paste.svg");
+    --md-undo-icon: url("icons/menu/undo.svg");
+    --md-redo-icon: url("icons/menu/redo.svg");
+    --md-pin-icon: url("icons/menu/pin.svg");
+    --md-unpin-icon: url("icons/menu/unpin.svg");
+    --md-tab-duplicate-icon: url("icons/menu/tab-duplicate.svg");
+    --md-tab-close-icon: url("icons/menu/tab-close.svg");
+    --md-link-icon: url("icons/menu/link.svg");
+    --md-link-off-icon: url("icons/menu/link-off.svg");
+    --md-share-icon: url("icons/menu/share.svg");
+    --md-reply-icon: url("icons/menu/reply.svg");
+    --md-swap-icon: url("icons/menu/swap.svg");
+
+    /* --- Base colors ------------------------------------------------------ */
+    --md-white: #fff;
+    --md-black: #000;
+
+    /* Greys */
+    --md-grey-900-white-4-percent: #292a2d;
+    --md-grey-900-white-5-percent: #35363a;
+    --md-grey-900: #202124;
+    --md-grey-800: #3c4043;
+    --md-grey-700: #5f6368;
+    --md-grey-600: #80868b;
+    --md-grey-500: #9aa0a6;
+    --md-grey-400: #bdc1c6;
+    --md-grey-300: #dadce0;
+    --md-grey-200: #e8eaed;
+    --md-grey-100: #f1f3f4;
+    --md-grey-50: #f8f9fa;
+
+    /* Blues */
+    --md-blue-900: #174ea6;
+    --md-blue-800: #185abc;
+    --md-blue-700: #1967d2;
+    --md-blue-600: #1a73e8;
+    --md-blue-500: #4285f4;
+    --md-blue-400: #669df6;
+    --md-blue-300: #8ab4f8;
+    --md-blue-200: #aecbfa;
+    --md-blue-100: #d2e3fc;
+    --md-blue-50: #e8f0fe;
+
+    /* --- Theme colors ----------------------------------------------------- */
+    --md-accent-color: var(--md-blue-300);
+    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
+    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
+    --md-accent-color-transparent-active: color-mix(in srgb, var(--md-accent-color) 20%, transparent);
+
+    /* Background layers */
+    --md-background-color-0: var(--md-grey-900);
+    --md-background-color-50: var(--md-grey-900-white-4-percent);
+    --md-background-color-100: var(--md-grey-900-white-5-percent);
+
+    /* Text colors */
+    --md-text-primary: var(--md-grey-200);
+    --md-text-secondary: var(--md-grey-500);
+    --md-text-disabled: var(--md-text-secondary);
+    --md-text-on-accent: var(--md-grey-900);
+
+    /* UI element colors */
+    --md-secondary-button-text: var(--md-accent-color);
+    --md-control-background-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+    --md-control-border-color: color-mix(in srgb, var(--md-white) 6.05%, transparent);
+    --md-input-background-color: var(--md-background-color-0);
+
+    /* Menus */
+    --md-menu-background-color: var(--md-background-color-50);
+    --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
+    --md-menu-border-color: var(--md-grey-800);
+
+    /* Tabs */
+    --md-tab-background-color-hover: #004a77;
+    --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
+    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
+    --md-tab-opacity: 1;
+    --md-tab-opacity-hover: 0.5;
+    --md-tab-icon-color: #c3c3c3;
+    --md-tab-label-color: #e3e3e3;
+    --md-tab-label-color-inactive: #c3c3c3;
+
+    /* URL bar */
+    --md-urlbar-background-color-hover: color-mix(in srgb, var(--md-menu-background-color-hover) 70%, transparent);
+    --md-urlbar-background-color-open: var(--md-background-color-50);
+
+    /* Icons */
+    --md-icon-color-primary: var(--md-grey-100);
+    --md-icon-color-secondary: var(--md-grey-500);
+
+    /* Misc */
+    --md-content-separator-color: #606164;
+    --md-selection-text-color: var(--md-white);
+    --md-selection-background-color: var(--md-blue-900);
+    --md-search-input-shadow: 0 2px 6px 0 rgba(32, 33, 36, 0.3176470588);
+    --md-tile-background-color: #444746;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 2                                              */
+/*  TYPOGRAPHY, FONTS, GLOBAL TEXT RULES                                      */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* --- Text selection ----------------------------------------------------- */
+  ::selection {
+    background-color: var(--md-selection-background-color) !important;
+    color: var(--md-selection-text-color) !important;
   }
 
+  /* --- Global font family ------------------------------------------------- */
   :root,
   html,
   body {
-    --panel-banner-item-info-icon-bgcolor: var(--md-accent-color) !important;
-    --focus-outline-color: var(--md-accent-color) !important;
-    --button-primary-active-bgcolor: var(--md-accent-color) !important;
-    --button-primary-bgcolor: var(--md-accent-color) !important;
-    --button-primary-hover-bgcolor: var(--md-accent-color-hover) !important;
-    --toolbar-field-focus-border-color: var(--md-accent-color) !important;
-    --link-color: var(--md-accent-color) !important;
-    --link-color-hover: var(--md-accent-color) !important;
-    --link-color-active: var(--md-accent-color) !important;
-    --link-color-visited: var(--md-accent-color) !important;
-    --text-color-deemphasized: var(--md-text-secondary) !important;
+    --md-font-family: system-ui, -apple-system, "Roboto", sans-serif,
+                      "Apple Color Emoji", "Segoe UI Emoji",
+                      "Segoe UI Symbol", "Noto Color Emoji";
+
+    font-family: var(--md-font-family) !important;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    line-height: 1.2;
+    tab-size: 4;
   }
 
-  :root,
-  html,
-  body,
-  menupopup,
-  panel {
-    --panel-border-color: transparent !important;
-    --panel-shadow: none !important;
-    --windows-panel-box-shadow: none !important;
+  /* --- Windows override when system font is not forced -------------------- */
+  @media (-moz-platform: windows) and (not (-moz-pref("userChrome.ui-system-font"))) {
+
+    :root,
+    html,
+    body {
+      --md-font-family: "Roboto", sans-serif,
+                        "Apple Color Emoji", "Segoe UI Emoji",
+                        "Segoe UI Symbol", "Noto Color Emoji";
+    }
+
+    *,
+    *::before,
+    *::after {
+      font-family: var(--md-font-family) !important;
+    }
   }
 
-  /* Higher specificity to beat popup.css UA stylesheet */
-  menupopup#contentAreaContextMenu,
-  menupopup:not([hidden]),
-  panel:not([hidden]) {
-    --panel-border-color: transparent !important;
-    --panel-border-radius: var(--menupopup-border-radius, 4px) !important;
+  /* --- Roboto font faces -------------------------------------------------- */
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Regular.ttf") format("truetype");
   }
 
-  html,
-  body {
-    --lwt-accent-color: var(--md-background-color-0) !important;
-    --toolbar-field-background-color: var(--md-background-color-0) !important;
-    --toolbar-field-focus-background-color: var(--md-background-color-0) !important;
-    --lwt-background-tab-separator-color: var(--md-background-color-0) !important;
-    --arrowpanel-background: var(--md-menu-background-color) !important;
-    --arrowpanel-border-color: transparent !important;
-    --panel-separator-color: var(--md-menu-border-color) !important;
-    --lwt-selected-tab-background-color: var(--md-background-color-50) !important;
-    --autocomplete-popup-highlight-background: var(--md-background-color-50) !important;
-    --tabpanel-background-color: var(--md-background-color-50) !important;
-    --toolbarseparator-color: var(--md-background-color-50) !important;
-    --tab-icon-overlay-stroke: var(--md-background-color-50) !important;
-    --toolbar-bgcolor: var(--md-background-color-100) !important;
-    --arrowpanel-color: var(--md-text-primary) !important;
-    --input-color: var(--md-text-primary) !important;
-    --lwt-tab-text: var(--md-text-primary) !important;
-    --lwt-text-color: var(--md-text-primary) !important;
-    --toolbar-color: var(--md-text-primary) !important;
-    --toolbar-field-color: var(--md-text-primary) !important;
-    --toolbar-field-focus-color: var(--md-text-primary) !important;
-    --button-primary-color: var(--md-text-on-accent) !important;
-    --autocomplete-popup-separator-color: transparent !important;
-    --button-active-bgcolor: var(--md-control-background-color) !important;
-    --button-bgcolor: var(--md-control-background-color) !important;
-    --button-hover-bgcolor: var(--md-control-background-color) !important;
-    --chrome-content-separator-color: var(--md-tab-outline-color) !important;
-    --panel-separator-zap-gradient: transparent !important;
-    --tab-icon-overlay-fill: var(--md-icon-color-secondary) !important;
-    --toolbar-field-border-color: transparent !important;
-    --toolbarbutton-icon-fill: var(--md-icon-color-primary) !important;
-    --urlbar-icon-fill-opacity: 1 !important;
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Medium.ttf") format("truetype");
   }
+
+  @font-face {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Roboto"),
+         url("./fonts/Roboto-Bold.ttf") format("truetype");
+  }
+
+  /* --- Buttons inherit font weight --------------------------------------- */
+  button {
+    font-weight: 500 !important;
+  }
+
+  /* --- Invalid UI state cleanup ------------------------------------------ */
+  :-moz-ui-invalid {
+    box-shadow: none !important;
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 3                                              */
+/*  BUTTONS, INPUTS, FORM CONTROLS, TOGGLES, INTERACTIVE ELEMENTS             */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  BUTTONS — PRIMARY, SECONDARY, ACCESSORY                                 */
+  /* ------------------------------------------------------------------------ */
+
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                [autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button, .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]),
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit] {
+
+    min-width: 5.14em !important;
+    border-radius: 4px !important;
+    padding: 8px 16px !important;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font-weight: 500 !important;
+
+    transition-property: background-color !important;
+    transition-duration: var(--md-medium-short-duration) !important;
+    transition-timing-function: var(--md-fast-invoke) !important;
+  }
+
+  /* Secondary buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]) {
+
+    color: var(--md-secondary-button-text) !important;
+    background-color: transparent !important;
+    border: 1px solid var(--in-content-box-border-color) !important;
+  }
+
+  /* Secondary hover */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover {
+
+    background-color: var(--md-accent-color-transparent) !important;
+  }
+
+  /* Secondary active */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([accesskey], .accessory-button, [dlgtype=cancel],
+                .disco-cta-button,
+                [data-l10n-id=translations-manage-language-download-button])
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active {
+
+    background-color: var(--md-accent-color-transparent-active) !important;
+  }
+
+  /* Primary buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]),
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit] {
+
+    border: none !important;
+    color: var(--md-text-on-accent) !important;
+    background-color: var(--md-accent-color) !important;
+  }
+
+  /* Primary hover */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover,
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit]:not(.disabled, :disabled, [disabled]):hover {
+
+    background-color: var(--md-accent-color-hover) !important;
+  }
+
+  /* Primary active */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:is([autofocus], [default], .primary, .primary-button,
+                .popup-notification-primary-button)
+    :not(button[type=menu]):not(.disabled, :disabled, [disabled]):hover:active,
+  :not(dialog, .dialogBox) :not(button-group)
+    > button[type=submit]:not(.disabled, :disabled, [disabled]):hover:active {
+
+    background-color: color-mix(in srgb,
+                                var(--md-accent-color-hover) 80%,
+                                transparent) !important;
+  }
+
+  /* Cursor for enabled buttons */
+  :not(dialog, .dialogBox) :not(button-group)
+    > button:not(.disabled, :disabled, [disabled]) {
+    cursor: pointer;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  INPUTS, TEXTAREAS, SEARCH BOXES                                         */
+  /* ------------------------------------------------------------------------ */
+
+  input:is([type=email], [type=tel], [type=text], [type=password],
+           [type=url], [type=number]),
+  textarea,
+  search-textbox {
+
+    border: 1px solid var(--md-menu-border-color) !important;
+    background-color: var(--md-input-background-color) !important;
+    border-radius: 4px !important;
+  }
+
+  /* Focus */
+  input:is([type=email], [type=tel], [type=text], [type=password],
+           [type=url], [type=number]):focus,
+  textarea:focus,
+  search-textbox:focus {
+
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SELECTS, MENULISTS, DROPDOWNS                                           */
+  /* ------------------------------------------------------------------------ */
+
+  select,
+  menulist,
+  .expander-down,
+  .expander-up,
+  button[type=menu] {
+
+    border: 1px solid var(--md-menu-border-color) !important;
+    background-color: var(--md-input-background-color) !important;
+    border-radius: 4px !important;
+
+    height: 36px !important;
+    line-height: 36px !important;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Popup menu line height */
+  select menupopup,
+  select menuitem,
+  menulist menupopup,
+  menulist menuitem,
+  .expander-down menupopup,
+  .expander-down menuitem,
+  .expander-up menupopup,
+  .expander-up menuitem,
+  button[type=menu] menupopup,
+  button[type=menu] menuitem {
+
+    line-height: 18px !important;
+  }
+
+  /* Focus */
+  select:focus,
+  menulist:focus,
+  .expander-down:focus,
+  .expander-up:focus,
+  button[type=menu]:focus {
+
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* Menulist popup styling */
+  menulist > menupopup {
+    --panel-shadow: var(--md-elevation-2) !important;
+    --panel-border-color: var(--md-menu-border-color) !important;
+    --panel-border-radius: 4px !important;
+    --panel-background: var(--md-input-background-color) !important;
+    --panel-color: var(--md-text-primary) !important;
+  }
+
+  /* Dropdown arrow */
+  dropmarker {
+    content: var(--md-arrow-down-icon) !important;
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* Menu button layout */
+  button[type=menu] .button-box {
+    display: flex;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CHECKBOXES                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  input[type=checkbox],
+  .checkbox-check,
+  .sponsored-checkbox {
+
+    border-width: 2px !important;
+    border-style: solid !important;
+    border-color: var(--md-menu-border-color) !important;
+
+    background-color: var(--md-background-color-0) !important;
+
+    border-radius: 2px !important;
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* Checked */
+  input[type=checkbox]:is([checked], :checked),
+  .checkbox-check:is([checked], :checked),
+  .sponsored-checkbox:is([checked], :checked) {
+
+    background-image: var(--md-check-icon) !important;
+    background-color: var(--md-accent-color) !important;
+    border-color: var(--md-accent-color) !important;
+  }
+
+  /* Hover */
+  input[type=checkbox]:not(:disabled, [disabled=true]):hover:not([checked], :checked),
+  checkbox:not([disabled=true]):hover > .checkbox-check:not([checked], :checked) {
+
+    background-color: var(--md-background-color-50) !important;
+  }
+
+  /* Checkbox ripple container */
+  :not(.findbar-container) > checkbox {
+    position: relative !important;
+  }
+
+  :not(.findbar-container) > checkbox::after {
+    content: "";
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+    top: 50%;
+    left: -15px;
+
+    background-color: transparent;
+    border-radius: 50%;
+    z-index: 1;
+
+    transform: translateY(-50%);
+    transition-property: background-color;
+    transition-duration: var(--md-medium-short-duration);
+    transition-timing-function: var(--md-fast-invoke);
+  }
+
+  /* RTL fix */
+  [dir=rtl] :not(.findbar-container) > checkbox::after {
+    left: unset;
+    right: -15px;
+  }
+
+  /* Hover ripple */
+  :not(.findbar-container) > checkbox:not([disabled=true]):hover::after {
+    background-color: var(--md-accent-color-transparent);
+    animation-name: control-hover;
+    animation-duration: var(--md-short-duration);
+    animation-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Active ripple */
+  :not(.findbar-container) > checkbox:not([disabled=true]):hover:active::after {
+    background-color: var(--md-accent-color-transparent-active);
+  }
+
+  /* Cursor */
+  checkbox:not([disabled=true]) {
+    cursor: pointer !important;
+  }
+
+  checkbox:not([disabled=true]) label {
+    cursor: pointer !important;
+  }
+
+  /* Checked icon color */
+  .checkbox-check[checked] {
+    fill: var(--md-text-on-accent) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  RADIOS                                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  input[type=radio]:not(.wallpaper-input),
+  .radio-check {
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    border: none !important;
+    background-color: var(--md-background-color-0) !important;
+
+    width: 16px !important;
+    height: 16px !important;
+
+    color: var(--md-accent-color) !important;
+    border-color: var(--md-accent-color) !important;
+
+    background-size: 16px !important;
+    background-position: center !important;
+
+    transition-property: background-size !important;
+    transition-duration: var(--md-medium-short-duration) !important;
+    transition-timing-function: var(--md-fast-invoke) !important;
+  }
+
+  /* Hover */
+  input[type=radio]:enabled:hover:not([selected], :checked),
+  radio:not([disabled=true]):hover > .radio-check:not([selected], :checked) {
+
+    background-color: var(--md-background-color-50) !important;
+  }
+
+  /* Checked */
+  input[type=radio]:checked,
+  .radio-check[selected] {
+    background-size: 16px !important;
+    border: none !important;
+  }
+
+  /* Ripple container */
+  radio {
+    position: relative !important;
+  }
+
+  radio::after {
+    content: "";
+    width: 48px;
+    height: 48px;
+
+    position: absolute;
+    display: grid;
+    align-items: center !important;
+
+    top: 50%;
+    left: -15px;
+
+    background-color: transparent;
+    border-radius: 50%;
+    z-index: 1;
+
+    transform: translateY(-50%);
+    transition-property: background-color;
+    transition-duration: var(--md-medium-short-duration);
+    transition-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Hover ripple */
+  radio:not([disabled=true]):hover::after {
+    background-color: var(--md-accent-color-transparent);
+    animation-name: control-hover;
+    animation-duration: var(--md-short-duration);
+    animation-timing-function: var(--md-fast-invoke);
+  }
+
+  /* Active ripple */
+  radio:not([disabled=true]):hover:active::after {
+    background-color: var(--md-accent-color-transparent-active);
+  }
+
+  /* Cursor */
+  radio:not([disabled=true]) {
+    cursor: pointer !important;
+  }
+
+  radio:not([disabled=true]) label {
+    cursor: pointer !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOGGLE SWITCHES                                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .toggle-button {
+    --toggle-background-color-pressed: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-hover: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-active: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  RIPPLE ANIMATION KEYFRAMES                                              */
+  /* ------------------------------------------------------------------------ */
+
+  @keyframes control-hover {
+    0%   { transform: scale(0.8) translateY(-50%); }
+    100% { transform: scale(1)   translateY(-50%); }
+  }
+}
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 4                                              */
+/*  IN-CONTENT COLORS, LINKS, FOCUS OUTLINES, ACCENT BEHAVIOR                 */
+/* ========================================================================== */
+
+@-moz-document regexp("about:(?!blank|devtools).*") {
+
+  /* ------------------------------------------------------------------------ */
+  /*  IN-CONTENT PRIMARY BUTTON COLORS                                        */
+  /* ------------------------------------------------------------------------ */
 
   :root,
   html,
@@ -646,930 +704,410 @@ richlistitem[selected] {
     --in-content-primary-button-background-active: var(--md-accent-color) !important;
   }
 
-  :root,
-  html,
-  body,
-  .tab-background {
-    --tab-selected-outline-color: transparent !important;
-  }
-}
+  /* ------------------------------------------------------------------------ */
+  /*  IN-CONTENT TEXT, BORDER, AND LINK COLORS                                */
+  /* ------------------------------------------------------------------------ */
 
-/* =========================================================
-   OLD ICON SET OVERRIDE (WHEN ENABLED)
-   ========================================================= */
-
-@media (not (-moz-pref("userChrome.ui-chrome-refresh"))) and
-       (-moz-pref("userChrome.ui-force-old-icons")) {
   :root,
   html,
   body {
-    --md-audio-icon: url("icons/old/audio.svg");
-    --md-audio-muted-icon: url("icons/old/audio-muted.svg");
-    --md-audio-blocked-icon: url("icons/old/audio-blocked.svg");
-    --md-home-icon: url("icons/old/home.svg");
-    --md-extension-icon: url("icons/old/extension.svg");
-    --md-page-info: url("icons/lock.svg");
-    --md-tracking-protection-icon: url("icons/old/tracking-protection.svg");
+    --in-content-border-color: var(--md-menu-border-color) !important;
+    --in-content-text-color: var(--md-text-primary) !important;
+    --in-content-page-color: var(--md-text-primary) !important;
+
+    --in-content-link-color: var(--md-accent-color) !important;
+    --in-content-link-color-hover: var(--md-accent-color) !important;
+    --in-content-accent-color: var(--md-accent-color) !important;
+
+    --in-content-focus-outline-color: var(--md-accent-color) !important;
+    --focus-outline-color: var(--md-accent-color) !important;
+
+    --link-color: var(--md-accent-color) !important;
+    --link-color-hover: var(--md-accent-color) !important;
+    --link-color-active: var(--md-accent-color) !important;
+    --link-color-visited: var(--md-accent-color) !important;
   }
-}
 
-/* =========================================================
-   CHROME-REFRESH THEME OVERRIDE
-   ========================================================= */
+  /* ------------------------------------------------------------------------ */
+  /*  ACCENT-COLOR PROPAGATION                                                */
+  /* ------------------------------------------------------------------------ */
 
-@media (-moz-pref("userChrome.theme-chrome-refresh")) {
   :root,
   html,
   body {
-    --md-accent-color: #a8c7fa;
-    --md-background-color-0: #1f2020;
-    --md-background-color-50: #282828;
-    --md-background-color-100: #3c3c3c;
-    --md-text-secondary: #c7c7c7;
-    --md-menu-background-color: #1f1f1f;
-    --md-menu-background-color-hover: color-mix(in srgb, white 15%, transparent);
-    --md-menu-border-color: #444746;
-    --md-content-separator-color: #444746;
-    --md-selection-text-color: var(--md-black);
-    --md-selection-background-color: #a8c7fa;
-    --md-alltabs-background-color-open: #29668c;
-    --md-urlbar-background-color-hover: #4a4a4a;
-    --md-urlbar-background-color-open: var(--md-background-color-100);
-    --md-input-background-color: #1f1f1f;
+    --color-accent-primary: var(--md-accent-color) !important;
+    accent-color: var(--md-accent-color) !important;
   }
-}
 
-/* =========================================================
-   LIGHT THEME OVERRIDE
-   ========================================================= */
+  /* ------------------------------------------------------------------------ */
+  /*  NEW TAB / ABOUT:HOME ACCENT COLORS                                      */
+  /* ------------------------------------------------------------------------ */
 
-@media (prefers-color-scheme: light) {
   :root,
   html,
   body {
-    --md-accent-color: var(--md-blue-500);
-    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
-    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
-    --md-background-color-0: #f1f3f4;
-    --md-background-color-50: var(--md-grey-100);
-    --md-background-color-100: var(--md-white);
-    --md-text-primary: var(--md-grey-900);
-    --md-text-secondary: var(--md-grey-700);
-    --md-text-disabled: var(--md-text-secondary);
-    --md-text-on-accent: var(--md-white);
-    --md-secondary-button-text: var(--md-accent-color);
-    --md-control-background-color: var(--md-background-color-50);
-    --md-control-border-color: transparent;
-    --md-input-background-color: var(--md-background-color-100);
-    --md-menu-background-color: var(--md-background-color-100);
-    --md-menu-background-color-hover: var(--md-background-color-0);
-    --md-menu-border-color: var(--md-background-color-0);
-    --md-tab-background-color-hover: var(--md-accent-color-transparent-active);
-    --md-tab-separator-color: color-mix(in srgb, var(--md-black) 20%, transparent);
-    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 20%, transparent);
-    --md-tab-opacity: 1;
-    --md-tab-opacity-hover: 0.5;
-    --md-tab-icon-color: var(--md-grey-900);
-    --md-tab-label-color: var(--md-grey-900);
-    --md-tab-label-color-inactive: #474747;
-    --md-icon-color-primary: var(--md-grey-700);
-    --md-icon-color-secondary: var(--md-grey-700);
-    --md-content-separator-color: #dbdcdd;
-    --md-urlbar-background-color-hover: var(--md-menu-background-color-hover);
-    --md-urlbar-background-color-open: var(--md-background-color-100);
-    --md-selection-text-color: var(--md-black);
-    --md-selection-background-color: var(--md-blue-200);
-    --md-search-input-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.2784313725);
-    --md-tile-background-color: #e1e3e1;
+    --newtab-primary-action-background: var(--md-accent-color) !important;
+    --brand-color-accent: var(--md-accent-color) !important;
+    --brand-color-accent-hover: var(--md-accent-color-hover) !important;
+
+    --in-content-primary-button-text-color: var(--md-text-on-accent) !important;
+    --in-content-primary-button-background: var(--md-accent-color) !important;
+    --in-content-primary-button-background-hover: var(--md-accent-color-hover) !important;
+    --in-content-primary-button-background-active: var(--md-accent-color) !important;
+
+    --color-accent-primary: var(--md-accent-color) !important;
+    accent-color: var(--md-accent-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOGGLE SWITCHES (IN-CONTENT)                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .toggle-button {
+    --toggle-background-color-pressed: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-hover: var(--md-accent-color) !important;
+    --toggle-background-color-pressed-active: var(--md-accent-color) !important;
   }
 }
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 5                                              */
+/*  NEW TAB PAGE (about:newtab & about:home)                                  */
+/* ========================================================================== */
 
-/* =========================================================
-   MATERIAL THEME OVERRIDE
-   ========================================================= */
+@-moz-document url-prefix("about:newtab"), url-prefix("about:home") {
 
-@media (-moz-pref("userChrome.theme-material")) {
-  :root,
+  /* ------------------------------------------------------------------------ */
+  /*  BASE COLORS FOR NEW TAB PAGE                                            */
+  /* ------------------------------------------------------------------------ */
+
   html,
   body {
-    --md-accent-color: var(--md-sys-color-primary);
-    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
-    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
-    --md-background-color-0: color-mix(in srgb, var(--md-grey-100) 80%, var(--md-accent-color));
-    --md-background-color-50: color-mix(in srgb, var(--md-grey-100) 95%, var(--md-accent-color));
-    --md-background-color-100: color-mix(in srgb, white 98%, var(--md-accent-color));
-    --md-text-primary: var(--md-sys-color-on-surface);
-    --md-text-secondary: var(--md-sys-color-secondary);
-    --md-text-disabled: color-mix(in srgb, var(--md-text-secondary) 80%, transparent);
-    --md-text-on-accent: var(--md-sys-color-on-primary);
-    --md-secondary-button-text: var(--md-accent-color);
-    --md-menu-background-color: var(--md-background-color-100);
-    --md-menu-background-color-hover: var(--md-background-color-0);
-    --md-menu-border-color: var(--md-background-color-0);
-    --md-tab-background-color-hover: var(--md-accent-color-transparent-active);
-    --md-tab-separator-color: color-mix(in srgb, var(--md-black) 20%, transparent);
-    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 20%, transparent);
-    --md-tab-icon-color: var(--md-text-primary);
-    --md-tab-label-color: var(--md-text-primary);
-    --md-icon-color-primary: var(--md-text-secondary);
-    --md-icon-color-secondary: var(--md-text-secondary);
-    --md-content-separator-color: #dbdcdd;
-    --md-selection-text-color: var(--md-sys-color-on-primary);
-    --md-selection-background-color: var(--md-sys-color-primary);
+    --newtab-background-color: var(--md-background-color-100) !important;
+    --newtab-background-color-secondary: var(--md-background-color-0) !important;
+    --newtab-background-card: var(--md-background-color-0) !important;
+
+    --newtab-element-hover-color: var(--md-control-background-color) !important;
+    --newtab-text-primary-color: var(--md-text-primary) !important;
+    --newtab-primary-element-text-color: var(--md-text-on-accent) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  LIGHT MODE ADJUSTMENTS                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  @media (prefers-color-scheme: light) {
+
+    html,
+    body {
+      --newtab-background-color: var(--md-background-color-100) !important;
+      --newtab-background-color-secondary: var(--md-background-color-100) !important;
+      --newtab-element-hover-color: var(--md-background-color-0) !important;
+      --newtab-text-primary-color: var(--md-text-primary) !important;
+    }
+
+    .top-site-outer .tile {
+      --newtab-background-color-secondary: var(--md-background-color-50) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CHROME REFRESH THEME ADJUSTMENTS                                        */
+  /* ------------------------------------------------------------------------ */
+
+  @media (-moz-pref("userChrome.theme-chrome-refresh")) {
+    .top-site-outer .tile {
+      --newtab-background-color-secondary: var(--md-tile-background-color) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOP SITE TILES                                                          */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    border-radius: 100px !important;
+    height: 44px !important;
+    width: 44px !important;
+    box-shadow: none !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper {
+    border-radius: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .top-site-outer .default-icon,
+  .top-site-outer .search-topsite {
+    background-size: 16px !important;
+    height: 24px !important;
+    width: 24px !important;
+  }
+
+  .top-site-outer .tile .icon-wrapper.letter-fallback::before {
+    font-size: 32px !important;
+  }
+
+  /* Hide pin icon */
+  .icon.icon-pin-small {
+    display: none !important;
+  }
+
+  /* Unpinned titles slightly dimmed */
+  .top-site-button .title:not(.pinned) {
+    opacity: 0.7 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SEARCH BAR                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .search-wrapper .search-inner-wrapper {
+    min-height: 48px !important;
+  }
+
+  .search-handoff-button {
+    border-radius: 99px !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
+    box-shadow: var(--md-elevation-2) !important;
+  }
+
+  .search-wrapper.fake-focus:not(.search.disabled) .search-handoff-button {
+    border-color: transparent !important;
+    outline: 2px solid var(--md-accent-color) !important;
+    outline-offset: -2px !important;
+  }
+
+  .search-handoff-button .fake-caret {
+    top: 13px !important;
+  }
+
+  .search-disabled .search-handoff-button {
+    opacity: 0 !important;
+  }
+
+  .search-wrapper .search-handoff-button,
+  .search-wrapper input {
+    background-color: var(--md-input-background-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TOP SITE OUTER WRAPPER                                                  */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer {
+    border-radius: 18px !important;
+  }
+
+  .top-site-outer.placeholder.add-button .tile {
+    background-color: var(--md-tab-background-color-hover) !important;
+    cursor: pointer !important;
+  }
+
+  .top-site-outer.placeholder.add-button {
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  .top-site-outer .context-menu-button {
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  CARDS (Pocket stories, etc.)                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .card-outer,
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    border-radius: 18px !important;
+  }
+
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    box-shadow: 0 1px 4px rgba(0,0,0,.3) !important;
+  }
+
+  .card-outer .card-preview-image-outer,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder)
+    .img-wrapper .img img {
+
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  SEARCH-ONLY LAYOUT                                                      */
+  /* ------------------------------------------------------------------------ */
+
+  .outer-wrapper.only-search {
+    display: flex !important;
+    padding: 30px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  INFO BOXES                                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .info {
+    border-radius: 18px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  PERSONALIZE BUTTON                                                      */
+  /* ------------------------------------------------------------------------ */
+
+  .personalize-button {
+    box-shadow:
+      rgba(0,0,0,.16) 0px 3px 6px,
+      rgba(0,0,0,.23) 0px 1px 2px;
+
+    min-width: 32px !important;
+    border-radius: 100px !important;
+  }
+
+  /* Settings icon */
+  .icon.icon-settings {
+    background-image: var(--md-edit-icon) !important;
+    background-color: var(--md-tab-background-color-hover) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon.icon-settings:hover {
+      background-color: var(--md-alltabs-background-color-open) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  TILE BACKGROUND OVERRIDES                                               */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    background-color: var(--newtab-background-color-secondary) !important;
+  }
+
+  .top-site-outer .tile:hover {
+    background-color: var(--newtab-element-hover-color) !important;
   }
 }
+/* ========================================================================== */
+/*  USER-CONTENT.CSS — SECTION 6                                              */
+/*  MISC ABOUT:* PAGE FIXES, OVERFLOW RULES, FINAL CLEANUP                    */
+/* ========================================================================== */
 
-/* =========================================================
-   MATERIAL THEME — DARK MODE OVERRIDE
-   ========================================================= */
+@-moz-document regexp("about:(?!blank|devtools).*") {
 
-@media (-moz-pref("userChrome.theme-material")) and (prefers-color-scheme: dark) {
-  :root,
-  html,
-  body {
-    --md-accent-color: var(--md-sys-color-primary);
-    --md-accent-color-hover: color-mix(in srgb, var(--md-accent-color) 80%, transparent);
-    --md-accent-color-transparent: color-mix(in srgb, var(--md-accent-color) 8.37%, transparent);
-    --md-background-color-0: color-mix(in srgb, #1f2020 90%, var(--md-accent-color));
-    --md-background-color-50: color-mix(in srgb, #282828 90%, var(--md-accent-color));
-    --md-background-color-100: color-mix(in srgb, #3c3c3c 90%, var(--md-accent-color));
-    --md-text-primary: var(--md-sys-color-on-surface);
-    --md-text-secondary: var(--md-sys-color-secondary);
-    --md-text-disabled: color-mix(in srgb, var(--md-text-secondary) 80%, transparent);
-    --md-text-on-accent: var(--md-sys-color-on-primary);
-    --md-secondary-button-text: var(--md-accent-color);
-    --md-menu-background-color: var(--md-background-color-50);
-    --md-menu-background-color-hover: color-mix(in srgb, var(--md-accent-color) 15%, var(--md-background-color-100));
-    --md-menu-border-color: color-mix(in srgb, #444746 90%, var(--md-sys-color-outline));
-    --md-tab-background-color-hover: color-mix(in srgb, var(--md-sys-color-primary) 20%, transparent);
-    --md-tab-separator-color: color-mix(in srgb, var(--md-white) 20%, transparent);
-    --md-tab-outline-color: color-mix(in srgb, var(--md-black) 10%, transparent);
-    --md-tab-icon-color: var(--md-text-secondary);
-    --md-tab-label-color: var(--md-text-primary);
-    --md-icon-color-primary: var(--md-text-primary);
-    --md-icon-color-secondary: var(--md-text-secondary);
-    --md-content-separator-color: #606164;
-    --md-selection-text-color: var(--md-sys-color-on-primary);
-    --md-selection-background-color: var(--md-sys-color-primary);
+  /* ------------------------------------------------------------------------ */
+  /*  GENERIC TEXTBOX / FAKE TEXTBOX CLEANUP                                  */
+  /* ------------------------------------------------------------------------ */
+
+  .fake-textbox {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 400 !important;
   }
-}
 
-/* =========================================================
-   SECTION 4 — ICON SYSTEM & URL BAR ELEMENTS
-   Unifies icon appearance across Firefox chrome, including
-   identity box, navigation icons, star button, and URL bar.
-   ========================================================= */
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — SEARCH-ONLY LAYOUT                                      */
+  /* ------------------------------------------------------------------------ */
 
-/* =========================================================
-   DEFAULT ICON FALLBACKS
-   ========================================================= */
-
-.tab-icon-image:not([src]),
-.tab-icon-image:-moz-broken {
-  content: var(--md-no-src-icon) !important;
-  fill: var(--md-icon-color-secondary) !important;
-}
-
-.bookmark-item {
-  list-style-image: var(--md-no-src-icon) !important;
-}
-
-.unified-nav-forward:not([_moz-menuactive])[uri*="about:"],
-.unified-nav-back:not([_moz-menuactive])[uri*="about:"] {
-  list-style-image: var(--md-no-src-icon) !important;
-  fill: var(--md-icon-color-secondary) !important;
-}
-
-#urlbar-results .urlbarView-favicon[src="chrome://global/skin/icons/defaultFavicon.svg"] {
-  fill: transparent !important;
-  background: var(--md-no-src-icon) !important;
-}
-
-.all-tabs-button:not([src]) {
-  list-style-image: var(--md-no-src-icon) !important;
-  fill: var(--md-icon-color-secondary) !important;
-}
-
-/* =========================================================
-   NAVIGATION BUTTON ICONS
-   ========================================================= */
-
-.tab-close-button,
-.close-icon {
-  list-style-image: var(--md-close-tab-icon) !important;
-}
-
-#tabs-newtab-button,
-#new-tab-button {
-  list-style-image: var(--md-plus-icon) !important;
-}
-
-.toolbarbutton-1:is(#back-button, #forward-button),
-.subviewbutton-back,
-.identity-popup-expander {
-  list-style-image: var(--md-arrow-back-icon) !important;
-}
-
-.unified-nav-forward[_moz-menuactive]:-moz-locale-dir(ltr),
-.unified-nav-back[_moz-menuactive]:-moz-locale-dir(rtl) {
-  list-style-image: var(--md-arrow-forward-icon) !important;
-}
-
-.unified-nav-back[_moz-menuactive]:-moz-locale-dir(ltr),
-.unified-nav-forward[_moz-menuactive]:-moz-locale-dir(rtl) {
-  list-style-image: var(--md-arrow-back-icon) !important;
-}
-
-.toolbarbutton-1#forward-button .toolbarbutton-icon,
-#context-forward .menu-iconic-icon {
-  transform: scaleX(-1) !important;
-}
-
-#reload-button {
-  list-style-image: var(--md-refresh-icon) !important;
-  -moz-box-align: center !important;
-  align-items: center !important;
-}
-
-#stop-button {
-  list-style-image: var(--md-close-icon) !important;
-}
-
-#nav-bar #reload-button .toolbarbutton-icon,
-#nav-bar #stop-button .toolbarbutton-icon {
-  padding: 4px !important;
-}
-
-#home-button {
-  list-style-image: var(--md-home-icon) !important;
-}
-
-#nav-bar #home-button .toolbarbutton-icon {
-  padding: 4px !important;
-}
-
-@media (not (-moz-pref("userChrome.ui-chrome-refresh"))) and
-       (-moz-pref("userChrome.ui-force-old-icons")) {
-  #nav-bar #home-button .toolbarbutton-icon {
-    padding: 6px !important;
+  .outer-wrapper.only-search {
+    display: flex !important;
+    padding: 30px !important;
   }
-}
 
-/* =========================================================
-   IDENTITY BOX ICONS (LOCK, WARNING, INFO)
-   ========================================================= */
-
-#identity-box[pageproxystate=valid]:is(.verifiedDomain, .mixedActiveBlocked) #identity-icon {
-  list-style-image: var(--md-lock-icon) !important;
-}
-
-#identity-box[pageproxystate=valid]:is(
-  .notSecure,
-  .mixedActiveContent,
-  .httpsOnlyErrorPage,
-  .weakCipher,
-  .mixedDisplayContent,
-  .mixedDisplayContentLoadedActiveBlocked,
-  .certUserOverridden,
-  #identity-box[pageproxystate=valid].certErrorPage
-) #identity-icon {
-  list-style-image: var(--md-warning-icon) !important;
-}
-
-#identity-popup[connection^="secure"] .identity-popup-security-connection .identity-popup-security-connection-icon {
-  list-style-image: var(--md-lock-icon) !important;
-}
-
-#identity-popup:is(
-  [connection="secure-cert-user-overridden"],
-  [connection="cert-error-page"],
-  [connection^="not-secure"]
-) .identity-popup-security-connection .identity-popup-security-connection-icon {
-  list-style-image: var(--md-warning-icon) !important;
-}
-
-#permissions-granted-icon {
-  list-style-image: var(--md-properties-icon) !important;
-}
-
-#tracking-protection-icon {
-  list-style-image: var(--md-tracking-protection-icon) !important;
-}
-
-/* =========================================================
-   BOOKMARK STAR & PAGE ACTIONS
-   ========================================================= */
-
-#star-button,
-#pageAction-panel-bookmark {
-  list-style-image: var(--md-star-icon) !important;
-}
-
-#urlbar-engine-one-off-item {
-  list-style-image: var(--md-search-icon) !important;
-}
-
-/* =========================================================
-   URL BAR ICON BASE STYLING
-   ========================================================= */
-
-#urlbar .urlbar-icon,
-#urlbar .toolbarbutton-icon,
-#urlbar .urlbar-page-action,
-#urlbar .urlbar-action-button,
-#urlbar .identity-box image,
-#urlbar .identity-box .icon,
-#urlbar .urlbarView-favicon,
-#urlbar .urlbarView-type-icon,
-#urlbar .urlbarView-row .urlbarView-icon {
-  color: var(--md-icon-color-primary) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* =========================================================
-   SECTION 5 — TAB BAR (CHROME‑STYLE FLAT TABS)
-   Fully rewritten tab system:
-   - Flat inactive tabs
-   - Slightly elevated active tab
-   - Chrome‑style separators
-   - Clean geometry & hit‑testing
-   - Smooth hover transitions
-   ========================================================= */
-
-/* --------------------------------------------------------- 
-   1. TAB DRAG GEOMETRY FIX
-   Prevents tabs from overflowing and restores hit‑test areas.
-   --------------------------------------------------------- */
-
-.tabbrowser-tab {
-  overflow: hidden !important;
-  padding-inline: 0 !important;
-  margin-inline: 0 !important;
-}
-
-.tabbrowser-tab::before,
-.tabbrowser-tab::after {
-  display: block !important;
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-  border-inline-width: 1px !important;
-  border-color: color-mix(in srgb, var(--md-text-primary) 10%, transparent) !important;
-}
-
-.tabbrowser-tab[selected]::before,
-.tabbrowser-tab[selected]::after {
-  border-color: transparent !important;
-}
-
-/* --------------------------------------------------------- 
-   2. TAB BACKGROUND — CHROME‑STYLE FLAT TABS
-   --------------------------------------------------------- */
-
-.tab-background {
-  margin-inline: 0 !important;
-  border-radius: 0 !important;
-  background-color: var(--md-background-color-100) !important;
-  opacity: 0.7 !important;
-  transition: background-color 150ms var(--md-fast-invoke),
-              opacity 150ms var(--md-fast-invoke),
-              filter 150ms var(--md-fast-invoke) !important;
-  box-shadow: none !important;
-}
-
-.tabbrowser-tab[selected] .tab-background {
-  background-color: var(--md-background-color-50) !important;
-  opacity: 1 !important;
-  filter: brightness(1.15) !important;
-  border-top-left-radius: 10px !important;
-  border-top-right-radius: 10px !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  overflow: hidden !important;
-  box-shadow: 0 0 0 1px var(--md-tab-outline-color) !important;
-}
-
-.tabbrowser-tab:not([selected]):hover .tab-background {
-  opacity: 0.9 !important;
-  filter: brightness(1.05) !important;
-}
-
-/* --------------------------------------------------------- 
-   3. TAB LABELS & ICONS
-   --------------------------------------------------------- */
-
-.tab-content {
-  padding: 0 12px !important;
-  position: relative !important;
-}
-
-.tab-label {
-  margin-left: 8px !important;
-}
-
-.tabbrowser-tab[selected] .tab-label {
-  color: var(--md-tab-label-color) !important;
-  font-weight: 500 !important;
-}
-
-.tabbrowser-tab:not([selected]) .tab-label {
-  color: var(--md-tab-label-color-inactive) !important;
-}
-
-.tabbrowser-tab[pinned] .tab-content {
-  display: grid !important;
-  place-content: center !important;
-  place-items: center !important;
-}
-
-/* --------------------------------------------------------- 
-   4. CHROME‑STYLE TAB SEPARATORS
-   --------------------------------------------------------- */
-
-.tab-content::before,
-.tab-content::after {
-  content: "" !important;
-  position: absolute !important;
-  width: 1px !important;
-  height: 20px !important;
-  background-color: var(--md-tab-separator-color) !important;
-  opacity: 0.25 !important;
-  transition: opacity var(--md-medium-short-duration) var(--md-point-to-point) !important;
-}
-
-.tab-content::before { left: 0 !important; }
-.tab-content::after  { right: 0 !important; }
-
-.tabbrowser-tab[selected] .tab-content::before,
-.tabbrowser-tab[selected] .tab-content::after {
-  opacity: 0 !important;
-}
-
-/* --------------------------------------------------------- 
-   5. INACTIVE TAB BACKGROUND COLOR (CHROME‑LIKE)
-   --------------------------------------------------------- */
-
-.tabbrowser-tab:not([selected]) {
-  background-color: transparent !important;
-}
-
-.tabbrowser-tab:not([selected]) > .tab-stack > .tab-background {
-  background-color: transparent !important;
-  box-shadow: none !important;
-  filter: none !important;
-  opacity: 1 !important;
-}
-
-.tabbrowser-tab[selected] .tab-background {
-  background-color: var(--toolbar-bgcolor) !important;
-  filter: none !important;
-  box-shadow: none !important;
-  opacity: 1 !important;
-}
-
-/* =========================================================
-   SECTION 6 — ADDITIONAL FIXES & OVERRIDES
-   These rules address specific UI elements that need extra attention to fit the Material/Chrome aesthetic.
-   ========================================================= */
-   
-/* =========================================================
-   OVERRIDE FIREFOX TAB COLOR VARIABLES DIRECTLY
-   ========================================================= */
-
-:root {
-  --lwt-background-tab-separator-color: transparent !important;
-  --lwt-tab-line-color: transparent !important;
-  --lwt-tab-background-color: var(--toolbar-bgcolor) !important;
-  --lwt-non-selected-tab-background-color: var(--toolbar-bgcolor) !important;
-}
-
-/* =========================================================
-   THEME-ADAPTIVE TOOLBOX FLATTENING
-   Only flatten when the theme does NOT use a gradient.
-   ========================================================= */
-
-#navigator-toolbox {
-  border-bottom: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  overflow: visible !important;
-}
-
-#navigator-toolbox[style*="--toolbar-bgimage"] {
-  background-color: var(--toolbar-bgcolor) !important;
-  background-image: var(--toolbar-bgimage) !important;
-}
-
-/* =========================================================
-   REMOVE DRAGGABLE BORDER PADDING WHEN NOT MAXIMIZED
-   ========================================================= */
-
-:root:not([sizemode="maximized"]) #TabsToolbar {
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-:root:not([sizemode="maximized"]) #titlebar {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-:root:not([sizemode="maximized"]) #TabsToolbar > .titlebar-spacer {
-  width: 0 !important;
-}
-
-/* =========================================================
-   FIX TAB TOP PADDING
-   ========================================================= */
-
-:root {
-  --tab-block-margin: 0px !important;
-}
-
-#menubar-items {
-  flex-direction: inherit !important;
-  padding-left: 5px !important;
-}
-
-#toolbar-menubar[inactive="true"] + #TabsToolbar {
-  --tab-block-margin: 3px !important;
-}
-
-#TabsToolbar {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  background-clip: padding-box !important;
-}
-
-#tabbrowser-tabs {
-  transform: translateY(var(--tab-block-margin)) !important;
-}
-
-#tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
-  transform: translateY(var(--tab-block-margin)) !important;
-}
-
-#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs,
-#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar #tabbrowser-tabs[positionpinnedtabs] .tabbrowser-tab[pinned] {
-  transform: translateY(0) !important;
-}
-
-/* =========================================================
-   FIX PINNED TAB HEIGHT AND ICON ALIGNMENT
-   ========================================================= */
-
-.tabbrowser-tab[pinned] {
-  height: var(--tab-min-height) !important;
-  min-height: var(--tab-min-height) !important;
-  max-height: var(--tab-min-height) !important;
-}
-
-.tabbrowser-tab[pinned] .tab-stack,
-.tabbrowser-tab[pinned] .tab-content {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.tabbrowser-tab[pinned] .tab-background {
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.tabbrowser-tab[pinned] .tab-icon-stack {
-  margin-top: calc(2 * var(--tab-block-margin)) !important;
-}
-
-#toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar .tabbrowser-tab[pinned] .tab-icon-stack {
-  margin-top: 0px !important;
-}
-
-.tabbrowser-tab[pinned] .tab-content {
-  padding-inline: 12px !important;
-}
-
-/* =========================================================
-   MAKE TOOLBAR TOP CORNERS ROUNDED
-   ========================================================= */
-
-
-#nav-bar {
-  border-top-left-radius: 8px !important;
-  border-top-right-radius: 8px !important;
-  border-top: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: 3px !important;
-  padding-bottom: 8px !important;
-  --toolbar-field-height: 36px !important;
-}
-
-
-#navigator-toolbox > toolbar:not(#nav-bar):not(#PersonalToolbar) {
-  border-top: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-
-#PersonalToolbar {
-  padding-top: 0px !important;
-  padding-bottom: 8px !important;
-  margin-top: -5px !important;
-}
-
-
-/* =========================================================
-   MAKE URL BAR AND IDENTITY BOX PILL-SHAPED
-   ========================================================= */
-
-#urlbar:not([focused]):not([open]),
-#urlbar-background:not([focused]):not([open]) {
-  border-radius: 999px !important;
-  overflow: hidden !important;
-}
-
-#urlbar[breakout][breakout-extend],
-#urlbar[breakout][breakout-extend] > *,
-#urlbar[breakout][breakout-extend-animate],
-#urlbar[breakout][breakout-extend-animate] > * {
-  border-radius: 24px !important;
-  overflow: visible !important;
-}
-
-#urlbar-searchmode-switcher {
-  border-radius: 999px !important;
-  padding: 4px 8px !important;
-}
-
-.searchmode-switcher-chicklet {
-  border-radius: 999px !important;
-  padding: 4px 8px !important;
-  background-color: var(--toolbar-field-background-color) !important;
-}
-
-#identity-icon-box.identity-box-button {
-  border-radius: 999px !important;
-  padding: 4px 8px !important;
-}
-
-/* =========================================================
-   URL BAR — EDGE PADDING (LEFT + RIGHT)
-   ========================================================= */
-
-#nav-bar #urlbar {
-  padding-inline: 2px !important;
-}
-
-/* =========================================================
-   NAV-BAR HEIGHT — Match Chrome proportions
-   ========================================================= */
-
-
-/* =========================================================
-   URLBAR — REMOVE BORDER AND SEPARATOR LINE
-   ========================================================= */
-
-/* Remove border around expanded urlbar */
-#urlbar > #urlbar-background,
-#urlbar[open] > #urlbar-background,
-#urlbar[focused] > #urlbar-background,
-#urlbar[breakout][breakout-extend] > #urlbar-background {
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-#urlbar[breakout][breakout-extend] {
-  --urlbar-focus-outline-width: 0px !important;
-}
-
-/* Remove separator between input and results, and all urlbar borders */
-/* Consolidated urlbar border and separator removal */
-.urlbarView,
-.urlbarView-body-inner,
-#urlbar .search-one-offs {
-  border-top: none !important;
-}
-
-.urlbar-input-container,
-#urlbar[open] .urlbar-input-container,
-#urlbar[breakout][breakout-extend] .urlbar-input-container,
-#urlbar[breakout][breakout-extend-animate] .urlbar-input-container {
-  --urlbar-container-border-width: 0px !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-#urlbar-background {
-  border-top: none !important;
-}
-
-#urlbar > .urlbarView {
-  --panel-border-color: transparent !important;
-  --arrowpanel-border-color: transparent !important;
-}
-
-/* Remove border and shadow from context menus */
-menupopup,
-menupopup > .menupopup-arrowscrollbox {
-  box-shadow: none !important;
-  border: none !important;
-  outline: none !important;
-  -moz-window-shadow: none !important;
-  overflow: visible !important;
-}
-
-menupopup > .menupopup-arrowscrollbox {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-}
-
-/* Push first and last menuitems away from rounded corners to prevent spotlight clipping */
-menupopup > menuitem:first-child,
-menupopup > menu:first-child {
-  margin-top: 4px !important;
-}
-
-menupopup > menuitem:last-child,
-menupopup > menu:last-child {
-  margin-bottom: 4px !important;
-}
-
-/* Add padding inside shadow DOM panel content to prevent spotlight clipping */
-menupopup::part(content),
-menupopup::part(arrowscrollbox) {
-  padding-block: 4px !important;
-}
-
-menupopup::part(arrowscrollbox),
-menupopup::part(scrollbox),
-menupopup::part(content) {
-  border: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-menupopup {
-  --panel-border-color: transparent !important;
-  --panel-shadow: none !important;
-}
-
-:root {
-  --menupopup-border-width: 0px !important;
-  --panel-border-width: 0px !important;
-  --menu-border-color: transparent !important;
-}
-
-/* =========================================================
-   SHIFT THE ENTIRE TABSTRIP
-   ========================================================= */
-
-:root {
-  --tab-shift: -6px;
-}
-
-#main-window:not([privatebrowsingmode]) #tabbrowser-tabs {
-  margin-inline-start: var(--tab-shift) !important;
-}
-
-#main-window[privatebrowsingmode] #tabbrowser-tabs {
-  margin-inline-start: calc(var(--tab-shift) + 40px) !important;
-}
-
-/* =========================================================
-   USE THE FIREFOX LOGO FOR VIEW BUTTON
-   ========================================================= */
-
-#firefox-view-button .toolbarbutton-icon,
-#firefox-view-button .toolbarbutton-badge-stack,
-#firefox-view-button image,
-#firefox-view-button .icon {
-  list-style-image: url("chrome://branding/content/icon32.png") !important;
-  width: 28px !important;
-  height: 28px !important;
-  content: unset !important;
-  filter: none !important;
-  fill: unset !important;
-  stroke: unset !important;
-  background: none !important;
-  mask: none !important;
-  margin-top: var(--tab-block-margin) !important;
-}
-
-#firefox-view-button .toolbarbutton-icon:not([src]),
-#firefox-view-button image:not([src]) {
-  list-style-image: url("chrome://branding/content/icon32.png") !important;
-}
-
-#firefox-view-button {
-  --toolbarbutton-icon-size: 28px !important;
-  --toolbarbutton-inner-padding: 2px !important;
-  margin-inline-start: calc(-1 * var(--tab-shift)) !important;
-}
-
-/* =========================================================
-   REMOVE SEPARATOR/BORDER DRAWN ON THE LEFT EDGE OF THE TAB STRIP
-   ========================================================= */
-
-#tabbrowser-tabs,
-#tabbrowser-tabs[haspinnedtabs] {
-  border-inline-start: none !important;
-  border-left: none !important;
-  box-shadow: none !important;
-  background-image: none !important;
-}
-
-/* =========================================================
-   PREVENT FIREFOX FROM DIMMING TABS WHEN INACTIVE
-   ========================================================= */
-
-:root:-moz-window-inactive,
-:root:-moz-window-inactive toolbar,
-:root:-moz-window-inactive #TabsToolbar,
-:root:-moz-window-inactive #nav-bar,
-:root:-moz-window-inactive .tabbrowser-tab,
-:root:-moz-window-inactive .tab-background,
-:root:-moz-window-inactive .tab-stack {
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-/* =========================================================
-   MAKE UNLOADED TABS USE FADED ICON
-   ========================================================= */
-
-/* Fade the favicon on pending tabs — keep color, just reduce opacity */
-.tabbrowser-tab[pending] .tab-icon-image {
-  opacity: 0.4 !important;
-  filter: none !important;
-}
-
-/* =========================================================
-   CHROME-STYLE TAB LOADING SPINNER
-   ========================================================= */
-
-.tab-icon-image[busy] {
-  opacity: 1 !important;
-  display: block !important;
-}
-
-.tab-icon-stack {
-  position: relative !important;
-}
-
-.tab-throbber {
-  list-style-image: none !important;
-}
-
-.tab-throbber::before {
-  display: none !important;
-  content: none !important;
-}
-
-@keyframes tab-throbber-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-.tab-throbber[busy] {
-  width: 16px;
-  height: 16px;
-
-  transform-origin: center !important;
-
-  border: 2px solid rgba(128,128,128,0.25);
-  border-top-color: var(--md-accent-color);
-  border-radius: 50%;
-
-  animation: tab-throbber-spin 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-
-  background: none !important;
-}
-
-.tab-throbber:not([busy]) {
-  display: none !important;
-}
-
-.tab-icon-image {
-  transform: scale(1);
-  transition: transform 0.15s ease;
-}
-
-.tab-icon-image[busy] {
-  transform: scale(0.7);
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — INFO BOXES                                              */
+  /* ------------------------------------------------------------------------ */
+
+  .info {
+    border-radius: 18px !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — CARD GRID                                               */
+  /* ------------------------------------------------------------------------ */
+
+  .card-outer,
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    border-radius: 18px !important;
+  }
+
+  .card-outer .card,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder) {
+    box-shadow: 0 1px 4px rgba(0,0,0,.3) !important;
+  }
+
+  .card-outer .card-preview-image-outer,
+  .ds-card-grid.ds-card-grid-border .ds-card:not(.placeholder)
+    .img-wrapper .img img {
+
+    border-radius: 18px 18px 0 0 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — TILE BACKGROUND                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .tile {
+    background-color: var(--newtab-background-color-secondary) !important;
+  }
+
+  .top-site-outer .tile:hover {
+    background-color: var(--newtab-element-hover-color) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — PINNED ICONS                                            */
+  /* ------------------------------------------------------------------------ */
+
+  .icon.icon-pin-small {
+    display: none !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — TITLE OPACITY                                           */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-button .title:not(.pinned) {
+    opacity: 0.7 !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — CONTEXT MENU BUTTON                                     */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer .context-menu-button {
+    fill: var(--md-icon-color-secondary) !important;
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — SETTINGS ICON                                           */
+  /* ------------------------------------------------------------------------ */
+
+  .icon.icon-settings {
+    background-image: var(--md-edit-icon) !important;
+    background-color: var(--md-tab-background-color-hover) !important;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .icon.icon-settings:hover {
+      background-color: var(--md-alltabs-background-color-open) !important;
+    }
+  }
+
+  /* ------------------------------------------------------------------------ */
+  /*  ABOUT:NEW TAB — ADD BUTTON TILE                                         */
+  /* ------------------------------------------------------------------------ */
+
+  .top-site-outer.placeholder.add-button .tile {
+    background-color: var(--md-tab-background-color-hover) !important;
+    cursor: pointer !important;
+  }
+
+  .top-site-outer.placeholder.add-button {
+    cursor: pointer !important;
+    user-select: none !important;
+  }
 }
