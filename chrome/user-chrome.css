@@ -1188,6 +1188,7 @@ richlistitem[selected] {
 
 :root {
   --tab-block-margin: 0px !important;
+  --tab-margin-top: 6px !important;
 }
 
 #toolbar-menubar .titlebar-buttonbox {
@@ -1199,7 +1200,7 @@ richlistitem[selected] {
 }
 
 #toolbar-menubar[inactive="true"] + #TabsToolbar #tabbrowser-tabs {
-  margin-top: 6px !important;
+  margin-top: var(--tab-margin-top) !important;
 }
 
 #TabsToolbar {
@@ -1234,7 +1235,7 @@ richlistitem[selected] {
 }
 
 .tabbrowser-tab[pinned] .tab-icon-stack {
-  margin-top: calc(2 * var(--tab-block-margin)) !important;
+  margin-top: 0px !important;
 }
 
 #toolbar-menubar:not([inactive="true"]) ~ #TabsToolbar .tabbrowser-tab[pinned] .tab-icon-stack {
@@ -1242,7 +1243,7 @@ richlistitem[selected] {
 }
 
 .tabbrowser-tab[pinned] .tab-content {
-  padding-inline: 12px !important;
+  padding-inline: calc(2 * var(--tab-margin-top)) !important;
 }
 
 /* =========================================================
