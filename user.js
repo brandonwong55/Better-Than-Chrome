@@ -1,7 +1,7 @@
 // Dev tools
-// user_pref("devtools.chrome.enabled", true);
-// user_pref("devtools.debugger.remote-enabled", true);
-// user_pref("devtools.debugger.prompt-connection", true);
+user_pref("devtools.chrome.enabled", true);
+user_pref("devtools.debugger.remote-enabled", true);
+user_pref("devtools.debugger.prompt-connection", true);
 
 user_pref("browser.tabs.hoverPreview.showThumbnailDelay", 1000);
 user_pref("findbar.highlightAll", true);
@@ -28,3 +28,9 @@ user_pref("layout.css.container-queries.enabled", true);
 user_pref("layout.css.has-selector.enabled", true);
 user_pref("svg.context-properties.content.enabled", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+user_pref("ui.textHighlightBackground", "#FFD500");
+user_pref("ui.textHighlightForeground", "#000000");
+user_pref("ui.textSelectAttentionBackground", "#FF9632");
+user_pref("ui.textSelectAttentionForeground", "#000000");
+user_pref("ui.textSelectBackground", "#CCE2FF");
+user_pref("ui.textSelectForeground", "#000000");
