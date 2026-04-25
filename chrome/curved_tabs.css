@@ -81,5 +81,13 @@
 }
 
 #tabs-newtab-button {
-  margin-inline-start: calc(2px - var(--uc-tab-curve-size)) !important;
+  margin-inline-start: calc(-1 * var(--uc-tab-curve-size)) !important;
+}
+
+#tabbrowser-tabs:not(:has(.tabbrowser-tab:not([pinned]))) #tabs-newtab-button {
+  margin-inline-start: var(--uc-tab-curve-size) !important;
+}
+
+#tabbrowser-tabs:has[pinned] .tabbrowser-tab:not([pinned]):first-of-type {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
 }
