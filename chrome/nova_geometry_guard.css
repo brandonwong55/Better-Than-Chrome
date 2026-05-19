@@ -431,16 +431,227 @@ notification {
   margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
 }
 
-/* Push the bottom curves for unpinned tabs inwards*/
+/* 🛠️ FORCE SQUEEZE ON WRAPPER */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
+}
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: calc(-2 * var(--uc-tab-curve-size)) !important;
+}
+
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) + tab-split-view-wrapper {
+  margin-inline-start: calc(-1 * var(--uc-tab-curve-size)) !important;
+}
+#tabbrowser-tabs tab-split-view-wrapper + .tabbrowser-tab:not([pinned]) {
+  margin-inline-start: calc(-1 * var(--uc-tab-curve-size)) !important;
+}
+
+/* Push the bottom curves for unpinned tabs inwards */
 #tabbrowser-tabs .tabbrowser-tab:not([pinned]) {
   margin-inline-start: 0 !important;
   margin-inline-end: 0 !important;
 }
 
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before{
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::before {
   left: 0 !important;
 }
 
-#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after{
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]):is([selected],[multiselected]) > .tab-stack::after {
   right: 0 !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background {
+  margin-inline-start: calc(-1 * var(--uc-tab-curve-size)) !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:last-child .tab-background {
+  margin-inline-end: calc(-1 * var(--uc-tab-curve-size)) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 🛠️ OVERLAP INTERFERENCE & SEPARATOR FIXES                                  */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* 1. HIDE LEFT WRAPPER CURVE WHEN PREV TAB IS ACTIVE */
+#tabbrowser-tabs .tabbrowser-tab[selected] + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-tabs .tabbrowser-tab[multiselected] + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* 2. HIDE RIGHT WRAPPER CURVE WHEN NEXT TAB IS ACTIVE */
+#tabbrowser-tabs tab-split-view-wrapper:has(+ .tabbrowser-tab[selected]) .tabbrowser-tab:last-child .tab-background::after,
+#tabbrowser-tabs tab-split-view-wrapper:has(+ .tabbrowser-tab[multiselected]) .tabbrowser-tab:last-child .tab-background::after {
+  display: none !important;
+  opacity: 0 !important;
+}
+
+/* 3. PURGE NATIVE SEPARATOR LINES */
+#tabbrowser-tabs tab-split-view-wrapper .tab-separator,
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab::before,
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab::after {
+  display: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 🛠️ ABSOLUTE SPLIT-VIEW SEPARATOR PURGE                                     */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#tabbrowser-tabs tab-split-view-wrapper .tab-stack,
+#tabbrowser-tabs tab-split-view-wrapper .tab-content,
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab {
+  border: none !important;
+  border-image: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-inline-start: none !important;
+  border-inline-end: none !important;
+  box-shadow: none !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper .tab-stack::before,
+#tabbrowser-tabs tab-split-view-wrapper .tab-stack::after,
+#tabbrowser-tabs tab-split-view-wrapper .tab-content::before,
+#tabbrowser-tabs tab-split-view-wrapper .tab-content::after {
+  display: none !important;
+  background: none !important;
+  border: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 🛠️ ANIMATION & DRAG-SAFE HEIGHT ALIGNMENT                                  */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+#tabbrowser-tabs tab-split-view-wrapper:not([dragging="true"]) {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+  height: var(--tab-min-height) !important;
+  max-height: var(--tab-min-height) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper:not([dragging="true"]) :is(.tabbrowser-tab, .tab-stack, .tab-content) {
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper:not([dragging="true"]) .tab-background {
+  height: var(--tab-min-height) !important;
+  min-height: var(--tab-min-height) !important;
+  max-height: var(--tab-min-height) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper[dragging="true"] {
+  height: auto !important;
+  max-height: none !important;
+}
+#tabbrowser-tabs tab-split-view-wrapper[dragging="true"] * {
+  height: auto !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* 🛠️ SPLIT-VIEW LEAD POSITION BUFFER RESTORATION                             */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* CASE 1: The wrapper is the absolute first tab in the bar (No Pinned Tabs) */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper:first-child {
+  margin-inline-start: 0 !important;
+}
+
+/* CASE 2: The wrapper is the first unpinned tab (Immediately follows pinned tabs) */
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper {
+  margin-inline-start: 0 !important;
+  z-index: 5 !important; /* Retain elevation above native pinned container tracks */
+}
+
+/* Reset inner tab background margins back to 0 when in edge positions to match native first-tab physics */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper:first-child .tabbrowser-tab:first-child .tab-background,
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background {
+  margin-inline-start: 0 !important;
+}
+
+/* Force-align the absolute left curve coordinates exactly where curved_tabs.css expects them */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper:first-child .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before {
+  position: absolute !important;
+  left: calc(-1 * var(--uc-tab-curve-size, 10px)) !important;
+  visibility: visible !important;
+  display: inline-block !important;
+  opacity: 1 !important;
+}
+
+/* =========================================================================
+   UPDATED STEP 3 — STRICT Z-INDEX HIERARCHY & CONDITIONAL CURVES
+   ========================================================================= */
+
+/* 3a. Shift the standard first unpinned tab across the gap */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab:not([pinned]):first-of-type {
+  margin-inline-start: calc(-20px - var(--uc-tab-curve-size, 10px)) !important;
+}
+
+/* 3b. Shift the split-view wrapper across the gap when it sits first */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper {
+  margin-inline-start: calc(-20px - var(--uc-tab-curve-size, 10px)) !important;
+}
+
+/* 3c. 👑 STRICT HIERARCHY: Keep inactive tabs strictly below pinned tabs */
+#tabbrowser-tabs .tabbrowser-tab[pinned] {
+  z-index: 10 !important; /* Base pinned elevation */
+}
+#tabbrowser-tabs .tabbrowser-tab[pinned][selected="true"] {
+  z-index: 20 !important; /* Active pinned is highest priority */
+}
+#tabbrowser-tabs tab-split-view-wrapper:not([hasactivetab]):not(:has([selected="true"])) {
+  z-index: 1 !important; /* Inactive wrapper is safely pushed UNDER the pinned tab */
+}
+#tabbrowser-tabs tab-split-view-wrapper[hasactivetab],
+#tabbrowser-tabs tab-split-view-wrapper:has([selected="true"]) {
+  z-index: 15 !important; /* Active wrapper raises to paint its curves over inactive pinned tabs */
+}
+
+/* 3d. Reset inner margin on the first child of the wrapper */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background {
+  margin-inline-start: 0 !important;
+}
+
+/* 3e. Map the LEFT curve (::before) layout coordinates for the first inner tab */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before {
+  left: calc(-1 * var(--uc-tab-curve-size, 10px)) !important;
+  position: absolute !important;
+}
+
+/* 3f. ONLY force-paint the left curve when the wrapper is actually ACTIVE */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper[hasactivetab] .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab:first-child .tab-background::before {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ==========================================================================
+   FIX FOR SPLIT-VIEW RIGHT-SIDE GAP (ADVANCED LOOK-AHEAD LOGIC)
+   ========================================================================== */
+
+/* 1. Reset the wrapper margin so it stays perfectly flush with regular tabs */
+#tabbrowser-tabs tab-split-view-wrapper {
+    margin-inline-end: 0px !important;
+}
+
+/* 2. Apply a gap ONLY when no other tabs or split views exist to its right */
+#tabbrowser-tabs tab-split-view-wrapper:not(:has(~ .tabbrowser-tab)):not(:has(~ tab-split-view-wrapper)) {
+    margin-inline-end: 10px !important;
 }
