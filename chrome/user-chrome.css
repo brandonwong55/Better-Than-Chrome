@@ -1570,3 +1570,34 @@ menupopup > .menupopup-arrowscrollbox {
 .menupopup-arrowscrollbox {
   overflow: visible !important;
 }
+
+/* 1. Neutralize the negative margin from curved_tabs.css 
+      that is causing the clipping. */
+#tabbrowser-tabs:has([pinned]) #tabbrowser-arrowscrollbox {
+  margin-inline-start: 0 !important;
+}
+
+/* 2. Create the 20px gap using a margin on the last pinned tab.
+      This pushes the button away without pulling the whole 
+      container into the "clipping zone." */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab[pinned]:last-of-type {
+  margin-inline-end: 20px !important;
+}
+
+/* 3. Pull the first unpinned tab back to maintain the curve.
+      Since we removed the -20px margin in Step 1, we pull back 
+      by the 20px gap plus the curve size (10px). */
+#tabbrowser-tabs[haspinned] .tabbrowser-tab:not([pinned]):first-of-type {
+  margin-inline-start: calc(-20px - var(--uc-tab-curve-size, 10px)) !important;
+}
+
+/* 4. Ensure the New Tab button tucks into unpinned tabs correctly. */
+#tabbrowser-tabs .tabbrowser-tab:not([pinned]) + #tabs-newtab-button {
+  margin-inline-start: calc(-1 * var(--uc-tab-curve-size, 10px)) !important;
+}
+
+/* 5. Fix the spotlight clipping specifically for the New Tab button. */
+#tabs-newtab-button {
+  margin-inline-start: 0 !important;
+  overflow: visible !important;
+}
