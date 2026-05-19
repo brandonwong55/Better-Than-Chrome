@@ -1,0 +1,250 @@
+/* ==========================================================================
+   CHROME-STYLE SPLIT VIEW (DRAGGING ARCHITECTURE DEPLOYED)
+   ========================================================================== */
+
+/* 1. Clear out the wrapper completely so it doesn't block the native dragging engine */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper {
+  margin-block: 0 !important;
+  max-height: unset !important; 
+  height: 100% !important;
+  display: flex !important;
+  align-items: stretch !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+/* 2. Direct Layout Configuration on the Native Tabs */
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab {
+  flex: 1 1 0% !important;   /* Perfect 50/50 balance */
+  min-width: 0px !important;  /* Stops structural clipping out of bounds */
+  max-width: 100% !important;
+  padding-inline: 0px !important;
+  overflow: visible !important; /* Crucial for letting our manual outer curves sit cleanly */
+  position: relative !important;
+  
+  /* 🛠️ SQUEEZE FIX: Strict zero margins applied directly on the nodes.
+      This completely overrides Section 12's adjacent-sibling squeeze math. */
+  margin: 0px !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
+
+  & .tab-content {
+    max-height: unset !important;
+    height: 100% !important;
+    width: 100% !important;
+    min-width: 0px !important;
+    z-index: 2 !important;
+  }
+}
+
+/* 3. Force the internal tab backgrounds to fill out the spaces completely */
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab .tab-background {
+  border-radius: 0 !important; /* Base override to prevent cascading interference */
+  box-shadow: none !important;
+  min-width: 0px !important;
+}
+
+/* Match colors safely based on whether the container contains an active tab */
+#tabbrowser-tabs tab-split-view-wrapper[hasactivetab] .tabbrowser-tab .tab-background {
+  background-color: var(--tab-selected-bgcolor) !important;
+}
+#tabbrowser-tabs tab-split-view-wrapper:not([hasactivetab]) .tabbrowser-tab .tab-background {
+  background-color: var(--md-background-color-50) !important;
+}
+
+/* 4. Disable native individual curves to prevent internal visual artifacts */
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab::before,
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab::after,
+#tabbrowser-tabs tab-split-view-wrapper .tab-stack::before,
+#tabbrowser-tabs tab-split-view-wrapper .tab-stack::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 5. MANUAL CORNER CURVES (Pinned directly onto the native tab background anchors)
+   This allows the outer Chrome shapes to stay perfectly tethered to the dragging elements. */
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  width: var(--uc-tab-curve-size) !important;
+  height: var(--uc-tab-curve-size) !important;
+  left: calc(-1 * var(--uc-tab-curve-size)) !important;
+  transform: scaleX(-1) !important;
+  background-size: cover !important;
+  -moz-context-properties: fill !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='context-fill' d='M0,0 L0,10 L10,10 A10,10 0 0,1 0,0 Z'/%3E%3C/svg%3E") !important;
+}
+
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab:last-child .tab-background::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  width: var(--uc-tab-curve-size) !important;
+  height: var(--uc-tab-curve-size) !important;
+  right: calc(-1 * var(--uc-tab-curve-size)) !important;
+  background-size: cover !important;
+  -moz-context-properties: fill !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath fill='context-fill' d='M0,0 L0,10 L10,10 A10,10 0 0,1 0,0 Z'/%3E%3C/svg%3E") !important;
+}
+
+/* 6. ANNIHILATE INTERNAL SEPARATORS */
+#tabbrowser-tabs tab-split-view-wrapper .tabbrowser-tab {
+  border: none !important;
+  outline: none !important;
+}
+#tabbrowser-tabs tab-split-view-wrapper > box,
+#tabbrowser-tabs tab-split-view-wrapper > hbox,
+#tabbrowser-tabs tab-split-view-wrapper > spacer {
+  border: none !important;
+  display: none !important;
+  width: 0px !important;
+}
+
+/* ==========================================================================
+   🌐 CHROME-STYLE SPLIT-VIEW HOVER (UNIFIED CURVED_TABS.CSS GEOMETRY)
+   ========================================================================== */
+
+/* --- 1. UNIFIED ACTIVE HIGHLIGHT (Both halves light up when active) --- */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper[hasactivetab] .tabbrowser-tab .tab-background,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab .tab-background {
+  background-color: var(--tab-selected-background-color, var(--toolbar-bgcolor)) !important;
+  opacity: 1 !important;
+}
+
+/* --- 2. UNIFIED HOVER HIGHLIGHT (Both halves light up when hovering either side) --- */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab .tab-background {
+  background-color: var(--md-tab-background-color-hover) !important;
+  opacity: 0.97 !important;
+}
+
+/* --- 3. GEOMETRY INTEGRATION: Flatten the inner seam, preserve outer theme curves --- */
+
+/* Reset any box border-radius overrides that fight your custom curve theme structure */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper .tabbrowser-tab,
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper .tab-background,
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper .tab-stack {
+  border-radius: 0px !important;
+}
+
+/* LEFT TAB: Kill its right-side custom theme pseudo-flare so it is perfectly flat */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper > .tabbrowser-tab:first-of-type .tab-background::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* RIGHT TAB: Kill its left-side custom theme pseudo-flare so it is perfectly flat */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper > .tabbrowser-tab:last-of-type .tab-background::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Ensure margins or paddings don't break the flush seam in the middle */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper > .tabbrowser-tab:first-of-type {
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+}
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper > .tabbrowser-tab:last-of-type {
+  padding-left: 0px !important;
+  margin-left: 0px !important;
+}
+
+/* ==========================================================================
+   🌐 CHROME-STYLE SPLIT-VIEW HOVER (FULLY COMPATIBLE)
+   ========================================================================== */
+
+/* 1. UNIFIED HOVER HIGHLIGHT (Background Color) */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab .tab-background {
+  background-color: var(--md-tab-background-color-hover) !important;
+}
+
+/* 2. DYNAMIC HOVER COLOR FOR MANUAL CORNER CURVES (Section 5 Sync) */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab:last-child .tab-background::after {
+  fill: var(--md-tab-background-color-hover) !important;
+}
+
+/* 3. SECTION 12 ALIGNMENT FIX (Stop the double-shift artifact) */
+#tabbrowser-arrowscrollbox > tab-split-view-wrapper:first-child .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-arrowscrollbox > .tabbrowser-tab[pinned]:last-of-type + tab-split-view-wrapper .tabbrowser-tab:first-child .tab-background::before {
+  left: 0 !important; 
+}
+
+/* ==========================================================================
+   🌐 INACTIVE SPLIT-VIEW TAB VISIBILITY HARMONIZATION
+   ========================================================================== */
+
+/* 1. Force background to match the background of standard inactive tabs */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):not(:hover) .tabbrowser-tab .tab-background {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+/* 2. Match the left/right custom curve pseudo-elements to the background color */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):not(:hover) .tabbrowser-tab .tab-background::before,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):not(:hover) .tabbrowser-tab .tab-background::after {
+  background-color: transparent !important;
+  color: transparent !important;
+  opacity: 0 !important;
+}
+
+/* 3. Ensure internal tab separators/borders don't accidentally draw frames */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):not(:hover) .tabbrowser-tab {
+  border-color: transparent !important;
+}
+
+/* ==========================================================================
+   💥 STATE-DEPENDENT CONDITIONAL GEOMETRY ENGINE
+   ========================================================================== */
+
+/* 1. Wipe out core engine gradient sheets inside the split elements */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper .tabbrowser-tab .tab-background {
+  background-image: none !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* ── STATE A: HOVERED STATUS (No active tab inside wrapper) ── */
+/* Force clean, uniform rounded rectangles (all 4 corners rounded) */
+
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab:first-child .tab-background {
+  border-radius: 8px 0px 0px 8px !important;
+}
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab:last-child .tab-background {
+  border-radius: 0px 8px 8px 0px !important;
+}
+
+/* Kill the bottom reverse vector wings completely during pure hover states */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab .tab-background::before,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:not([hasactivetab]):hover .tabbrowser-tab .tab-background::after {
+  background-color: transparent !important;
+  background-image: none !important;
+  fill: transparent !important;
+}
+
+/* ── STATE B: ACTIVE/SPOTLIGHT STATUS ── */
+/* Restore classic Chrome profile: top outer curves only, combined with active outer vector curves */
+
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper[hasactivetab] .tabbrowser-tab:first-child .tab-background,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab:first-child .tab-background {
+  border-radius: 12px 0px 0px 0px !important;
+}
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper[hasactivetab] .tabbrowser-tab:last-child .tab-background,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab:last-child .tab-background {
+  border-radius: 0px 12px 0px 0px !important;
+}
+
+/* Paint the high-fidelity reverse SVG vectors matching the toolbar highlight color */
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper[hasactivetab] .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab:first-child .tab-background::before,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper[hasactivetab] .tabbrowser-tab:last-child .tab-background::after,
+#tabbrowser-tabs[orient="horizontal"] tab-split-view-wrapper:has([selected="true"]) .tabbrowser-tab:last-child .tab-background::after {
+  fill: var(--tab-selected-background-color, var(--toolbar-bgcolor)) !important;
+  opacity: 1 !important;
+}
